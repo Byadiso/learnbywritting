@@ -2,18 +2,13 @@
 
 # myBrand
 
-myBrand is a portfolio project about my latest project and a simple blog about my interest.
-It is a capstone project made during my Andela Technical Leadership Program.
+LearnBywriting is a project made to improve my english via writing and reading.
 
 # TABLE OF CONTENTS
 
 - PROJECT OVERVIEW
 - FEATURES
 - DEMO
-- API End Points
-- Known Issues
-- Installation
-- Contributiion
 
 # PROJECT OVERVIEW
 
@@ -35,14 +30,11 @@ It is a capstone project made during my Andela Technical Leadership Program.
 - JavaScript
 
 ### backend
-
-## Middleware
-
-## API End Points
+-Firebase
 
 # Installation
 
-- \$ git clone https://github.com/Byadiso/myBrand.git
+- \$ git clone https://github.com/Byadiso/learnbywritting.git
 - \$ cd UI
 
 # Contributing
