@@ -53,6 +53,7 @@
     nav{
         display: flex;
         justify-content: space-around;
+        background: var(--whiteColor);
     }
 
     nav a, .hire_now a{
@@ -94,6 +95,7 @@
     .ngana_logo{
         margin-right: 200px;
         font-size:30px;
+        color: black;
         
     }
 
@@ -101,9 +103,8 @@
         display: flex;
         justify-content:center;
         align-items: center;
-        /* margin: 10px; */
-
-        /* padding:20px            */
+        background: white;
+        
     }
 
     /* to hide burger menu */

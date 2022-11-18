@@ -11,7 +11,7 @@
     --activeColorHeader:rgb(97, 97, 87);
     --buttonColor:rgb(97, 97, 87);
     --textColorWhite:#ffffff;
-    --textColorGrey:#4A4D4E;
+    --textColorGrey:#676a6bbe;
     --spacing: 10px;
     --spacingMargin: 35px;
     --error:rgb(204, 14, 14);
@@ -53,6 +53,7 @@
     nav{
         display: flex;
         justify-content: space-around;
+        background: var(--whiteColor);
     }
 
     nav a, .hire_now a{
@@ -94,6 +95,7 @@
     .ngana_logo{
         margin-right: 200px;
         font-size:30px;
+        color: black;
         
     }
 
@@ -119,15 +121,15 @@
     /* hero section */
 .hero_section{
     background-image: url(../images/);
-    background:var(--blueColor);
-    color:var(--whiteColor);
-    display:flex;
+    background: var(--blueColor);
+    color: var(--whiteColor);
+    display: flex;
     flex-direction: column;
-    padding:120px;
-    background: linear-gradient(0deg, rgba(15, 15, 15, 0.76), rgba(3, 3, 3, 0.774)), url(../images/background.jpg);
-    background-repeat:no-repeat;
+    padding: 145px;
+    background: linear-gradient(189deg, rgba(15, 15, 15, 0.76), rgb(0 0 0 / 38%)), url(../images/background.jpg);
+    background-repeat: no-repeat;
     background-size: cover;
-   
+
 }
 .hero_content{
     border-left: 4px solid  var(--blueColor);
@@ -161,8 +163,8 @@
         margin-top: -35px;
     }
     .stat_content_middle{
-        border-left: 2px solid  var(--colorforWeakGrey);
-        border-right: 2px solid  var(--colorforWeakGrey);
+        border-left: 2px solid  var(--blueColor);
+        border-right: 2px solid  var(--blueColor);
         padding-left: 15px;
         padding-right: 15px;
     }
@@ -179,7 +181,7 @@
         margin-left:30px;
         font-size: 40px;
         font-weight: 700;
-        color: var(--colorforWeakGrey);
+        color: var(--blueColor);
         line-height: 48px;
         display: block;
        
@@ -189,8 +191,8 @@
         margin-bottom: 20px;
         font-size: 14px;
         font-weight: 400;
-        color: var(--colorforWeakGrey);
-        font-family: "Montserrat", serif;
+        color: var(--blueColor);
+        font-family: "roboto", serif;
     }
 
     /* who I am section */
@@ -204,18 +206,18 @@
         display: flex;
         align-items: center;
         justify-content:center;
-        color:var(--textColorGreyParagraph);
-        margin: 20px;
+        color:var(--blueColor);
+        margin: 10px;
     }
     .who_header{
         display: flex;
         align-items: center;
         justify-content:center;
         flex-direction: column;
-        color:var(--textColorGreyParagraph)
+        color:var(--whiteColor)
     }
     .who_header p{
-        color:var(--colorforWeakGrey)
+        color:var(--whiteColor)
     }
    
     .main_who_items img{
@@ -227,7 +229,7 @@
     }
 
     .main_who_items p{
-        color: var(--colorforWeakGrey);
+        color: var(--whiteColor);
     }
 /* 
     servicesection */
@@ -278,7 +280,16 @@
     .Service_form_header h4{
         margin-left: 5px;
     }
-   
+
+    /* banner */
+
+    .banner_and_icon{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        
+    }
     .service_form_item{
         display: flex;
         flex-direction: column;
@@ -308,7 +319,7 @@
         align-items: center; 
         width:150px;
         height:145px;
-        border: 1px solid var(--textColorGreyParagraph);
+        border: 1px solid var(--textColorGrey);
         color:var(--blueColor);
         padding: 25px;
     }
@@ -567,6 +578,7 @@ width: 100%;
     align-items: center;
     flex-direction: column;
     color:var(--textColorGreyParagraph);
+    margin: 20px;
 }
 .header_portfolio h1 {
     /* padding:0px  10px 0px 10px; */
@@ -574,7 +586,7 @@ width: 100%;
 }
 
 .header_portfolio p{
-    color:var(--colorforWeakGrey)
+    color:var(--whiteColor)
 }
 
 .portfolio_nav{
@@ -635,7 +647,7 @@ footer{
     }
 
     footer p{
-        color: var(--colorGreyText);
+        color: var(--textColorGrey);
     }
    
   
@@ -680,10 +692,10 @@ footer input[type=submit]{
         font-size: 30px;
     }
     .menu{
-        display:flex;
+        display: flex;
         justify-content:center;
-        flex-direction: column;
-        margin-bottom: 10px;
+        align-items: center;
+        background: white;
     }
 
     .nav_small{

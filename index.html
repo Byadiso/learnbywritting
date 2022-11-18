@@ -25,6 +25,8 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
+    <!-- for fontawesome -->
+    <script src="https://kit.fontawesome.com/40109df241.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <header>
@@ -41,6 +43,7 @@
             >Contact us</a
           >
           <a href="./html/login.html" class="menu_nav small_device">login</a>
+          <a href="./html/login.html" class="menu_nav hire_now">Join us</a>
          
         </div>
       </nav>
@@ -50,7 +53,7 @@
         <div class="hero_content">
           <h2>Hello I'm</h2>
           <h1>Learning english</h1>
-          <h2>You can join me if you want</h2>
+          <h2>You can join me if you want...</h2>
           <h4 class="hire_now hire_text">
             <a href="./html/hire.html">Join us today</a>
           </h4>
@@ -61,7 +64,7 @@
 
       <div class="statistic_section">
         <div class="stat_content">
-          <span>10</span>
+          <span id="number_blog">0</span>
           <h4>Story wrote</h4>
         </div>
         <div class="stat_content stat_content_middle">
@@ -76,20 +79,15 @@
 
       <!-- who I am section section-->
 
-      <div class="who_section">
-        <div class="who_header">
-          <h1>You can too</h1>
-          <p>Just start and enjoy the journey</p>
-        </div>
+      <div class="who_section">        
         <div class="main_who">
           <!-- main who -->
 
           <div class="main_who_items">
-            <img class="who_image" src="./images/aboutme.jpg" alt="" />
+            <img class="who_image" src="./images/tellstory.png" alt="book" />
             <div>
-              <h2>Tell a story of your own</h2>
-              <h3>Write what is on your mind</h3>
-                     <p>Just a paragraph today, don't worry with the rest.</p>
+              <h2>Tell a story of your own...</h2>              
+                <p>Just a paragraph today, don't worry with the rest.</p>
             </div>
           </div>
         </div>
@@ -99,28 +97,32 @@
 
       <div class="service_section">
         <div class="Service_header">
-          <h2>Your journey will be</h2>
-          <p>just having fun writing stuff...</p>
+          <h1>Just enjoy your journey!!</h1>
         </div>
         <div class="service_content">
           <div class="service_item">
-            <div class="service_text">
-              <h4 class="service_title">Write English daily</h4>
+            <div class="service_text banner_and_icon">
+              <i class="fa-solid fa-pen-to-square"></i>
+              <h5 class="service_title">Write English</h5>
+             
             </div>
           </div>
           <div class="service_item">
-            <div class="service_text">
-              <h4 class="service_title">Save new vocabulary</h4>
+            <div class="service_text banner_and_icon">
+              <i class="fa-solid fa-floppy-disk"></i>
+              <h5 class="service_title">New vocabulary</h5>
             </div>
           </div>
           <div class="service_item">
-            <div class="service_text">
-              <h4 class="service_title">Show what you are reading</h4>
+            <div class="service_text banner_and_icon">
+              <i class="fa-solid fa-book-open-reader"></i>
+              <h5 class="service_title">New Readings</h5>
             </div>
           </div>
           <div class="service_item">
-            <div class="service_text">
-              <h4 class="service_title">Play games by learning</h4>
+            <div class="service_text banner_and_icon">              
+              <i class="fa-solid fa-gamepad"></i>
+              <h5 class="service_title">Play games</h5>
             </div>
           </div>
         </div>
@@ -144,7 +146,13 @@
         <div class="portfolio_content">
           <div class="portfolio_item">
             <div class="portfolio_image">
-              <img src="./images/aboutme.jpg" alt="" />
+              <img src="./images/book_read.jpg" alt="read book" />
+            </div>
+          </div>
+
+          <div class="portfolio_item">
+            <div class="portfolio_image">
+              <img src="./images/story.png" alt="" />
             </div>
           </div>
 
@@ -152,19 +160,7 @@
             <div class="portfolio_image">
               <img src="./images/aboutme.jpg" alt="" />
             </div>
-          </div>
-
-          <div class="portfolio_item">
-            <div class="portfolio_image">
-              <img src="./images/aboutme.jpg" alt="" />
-            </div>
-          </div>
-
-          <div class="portfolio_item">
-            <div class="portfolio_image">
-              <img src="./images/aboutme.jpg" alt="" />
-            </div>
-          </div>
+          </div>          
         </div>
       </div>
     </section>
@@ -194,5 +190,103 @@
       </div>
     </footer>
   </body>
+  
   <script src="./Js/script.js"></script>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
+    import {
+      getDatabase,
+      set,
+      ref,
+      onValue,
+    } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-database.js";
+
+    import {
+      getAuth,
+      createUserWithEmailAndPassword,
+      signInWithEmailAndPassword,
+      onAuthStateChanged,
+    } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
+
+    // import { initializeApp } from "firebase/app";
+
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyA5sPlupW_n1XEt6xsw_Y7aAZKltGEFyXw",
+      authDomain: "mybrand-df7b7.firebaseapp.com",
+      projectId: "mybrand-df7b7",
+      storageBucket: "mybrand-df7b7.appspot.com",
+      messagingSenderId: "1073877765217",
+      appId: "1:1073877765217:web:7f63596f42c5d4ca18ae20",
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase();
+    const auth = getAuth();
+
+    //function to get input value
+    function getInputValue(id) {
+      return document.getElementById(id).value;
+    }
+    
+    const blogs = ref(database, "blogs/");
+    onValue(blogs, (snapshot) => {
+      const data = snapshot.val();
+
+      let blogsArray = [];      
+
+      for (var [key, value] of Object.entries(data)) {
+        // console.log(value.title, value.body, data);
+        console.log(key);
+        var obj = {
+          id: value.id,
+          title: value.title,
+          body: value.body,
+          Image: value.Image,
+          uid_key: key,
+        };
+
+        blogsArray.push(obj);
+        console.log(obj.uid_key);
+
+        
+
+       
+      }
+
+      console.log(blogsArray);
+      const dataSave = JSON.stringify(blogsArray);
+
+      // set number of blogs or article
+      const blogNumbers = document.getElementById("number_blog");
+    blogNumbers.innerText= blogsArray.length;
+    console.log(blogsArray.length);
+
+      // save to localStorage
+      localStorage.setItem("data", dataSave);
+
+    });
+
+    // check if user is logged in
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        
+        const uid = user.uid;
+        console.log(user);
+
+        const loginMenu = document.getElementById("loginMenu");
+        loginMenu.innerHTML = "Dashboard";
+        loginMenu.setAttribute("href", "./dashboard.html");
+        // ...
+      }
+     
+    });
+
+    
+  </script>
 </html>
