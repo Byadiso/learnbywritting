@@ -377,7 +377,8 @@
     margin-bottom: 20px;    
     margin:20px;
     padding:10px;
-    max-width: 45%;
+    max-width: 100%;
+    min-width: 20%;
     
 }
 
