@@ -180,9 +180,10 @@ registerSubmit.addEventListener("click", (e) => {
   .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;
-    set((ref(database,'users/'+user.uid), {
+    set((ref(database,'users/'+ user.uid), {
       firstname:firstname.trim(),
       lastname:lastname.trim(), 
+      displayName:firstname.trim(), 
       email:email.trim(),
     }))
     alert('User created');

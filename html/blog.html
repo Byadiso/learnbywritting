@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>LearnByWriting</title>
     <link rel="stylesheet" href="../css/blog.css" />
+    <!-- <link rel="stylesheet" href="../css/dashboard.css" /> -->
     <!-- for roboto font -->
     <link
       href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
@@ -19,6 +20,9 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
+     <!-- for fontawesome -->
+     <script src="https://kit.fontawesome.com/40109df241.js" crossorigin="anonymous"></script>
+
   </head>
   <body>
     <header>
@@ -28,8 +32,8 @@
           <a href="../index.html" class="menu_nav">Home</a>
           <a href="./blog.html" class="menu_nav">Blog</a>          
           <a href="./contact.html" class="menu_nav">Contact us</a>
-          <a href="./login.html" class="menu_nav" id="loginMenu">login</a>
-          <a href="./hire.html" class="menu_nav hire_now">Join us</a>
+          <a href="./dashboard.html" class="menu_nav" id="dashboard">Dashboard</a>
+          <a href="./vocabulary.html" class="menu_nav hire_now" id="join_us">Your Vocabulary</a>
           
         </div>
       </nav>
@@ -47,95 +51,8 @@
       <div class="blog_section">
         <div class="blog_content">
           <div class="blog_item_left">
-            <!-- <div class="blog_item">
-              <div class="blog_image">
-                <img
-                  src="../images/pexels-adrianna-calvo-4886824.jpg"
-                  alt="photo_blog"
-                />
-              </div>
-              <h3>website Development</h3>
-              <p class="blog_title">
-                website Development is a great opportunity to show to the world
-                the real you with your business
-              </p>
-              <h4 class="readmore">
-                <a href="./single_blog.html">Read more..</a>
-              </h4>
-            </div>
-            <div class="blog_item">
-              <div class="blog_image">
-                <img
-                  src="../images/pexels-adrianna-calvo-4886824.jpg"
-                  alt="photo_blog"
-                />
-              </div>
-              <h3>website Development</h3>
-              <p class="blog_title">
-                website Development is a great opportunity to show to the world
-                the real you with your business
-              </p>
-              <h4 class="readmore">Read more..</h4>
-            </div>
-            <div class="blog_item">
-              <div class="blog_image">
-                <img
-                  src="../images/pexels-adrianna-calvo-4886824.jpg"
-                  alt="photo_blog"
-                />
-              </div>
-              <h3>website Development</h3>
-              <p class="blog_title">
-                website Development is a great opportunity to show to the world
-                the real you with your business
-              </p>
-              <h4 class="readmore">Read more..</h4>
-            </div>
-
-            <div class="blog_item">
-              <div class="blog_image">
-                <img
-                  src="../images/pexels-adrianna-calvo-4886824.jpg"
-                  alt="photo_blog"
-                />
-              </div>
-              <h3>website Development</h3>
-              <p class="blog_title">
-                website Development is a great opportunity to show to the world
-                the real you with your business
-              </p>
-              <h4 class="readmore">Read more..</h4>
-            </div>
-            <div class="blog_item">
-              <div class="blog_image">
-                <img
-                  src="../images/pexels-adrianna-calvo-4886824.jpg"
-                  alt="photo_blog"
-                />
-              </div>
-              <h3>website Development</h3>
-              <p class="blog_title">
-                website Development is a great opportunity to show to the world
-                the real you with your business
-              </p>
-              <h4 class="readmore">Read more..</h4>
-            </div>
-            <div class="blog_item">
-              <div class="blog_image">
-                <img
-                  src="../images/pexels-adrianna-calvo-4886824.jpg"
-                  alt="photo_blog"
-                />
-              </div>
-              <h3>website Development</h3>
-              <p class="blog_title">
-                website Development is a great opportunity to show to the world
-                the real you with your business
-              </p>
-              <h4 class="readmore">Read more..</h4>
-            </div> -->
-
-            <h2>Welcome to my blogs from firebase</h2>
+            
+            <!-- <h2>Enjoy reading our stories</h2> -->
             <div id="blog_admin">
               <img
                 id="loading"
@@ -153,31 +70,18 @@
                 <input type="text" placeholder="Search.." name="search" />
                 <i class="fa fa-search"></i>
               </div>
-              <div class="blog_categories">
-                <h1>Category</h1>
-                <a href="#">Busineses</a>
-                <a href="#">Sport</a>
-                <a href="#">Economic</a>
-                <a href="#">Healthy</a>
-                <a href="#">Agriculture</a>
-                <a href="#">Education</a>
+              
+              <div class="dashboard_categories">
+                <h1>Dashboard</h1>
+                <a href="#" id="add"><i class="fa fa-plus"></i>Add Blog</a>
+                <a href="#" id="info"><i class="fa fa-info"></i>My info</a>
+                <a href="#" id="members"><i class="fa-solid fa-floppy-disk"></i>Your Vocabulary</a>
+                <a href="#" id="settings"><i class="fa fa-gear"></i>Settings</a>
+                <a href="#" id="logout" class="logout"
+                  ><i class="fa fa-sign-out"></i>logout</a
+                >
               </div>
-
-              <div class="blog_categories blog_popular">
-                <h1>Popular Post</h1>
-                <a href="#">Web Development</a>
-                <a href="#">Heal this word</a>
-                <a href="#">Yes it good to create</a>
-                <a href="#">Today's match</a>
-              </div>
-
-              <div class="blog_categories blog_tags">
-                <h1>Tags</h1>
-                <a href="#">Python</a>
-                <a href="#">JavaScript</a>
-                <a href="#">football</a>
-                <a href="#">Sante</a>
-              </div>
+            
             </div>
           </div>
         </div>
@@ -323,19 +227,14 @@
     // check if user is logged in
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
-        const uid = user.uid;
-        console.log(user);
+        const uid = user.uid;    
 
-        const loginMenu = document.getElementById("loginMenu");
-        loginMenu.innerHTML = "Dashboard";
-        loginMenu.setAttribute("href", "./dashboard.html");
+        Console.log("yes we are logged in")
+        
         // ...
       }
       if (user == undefined) {
-        // User is signed out
-        // ...
+        // User is signed out        
         location.href = "./login.html";
         console.log("no user");
       }

@@ -19,6 +19,8 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
+     <!-- for fontawesome -->
+     <script src="https://kit.fontawesome.com/40109df241.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <header>
@@ -28,8 +30,8 @@
           <a href="../index.html" class="menu_nav">Home</a>
           <a href="./blog.html" class="menu_nav">Blog</a>
           <a href="./contact.html" class="menu_nav">Contact us</a>
-          <a href="./login.html" class="menu_nav" id="loginMenu">login</a>
-          <a href="./hire.html" class="menu_nav hire_now">Hire me</a>
+          <a href="./dashboard.html" class="menu_nav">Dashboard</a>
+          <a href="./hire.html" class="menu_nav hire_now">Your Vocabulary</a>
           <!-- <button class="hire_now menu_nav">Hire me</button> -->
         </div>
       </nav>
@@ -38,7 +40,7 @@
       <div class="hero_section">
         <div class="hero_content">
           <h2>Hello amateur</h2>
-          <h1>Desire BYAMUNGU</h1>
+          <h1 id="user_name"></h1>
         </div>
       </div>
 
@@ -57,7 +59,7 @@
                 <h1>Dashboard</h1>
                 <a href="#" id="add"><i class="fa fa-plus"></i>Add Blog</a>
                 <a href="#" id="info"><i class="fa fa-info"></i>My info</a>
-                <a href="#" id="members"><i class="fa fa-user"></i>Members</a>
+                <a href="#" id="members"><i class="fa-solid fa-floppy-disk"></i>Your Vocabulary</a>
                 <a href="#" id="settings"><i class="fa fa-gear"></i>Settings</a>
                 <a href="#" id="logout" class="logout"
                   ><i class="fa fa-sign-out"></i>logout</a
@@ -66,9 +68,9 @@
             </div>
           </div>
           <div class="dashboard_item_rigt">
-            <div id="main_dashboard ">
+            <!-- <div id="main_dashboard ">
               <p> Hello, are you ready to write something today?</p>
-            </div>
+            </div> -->
             <div id="blog_admin">
               <img
                 id="loading"
@@ -83,14 +85,14 @@
                 type="text"
                 name="title"
                 id="title"
-                placeholder="add title"
+                placeholder="Give it an amazing title"
               />
 
               <textarea
                 type="text"
                 name="body"
                 id="body"
-                placeholder="Add your content here"
+                placeholder="Add your amazing text here..."
               >
               </textarea>
 
@@ -196,14 +198,7 @@
       onAuthStateChanged,
     } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
 
-    // import {
-    //   getStorage,
-    //   ref as sRef,
-    // } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-storage.js";
-    // import { initializeApp } from "firebase/app";
-
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
+   
 
     // Your web app's Firebase configuration
     const firebaseConfig = {
@@ -218,10 +213,8 @@
     // Initialize Firebase
     const app = firebase.initializeApp(firebaseConfig);
     const database = getDatabase(initializeApp(firebaseConfig));
-    // const database = firebase.getDatabase(app);
     const auth = getAuth();
-    // const storage = firebase.getStorage(app);
-
+    
     const addButton = document.getElementById("addBlog");
     const blogAdmin = document.getElementById("blog_admin");
     const form = document.getElementById("form_blog");
@@ -232,10 +225,10 @@
       const data = snapshot.val();
 
       let blogsArray = [];
-      // console.log(data);
+     
 
       for (var [key, value] of Object.entries(data)) {
-        // console.log(value.title, value.body, data);
+        
         console.log(key);
         var obj = {
           id: value.id,
@@ -360,7 +353,6 @@
       );
     });
 
-    // const logoutButton = document.getElementById("logout");
     const logoutButton = document.getElementById("logout");
 
     logoutButton.addEventListener("click", (e) => {
@@ -383,10 +375,12 @@
         const uid = user.uid;
         console.log(user);
 
-        const loginMenu = document.getElementById("loginMenu");
-        loginMenu.innerHTML = "Dashboard";
-        loginMenu.setAttribute("href", "./dashboard.html");
-        // ...
+        // const loginMenu = document.getElementById("loginMenu");
+        // loginMenu.innerHTML = "Dashboard";
+        // loginMenu.setAttribute("href", "./dashboard.html");
+        const UserName = document.getElementById("user_name");
+        UserName.innerHTML = user.email;
+        
       }
       if (user == undefined) {
         // User is signed out
@@ -478,10 +472,7 @@
               uploadTask.snapshot.ref
                 .getDownloadURL()
                 .then(function (downloadURL) {
-                  // getimage downloaded url here and upload to the database
-
-                  // const title = getInputValue("title");
-                  // const body = getInputValue("body");
+                
 
                   const blogText = tinymce.activeEditor.getContent();
                   // var id;

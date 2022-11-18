@@ -4,9 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LearnByWriting</title>
-    <link rel="stylesheet" href="../css/contact.css" />
-    <link rel="stylesheet" href="../css/style.css" />
+    <title>MyBrand</title>
+    <link rel="stylesheet" href="../css/hire.css" />
     <!-- for roboto font -->
     <link
       href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
@@ -25,12 +24,12 @@
     <header>
       <nav>
         <div class="menu">
-          <h1 class="ngana_logo">LearnByWriting</h1>
+          <h1 class="ngana_logo">Ngana</h1>
           <a href="../index.html" class="menu_nav">Home</a>
           <a href="./blog.html" class="menu_nav">Blog</a>
           <a href="./contact.html" class="menu_nav">Contact us</a>
           <a href="./login.html" class="menu_nav" id="loginMenu">login</a>
-          <a href="./hire.html" class="menu_nav hire_now" id="join_us">Join us</a>
+          <a href="./vocabulary.html" class="menu_nav hire_now">Your vocabulary</a>
           <!-- <button class="hire_now menu_nav">Hire me</button> -->
         </div>
       </nav>
@@ -38,79 +37,15 @@
     <section>
       <div class="hero_section">
         <div class="hero_content">
-          <h2>We are amateur like you!</h2>
-          <h1>Join us...</h1>
+          <h1>I live and create</h1>
+          <h2>Beautiful websites for beautiful busineses ike yours</h2>
         </div>
       </div>
 
-      <!-- contact form section -->
+      <!-- here I will put a beautiful list of vocabularies -->
+     
 
-      <div class="service_section">
-        <div class="Service_header">
-          <p>Left a word for us</p>
-        </div>
-        <div class="service_content">
-          <div class="service_item_left" id="request_form">
-            <div class="Service_form_header">
-              <div class="text_L request_button">
-                <h4>REQUEST</h4>
-              </div>
-              <div class="text_R active contact_button">
-                <h4>Contact</h4>
-              </div>
-            </div>
-            <div class="Service_form">
-              <div class="service_form_item">
-                <input
-                  type="text"
-                  name="name"
-                  id="name error_message"
-                  placeholder="full name"
-                />
-                <input
-                  type="text"
-                  name="email"
-                  id="email"
-                  placeholder="email"
-                />
-                <textarea
-                  name="message"
-                  id="message"
-                  cols="30"
-                  rows="10"
-                  placeholder="message"
-                ></textarea>
-                <input
-                  class="hire_now send_request"
-                  type="submit"
-                  value="SEND NOW"
-                />
-              </div>
-            </div>
-          </div>
-
-          <div class="service_item_left hide" id="contact_form">
-            <div class="Service_form_header">
-              <div class="text_R request_button">
-                <h4>REQUEST</h4>
-              </div>
-              <div class="text_L contact_button">
-                <h4>Contact</h4>
-              </div>
-            </div>
-            <div class="Service_form contact_form">
-              <div class="service_form_item contact_form_item">
-                <p><i class="fa fa-envelope"></i>byadiso@gmail.com</p>
-                <p><i class="fa fa-phone"></i> +48795342660</p>
-                <p><i class="fa fa-facebook"></i> bmgn h desire</p>
-                <p><i class="fa fa-instagram"></i> bmgn h desire</p>
-                <p><i class="fa fa-twitter"></i> bmgn h desire</p>
-                <p><i class="fa fa-github"></i> bmgn h desire</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+        
     </section>
 
     <!-- footer info and details -->
@@ -138,7 +73,6 @@
       </div>
     </footer>
   </body>
-  <script src="../Js/contact.js" defer></script>
   <script type="module">
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
@@ -229,10 +163,12 @@
         join_us.innerHTML = "Your Vocabulary";
         join_us.setAttribute("href", "./html/vocabulary.html");
 
-        
-
-        console.log("yes it is possible")
-        // ...
+        if (user == undefined) {
+        // User is signed out      
+        location.href = "./login.html";
+       
+      }
+       
       }
      
     });

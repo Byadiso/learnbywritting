@@ -42,8 +42,8 @@
           <a href="./html/contact.html" class="menu_nav small_device"
             >Contact us</a
           >
-          <a href="./html/login.html" class="menu_nav small_device">login</a>
-          <a href="./html/login.html" class="menu_nav hire_now">Join us</a>
+          <a href="./html/login.html" class="menu_nav small_device" id="loginMenu">login</a>
+          <a href="./html/login.html" class="menu_nav hire_now" id="join_us">Join us</a>
          
         </div>
       </nav>
@@ -252,14 +252,12 @@
         };
 
         blogsArray.push(obj);
-        console.log(obj.uid_key);
-
-        
+               
 
        
       }
 
-      console.log(blogsArray);
+  
       const dataSave = JSON.stringify(blogsArray);
 
       // set number of blogs or article
@@ -274,14 +272,19 @@
 
     // check if user is logged in
     onAuthStateChanged(auth, (user) => {
-      if (user) {
-        
+      if (user) {        
         const uid = user.uid;
         console.log(user);
-
         const loginMenu = document.getElementById("loginMenu");
+        const join_us = document.getElementById("join_us");
         loginMenu.innerHTML = "Dashboard";
-        loginMenu.setAttribute("href", "./dashboard.html");
+        loginMenu.setAttribute("href", "./html/dashboard.html");
+        join_us.innerHTML = "Your Vocabulary";
+        join_us.setAttribute("href", "./html/vocabulary.html");
+
+        
+
+        console.log("yes it is possible")
         // ...
       }
      
