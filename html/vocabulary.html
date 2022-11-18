@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MyBrand</title>
+    <title>LearnByWriting</title>
     <link rel="stylesheet" href="../css/hire.css" />
     <!-- for roboto font -->
     <link
@@ -24,11 +24,11 @@
     <header>
       <nav>
         <div class="menu">
-          <h1 class="ngana_logo">Ngana</h1>
+          <h1 class="ngana_logo">LearnByWriting</h1>
           <a href="../index.html" class="menu_nav">Home</a>
           <a href="./blog.html" class="menu_nav">Blog</a>
           <a href="./contact.html" class="menu_nav">Contact us</a>
-          <a href="./login.html" class="menu_nav" id="loginMenu">login</a>
+          <a href="./dashboard.html" class="menu_nav" id="loginMenu">Dashboard</a>
           <a href="./vocabulary.html" class="menu_nav hire_now">Your vocabulary</a>
           <!-- <button class="hire_now menu_nav">Hire me</button> -->
         </div>
@@ -156,12 +156,12 @@
       if (user) {        
         const uid = user.uid;
         console.log(user);
-        const loginMenu = document.getElementById("loginMenu");
-        const join_us = document.getElementById("join_us");
-        loginMenu.innerHTML = "Dashboard";
-        loginMenu.setAttribute("href", "./html/dashboard.html");
-        join_us.innerHTML = "Your Vocabulary";
-        join_us.setAttribute("href", "./html/vocabulary.html");
+        // const loginMenu = document.getElementById("loginMenu");
+        // const join_us = document.getElementById("join_us");
+        // loginMenu.innerHTML = "Dashboard";
+        // loginMenu.setAttribute("href", "./html/dashboard.html");
+        // join_us.innerHTML = "Your Vocabulary";
+        // join_us.setAttribute("href", "./html/vocabulary.html");
 
         if (user == undefined) {
         // User is signed out      
