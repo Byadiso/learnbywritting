@@ -457,6 +457,16 @@
         display: flex;
         justify-content:center;
         flex-wrap: wrap;
+        padding: 10px;
+}
+
+.blog_item_left_single{
+         max-width: 80%;
+        display: flex;
+        justify-content:center;
+        flex-wrap: wrap;
+        padding: 40px;
+
 }
  /* for single blog */
 
