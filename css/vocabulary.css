@@ -1,0 +1,283 @@
+/* my variables style */
+
+:root{
+    --blueColor: #5BD4FB;
+    --colorHover:  #0f4e8d;
+    --whiteColor: #ffffff;
+    --activeColorHeader:rgb(97, 97, 87);
+    --buttonColor:rgb(97, 97, 87);
+    --textColorWhite:#ffffff;
+    --textColorGrey:#4A4D4E;
+    --spacing: 10px;
+    --spacingMargin: 35px;
+    --error:rgb(204, 14, 14);
+    --background-color:rgb(251 251 251);
+    --colorHoverlink:rgba(0, 0, 0, 0.123);
+    --colorfooter:#424343;
+    --textColorGreyParagraph:#818181;
+    --inputColor:#5F6466;
+    --colorforWeakGrey: #74777769;
+    --linkColor:rgb(0, 0, 0);
+    --lowerBackground:#f3f3f3;
+    --colorActive: #29b4e2;;
+  }
+  
+  /* all styles  ---------------------------*/
+
+
+  * {
+    box-sizing: border-box;
+    }
+    
+    *:focus {
+        outline: none;
+    }
+
+    /* body syles  */
+
+    body {
+    font-family: 'Roboto', sans-serif; 
+    background-color: var(--whiteColor);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin:0;
+    }
+
+    /* menu */
+
+    nav{
+        display: flex;
+        justify-content: space-around;
+        background: var(--whiteColor);
+    }
+
+    nav a, .hire_now a{
+        text-decoration: none;
+        padding: 10px;
+        color:var(--linkColor);
+      
+    }
+
+    nav a:active{
+        background:var(--activeColorHeader);
+    }
+
+    .hire_now a{
+        color:var(--whiteColor)
+    }
+   
+    nav a:hover{
+        background:var(--blueColor);
+        color:var(--whiteColor);
+        border: none;
+        border-radius: 25px;
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    .hire_now{
+        color: var(--whiteColor);
+        background-color: var(--blueColor);
+        border: none;
+        border-radius: 25px;
+        /* padding: 15px; */
+        cursor: pointer;
+    }
+    .hire_text{
+        font-size:18px;
+    }
+
+    .ngana_logo{
+        margin-right: 200px;
+        font-size:30px;
+        color: black;
+        
+    }
+
+    .menu{
+        display: flex;
+        justify-content:center;
+        align-items: center;
+        background: white;
+    }
+
+    .menu_nav{
+      margin-right: var(--spacingMargin);
+    }
+
+    
+    /* hero section */
+.hero_section{
+    background-image: url(../images/);
+    background:var(--blueColor);
+    color:var(--whiteColor);
+    display:flex;
+    flex-direction: column;
+    padding:120px;
+    background: linear-gradient(0deg, rgba(15, 15, 15, 0.76), rgba(3, 3, 3, 0.774)), url(../images/background.jpg);
+    background-repeat:no-repeat;
+    background-size: cover;
+}
+.hero_content{
+    border-left: 4px solid  var(--blueColor);
+    padding-left: 30px;
+}
+
+.hero_content h2{
+    font-family: 'Roboto Thin';
+}
+  
+    
+  /* vocabulary */
+
+  .vocabulary_item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+    /* footer */
+
+footer{
+        display:flex;
+        justify-content:center;
+        align-items: center;
+        background:var(--colorfooter);
+        color: var(--whiteColor);
+        padding: 10px;
+       
+    }
+
+    footer div{
+        margin-right: 90px;
+    }
+
+    footer p{
+        color: var(--colorGreyText);
+    }
+   
+  
+footer input[type=submit]{
+    width: 100%;
+    padding: 5px 10px;
+    margin: 8px 0;
+    display: inline-block;
+    background:var(--blueColor);
+    border: 1px solid var(--inputColor);
+    box-sizing: border-box;
+    color:var(--whiteColor);
+    cursor: pointer;
+  }
+  footer input[type=text]{
+    width: 100%;
+    padding: 5px 10px;
+    margin: 8px 0;
+    display: inline-block;
+    background:var(--inputColor);
+    border: 1px solid var(--inputColor);
+    box-sizing: border-box;
+  }
+.footer_input {
+    display: flex;  
+}
+
+.social_media i{
+    margin: var(--spacing);
+}
+   
+
+
+
+/* for responsiveness */
+
+@media only screen and (max-width: 700px) {
+    .ngana_logo {
+        margin-right: 200px;
+        font-size: 30px;
+    }
+    .menu{
+        display:flex;
+        justify-content:center;
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
+    .hero_section{
+        font-size: .8rem;
+    }
+
+    .hire_text{
+        font-size: .7rem;
+        min-width: 130px;
+    }
+    .statistic_section{
+        background-color: var(--whiteColor);
+        display: flex;
+        /* flex-direction: column; */
+        color: var(--textColorGrey);
+        justify-content: center;
+        align-items: center;
+        padding: var(--spacing);
+        border-radius: 20px;
+        box-shadow: 0.1em 0.1em 0.2em;
+        box-shadow: none;
+        width: 100%;
+        margin-left: 5px;
+        margin-right: 10px;
+        margin-top: -35px;
+        padding: 10px
+
+    }
+
+
+    /* for main_who_items */
+    .main_who_items {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        color: var(--textColorGreyParagraph);
+        margin: 20px;
+    }
+
+    .main_who_items img{
+        width:100%;
+    }
+
+    /* for services */
+    .service_content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    /* for portfolio */
+
+    .portfolio_nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .portfolio_nav h1{
+       font-size: 1rem;
+       margin: 0px;
+    }
+
+    /* for footer section */
+
+    footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background: var(--colorfooter);
+        color: var(--whiteColor);
+        padding: 10px;
+    }
+    footer div {
+        margin-right: 0px;
+    }
+  }
