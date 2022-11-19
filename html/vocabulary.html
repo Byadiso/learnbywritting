@@ -43,6 +43,7 @@
       </div>
 
       <!-- here I will put a beautiful list of vocabularies -->
+
      
 
         
@@ -73,9 +74,15 @@
       </div>
     </footer>
   </body>
+   <script src="../Js/tinymce/tinymce.min.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-storage.js"></script>
+
   <script type="module">
     // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
     import {
       getDatabase,
       set,
@@ -83,17 +90,13 @@
       onValue,
     } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-database.js";
 
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
     import {
       getAuth,
       createUserWithEmailAndPassword,
       signInWithEmailAndPassword,
       onAuthStateChanged,
     } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
-
-    // import { initializeApp } from "firebase/app";
-
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
 
     // Your web app's Firebase configuration
     const firebaseConfig = {
@@ -106,25 +109,25 @@
     };
 
     // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const database = getDatabase();
+    const app = firebase.initializeApp(firebaseConfig);
+    const database = getDatabase(initializeApp(firebaseConfig));
     const auth = getAuth();
-
-    //function to get input value
-    function getInputValue(id) {
-      return document.getElementById(id).value;
-    }
     
+    const addButton = document.getElementById("addBlog");
+    const blogAdmin = document.getElementById("blog_admin");
+    const form = document.getElementById("form_blog");
+
+    //get all blogs
     const blogs = ref(database, "blogs/");
     onValue(blogs, (snapshot) => {
       const data = snapshot.val();
 
-      let blogsArray = [];      
+      let blogsArray = [];
+     
 
       for (var [key, value] of Object.entries(data)) {
-        // console.log(value.title, value.body, data);
-        console.log(key);
-        var obj = {
+        
+       var obj = {
           id: value.id,
           title: value.title,
           body: value.body,
@@ -133,46 +136,270 @@
         };
 
         blogsArray.push(obj);
-               
+        
+        const content_elt = document.createElement("DIV");
+        content_elt.innerHTML = `
+        <div class="blog_image blog" data-id=${value.id}>
+          <img src=${value.Image} alt="blog image blog" data-id=${value.id}>
+        </div>
 
-       
+          <h3 class="blog" data-id=${value.id}>${value.title}</h3>
+          <div class="dashboard_bottom">
+        <i class="fa fa-trash admin_control_button removeBlog" id="removeBlog" data-uid=${obj.uid_key}></i><p class="removeBlog" data-uid=${obj.uid_key}>Delete</p>
+        <i class="fa fa-edit admin_control_button editBlog" id="editBlog" data-uid=${obj.uid_key}></i><p class="editBlog" data-uid=${obj.uid_key}>Edit</p>
+
+        </div>
+        `;
+        if (content_elt) {          
+          const loading = document.getElementById("loading");
+          loading.style.display = "none";
+        }
+
+        content_elt.setAttribute("class", "blog_item");
+        content_elt.setAttribute("data-id", value.uid_key);
+        blogAdmin.append(content_elt);
       }
 
-  
       const dataSave = JSON.stringify(blogsArray);
-
-      // set number of blogs or article
-      const blogNumbers = document.getElementById("number_blog");
-    blogNumbers.innerText= blogsArray.length;
-    console.log(blogsArray.length);
 
       // save to localStorage
       localStorage.setItem("data", dataSave);
+    });
 
+    addButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      // image variable
+      const image = document.getElementById("image").files[0];
+      const imageName = image.name;
+
+      //refernce a collection
+      const storageRef = firebase.storage().ref("images/" + imageName);
+
+      // upload image to selected  storage reference
+      var uploadTask = storageRef.put(image);
+
+      uploadTask.on(
+        "state_changed",
+        function (snapshot) {
+          var progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "done");
+        },
+        function (error) {
+          console.log(error.message);
+        },
+        function () {
+          // handle successfully upload here..
+          uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+            // getimage downloaded url here and upload to the database
+
+            const title = getInputValue("title");           
+
+            const blogText = tinymce.activeEditor.getContent();
+            // var id;
+            var id = Math.floor(Math.random() * 100);
+
+            firebase
+              .database()
+              .ref("blogs/")
+              .push()
+              .set(
+                {
+                  title: title,
+                  body: blogText,
+                  Image: downloadURL,
+                  id: id,
+                },
+                function (error) {
+                  if (error) {
+                    console.log("error whie uploading");
+                  } else {
+                    const alert_message_add_blog = document.getElementById(
+                      "alert_message_add_blog"
+                    );
+                    alert_message_add_blog.style.display = "flex";
+                    setTimeout(() => {
+                      location.href = "./blog.html";
+                    }, 3000);
+                  }
+                }
+              );
+          });
+
+          // <!--   for sign out  -->
+
+          //function to get input value
+
+          function getInputValue(id) {
+            return document.getElementById(id).value;
+          }
+          console.log("blog added successully");
+        }
+      );
+    });
+
+    const logoutButton = document.getElementById("logout");
+    logoutButton.addEventListener("click", (e) => {
+     e.preventDefault();
+     auth.signOut().then(() => {        
+        setTimeout(() => {
+          location.href = "./blog.html";
+        }, 3000);
+      });
     });
 
     // check if user is logged in
     onAuthStateChanged(auth, (user) => {
-      if (user) {        
+      if (user) {
+        // User is signed in, see docs for a list of available properties
         const uid = user.uid;
-        console.log(user);
-        // const loginMenu = document.getElementById("loginMenu");
-        // const join_us = document.getElementById("join_us");
-        // loginMenu.innerHTML = "Dashboard";
-        // loginMenu.setAttribute("href", "./html/dashboard.html");
-        // join_us.innerHTML = "Your Vocabulary";
-        // join_us.setAttribute("href", "./html/vocabulary.html");
-
-        if (user == undefined) {
-        // User is signed out      
+             
+        const UserName = document.getElementById("user_name");
+        UserName.innerHTML = user.email;
+        
+      }
+      if (user == undefined) {
+        // User is signed out
+        // ...
         location.href = "./login.html";
-       
+      
       }
-       
-      }
-     
     });
 
+    // for edit and delete item from firebase
+
+    const removeBlogButton = document.getElementById("removeBlog");
+    const editBlogButton = document.getElementById("editBlog");
     
+    // //remove blog
+    blogAdmin.addEventListener("click", (e) => {
+      //let me get my uid
+      let key = e.target.dataset.uid;
+   if (e.target.className.includes("removeBlog")) {
+                firebase
+          .database()
+          .ref("blogs/" + key)
+          .remove(function (error) {
+            if (error) {
+              console.log("delete error" + error);
+            } else {
+              window.location.href = "./dashboard.html";
+            }
+          });
+      } else if (e.target.className.includes("editBlog")) {
+               
+
+        let key = e.target.dataset.uid;
+
+        console.log("let edit this blog");
+        const updateBlogButton = document.getElementById("updateBlog");
+
+        const title = document.getElementById("title_update");
+        const body = document.getElementById("body_update");
+        const imageEdit = document.getElementById("image_update");
+        const formEdit = document.getElementById("form_edit");
+
+        //get data from locastoragee
+        let data_single = JSON.parse(localStorage.getItem("data"));
+
+        console.log(data_single);
+        console.log(key);
+        let tobeEddit = data_single.find((elt) => elt.uid_key === key);
+        console.log(tobeEddit);
+        // let see what we have here
+
+        formEdit.style.display = "block";
+        console.log(title.value);
+        title.value = tobeEddit.title;
+        const blogText = tinymce.activeEditor.setContent(tobeEddit.body);
+        imageEdit.name = tobeEddit.Image;
+
+        updateBlogButton.addEventListener("click", (e) => {
+          // image variable
+          const image = document.getElementById("image_update").files[0];
+          const imageName = image.name;
+          //refernce a collection
+          const storageRef = firebase.storage().ref("images/" + imageName);
+          // const imagesRef = ref("images/" + imageName);
+
+          // upload image to selected  storage reference
+          var uploadTask = storageRef.put(image);
+
+          uploadTask.on(
+            "state_changed",
+            function (snapshot) {
+              var progress =
+                (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+              console.log("Upload is " + progress + "done");
+            },
+            function (error) {
+              console.log(error.message);
+            },
+            function () {
+              // handle successfully upload here..
+              uploadTask.snapshot.ref
+                .getDownloadURL()
+                .then(function (downloadURL) {
+                
+
+                  const blogText = tinymce.activeEditor.getContent();
+                  // var id;
+
+                  var id = Math.floor(Math.random() * 100);
+
+                  firebase
+                    .database()
+                    .ref("blogs/" + key)
+                    .update(
+                      {
+                        // id: value.id,
+                        title: title.value,
+                        body: blogText,
+                        Image: downloadURL,
+                        uid_key: key,
+                      },
+                      function (error) {
+                        if (error) {
+                          console.log("error whie uploading");
+                        } else {
+                          console.log("successfully uploaded");
+                          // window.location.href = "./dashboard.html";
+                          formEdit.style.display = "none";
+                          const alert_message_add_blog =
+                            document.getElementById("alert_message_add_blog");
+                          alert_message_add_blog.style.display = "flex";
+
+                          setTimeout(() => {
+                            location.href = "./dashboard.html";
+                          }, 4000);
+                        }
+                      }
+                    );
+                });
+            }
+          );
+        });
+      }
+    });
+  </script>
+
+  <!-- adding tiny myce -->
+
+  <script>
+    console.log(tinymce);
+    tinymce.init({
+      selector: "#body",
+      width: 450,
+      height: 250,
+    });
+  </script>
+
+  <script>
+    console.log(tinymce);
+    tinymce.init({
+      selector: "#body_update",
+      width: 450,
+      height: 250,
+    });
   </script>
 </html>

@@ -59,7 +59,7 @@
                 <h1>Dashboard</h1>
                 <a href="#" id="add"><i class="fa fa-plus"></i>Add Blog</a>
                 <a href="#" id="info"><i class="fa fa-info"></i>My info</a>
-                <a href="#" id="members"><i class="fa-solid fa-floppy-disk"></i>Your Vocabulary</a>
+                <a href="../html/vocabulary.html" id="members"><i class="fa-solid fa-floppy-disk"></i>Your Vocabulary</a>
                 <a href="#" id="settings"><i class="fa fa-gear"></i>Settings</a>
                 <a href="#" id="logout" class="logout"
                   ><i class="fa fa-sign-out"></i>logout</a
@@ -316,7 +316,6 @@
               .set(
                 {
                   title: title,
-                  // body: body,
                   body: blogText,
                   Image: downloadURL,
                   id: id,
@@ -347,7 +346,6 @@
           function getInputValue(id) {
             return document.getElementById(id).value;
           }
-
           console.log("blog added successully");
         }
       );
@@ -356,9 +354,8 @@
     const logoutButton = document.getElementById("logout");
 
     logoutButton.addEventListener("click", (e) => {
-      e.preventDefault();
-      // console.log("yes log out");
-      auth.signOut().then(() => {
+     e.preventDefault();
+     auth.signOut().then(() => {
         console.log("User logged out");
 
         setTimeout(() => {
@@ -371,13 +368,9 @@
     onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
         const uid = user.uid;
         console.log(user);
-
-        // const loginMenu = document.getElementById("loginMenu");
-        // loginMenu.innerHTML = "Dashboard";
-        // loginMenu.setAttribute("href", "./dashboard.html");
+       
         const UserName = document.getElementById("user_name");
         UserName.innerHTML = user.email;
         
@@ -386,7 +379,7 @@
         // User is signed out
         // ...
         location.href = "./login.html";
-        console.log("no user");
+      
       }
     });
 
@@ -394,32 +387,26 @@
 
     const removeBlogButton = document.getElementById("removeBlog");
     const editBlogButton = document.getElementById("editBlog");
-    // const blogAdmin = document.getElementById("blog_admin");
-
+    
     // //remove blog
     blogAdmin.addEventListener("click", (e) => {
       //let me get my uid
       let key = e.target.dataset.uid;
-      console.log(key);
+   
 
       if (e.target.className.includes("removeBlog")) {
-        console.log("let remove this blog " + key);
-
-        firebase
+                firebase
           .database()
           .ref("blogs/" + key)
           .remove(function (error) {
             if (error) {
               console.log("delete error" + error);
             } else {
-              console.log("delete successfully");
               window.location.href = "./dashboard.html";
             }
           });
       } else if (e.target.className.includes("editBlog")) {
-        console.log("let edit something");
-        // let id = e.target.dataset.uid;
-        //edit or update blog
+               
 
         let key = e.target.dataset.uid;
 
