@@ -142,9 +142,7 @@
       onAuthStateChanged,
     } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
 
-    // import { initializeApp } from "firebase/app";
-
-    // TODO: Add SDKs for Firebase products that you want to use
+     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
 
     // Your web app's Firebase configuration
@@ -163,7 +161,6 @@
     const auth = getAuth();
 
     //function to get inpu value
-
     function getInputValue(id) {
       return document.getElementById(id).value;
     }
@@ -172,18 +169,14 @@
     const addButton = document.getElementById("addBlog");
     const blogAdmin = document.getElementById("blog_admin");
 
-    //read data from database () firebase
-    // const blogs = firebase.database().ref("blogs/");
+    //read data from database () firebase   
     const blogs = ref(database, "blogs/");
     onValue(blogs, (snapshot) => {
       const data = snapshot.val();
 
-      let blogsArray = [];
-      // console.log(data);
+      let blogsArray = [];     
 
-      for (var [key, value] of Object.entries(data)) {
-        // console.log(value.title, value.body, data);
-        console.log(key);
+      for (var [key, value] of Object.entries(data)) {        
         var obj = {
           id: value.id,
           title: value.title,
@@ -193,7 +186,7 @@
         };
 
         blogsArray.push(obj);
-        console.log(obj.uid_key);
+               
 
         const content_elt = document.createElement("DIV");
         content_elt.innerHTML = `
@@ -201,8 +194,8 @@
           <img src=${value.Image} alt="blog image blog" data-id=${value.id}>
         </div>
         <h3 class="blog" data-id=${value.id}>${value.title}</h3>
-        <p class="blog_title blog" data-id=${value.id}>${value.body}</p>
-        <p  data-id=${obj.uid_key} class="readme_button blog">Read more..</p>
+        <p class="blog_title blog" data-id=${value.id}>${value.body.substr(0,80)+"..."}</p>
+        <p  data-id=${obj.uid_key} class="readme_button blog">Read more...</p>
         `;
 
         content_elt.setAttribute("class", "blog_item");
