@@ -187,6 +187,7 @@
       getDatabase,
       set,
       ref,
+      serverTimestamp,
       onValue,
     } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-database.js";
 
@@ -308,6 +309,7 @@
             // var id;
 
             var id = Math.floor(Math.random() * 100);
+            
 
             firebase
               .database()
@@ -317,6 +319,7 @@
                 {
                   title: title,
                   body: blogText,
+                  createdAt: serverTimestamp(),
                   Image: downloadURL,
                   id: id,
                 },
@@ -470,10 +473,10 @@
                     .database()
                     .ref("blogs/" + key)
                     .update(
-                      {
-                        // id: value.id,
+                      {                        
                         title: title.value,
                         body: blogText,
+                        createdAt: serverTimestamp(),
                         Image: downloadURL,
                         uid_key: key,
                       },
