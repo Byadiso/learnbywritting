@@ -247,9 +247,12 @@ width: 100%;
 
 .dateStamp{
     color: #29b4e2;
-    background: var(--blueColor);
+    /* background: var(--blueColor); */
 }
 
+i{
+    color: #29b4e2;  
+}
     /* footer */
 
 footer{
