@@ -1,7 +1,7 @@
 /* my variables style */
 
 :root{
-    --blueColor: #5BD4FB;
+    --blueColor: #059cce;
     --colorHover:  #0f4e8d;
     --whiteColor: #ffffff;
     --activeColorHeader:rgb(97, 97, 87);
@@ -20,6 +20,7 @@
     --linkColor:rgb(0, 0, 0);
     --lowerBackground:#f3f3f3;
     --colorActive: #29b4e2;;
+    --colorGreyComments: #eff3f5dd;
   }
   
   /* all styles  ---------------------------*/
@@ -186,7 +187,8 @@ width: 100%;
  .comment_form textarea{
  background: var(--whiteColor);
  border: none;
- border-radius:10px
+ border-radius:10px;
+ color:red;
  }
  .comment_form textarea:focus{    
     border: 1px solid var(--colorforWeakGrey);
@@ -208,7 +210,30 @@ width: 100%;
  }
 
  .comment_paragraph{
-    color: var(--blueColor);
+    color: var(--blueColor);    
+ }
+ .comment_box{    
+    background:var(--colorGreyComments);
+    border: 1px solid var(--colorGreyComments);
+    border-radius: 8px;
+    padding: 8px;
+    margin:10px;
+    box-shadow: 0.1em 0.1em 0.2em;
+ }
+
+ .comment_bottom_section{
+    display: flex;
+    flex: 0.5;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    font-size: smaller;
+ }
+ .user_commented{
+    font-size: 10px;
+ }
+ .comment_time{
+    font-size: 10px;
  }
   
  textarea {

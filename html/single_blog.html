@@ -176,6 +176,7 @@
       getDatabase,
       set,
       ref,
+      serverTimestamp,
       onValue,
     } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-database.js";
 
@@ -202,13 +203,16 @@
     };
 
     // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
+    // const app = initializeApp(firebaseConfig);
+    const app = firebase.initializeApp(firebaseConfig);
+    const database = getDatabase(initializeApp(firebaseConfig));
     const auth = getAuth();
-    const database = getDatabase();
+    // const database = getDatabase();
 
     //my id in the localStorage
 
     const blog_id = JSON.parse(localStorage.getItem("id"));
+    const blog_item_content = document.querySelector("#blog_item_content");
 
     console.log(blog_id);
     //function to get inpu value
@@ -222,27 +226,22 @@
     const blogs = ref(database, `blogs/${blogById}`);
 
     onValue(blogs, (snapshot) => {
-
       const data = snapshot.val();
 
       const timeStamp = data.createdAt;
-      console.log(timeStamp);
+     
       const time = new Date(timeStamp);
       var date = ("0" + time.getDate()).slice(-2);
       var yr = time.getFullYear();
       // extracting month from the date object as 2 digit
       var mth = ("0" + (time.getMonth() + 1)).slice(-2);
 
-      console.log(date + "/"+ mth +"/"+ yr)
-
-      console.log(timeStamp);
-      console.log(time);
+          
       let blogsArray = [];
       
-      console.log(data);
-      console.log(blogById);
 
-      const blog_item_content = document.querySelector("#blog_item_content");
+      console.log(data)
+        
       let blog_single = document.createElement("DIV");
       blog_single.innerHTML = `
       <div class="blog_item_content" data-uid=${blogById}>
@@ -256,7 +255,7 @@
 
       <div class="icon_blog">
         <p><i class="fa fa-heart"></i>Like</p>
-        <p><i class="fa fa-comment"></i>comment</p>
+        <p><i class="fa fa-comment"></i> <span id="comments_number"></span> comment</p>
         <p><i class="fas fa-clock dateStamp"></i>${date + "/"+ mth +"/"+ yr}</p>
       </div>
 
@@ -267,23 +266,131 @@
         ${data.body}
       </p>
       <div class="comment_section">
-        <div class="comment_content">
-            <p class="comment_paragraph">"This is your comment..."</p>
+        <div class="comment_content" id="comment_content">
+            
         </div>
         <div class="comment_form">
-          <textarea class="comment" rows="5" cols="33" placeholder="add your comment">
+          <textarea class="comment" id="commentDetails" name="commentDetails" rows="5" cols="33" placeholder="add your comment">
           </textarea>
-          <input type="submit" value="Add comment" />
+          <input type="submit" value="Add comment" class="comment_button" data-uid=${blogById} />
         </div> 
       </div>
     </div>
       `;
       // to be added later
-     blog_item_content.append(blog_single);
-
+     blog_item_content.append(blog_single);    
     });
 
-    // check if user is logged in
+     //add comments content to the documents 
+
+     blog_item_content.addEventListener('click',(e)=>{    
+      if(e.target.className==="comment_button"){
+        const commentContent = document.getElementById('commentDetails');
+        e.preventDefault();
+       
+      if(commentContent.value.trim()!==""){
+          //add comments field to the document
+          const id = e.target.dataset.uid
+         
+          firebase.database()
+                    .ref("comments/")
+                    .push()
+                    .set(
+                      {                        
+                       content:commentContent.value.trim(),
+                       postID: id,
+                       time:serverTimestamp(),
+                      },
+                      function (error) {
+                        if (error) {
+                          console.log("error whie uploading");
+                        } else {
+                          console.log("successfully uploaded");                       
+                                                 
+                        }
+                      }
+                    );
+        }
+        else{
+          return console.log("no value entered")
+        }            
+
+      }
+     });
+
+
+     //load comments
+     const getComments= ()=>{
+       const comments = ref(database, `comments`);
+       const blog = ref(database, `blogs/${blogById}`);
+    onValue(comments, (snapshot) => {
+      const data = snapshot.val();     
+     
+
+      let commentsArray = [];
+      let numberOfComment = [] 
+
+      for (var [key, value] of Object.entries(data)){
+
+        
+        var obj = {
+          id: value.id,
+          title: value.content,
+          postID: value.postID,
+          timeStamp: value.time,
+          uid_key: key,
+        };
+
+        
+        if(value.postID === blogById){
+        console.log(value.content +"we have them");
+         const commentContent = document.getElementById('comment_content');
+         const commentNumber = document.getElementById('comments_number');
+         
+         //number of comment added so far
+         numberOfComment.push(value.postID)         
+         commentNumber.innerHTML= numberOfComment.length;
+
+        /// for date
+        const timeStamp = value.time;
+     
+      const time = new Date(timeStamp);
+      var date = ("0" + time.getDate()).slice(-2);
+      var yr = time.getFullYear();
+      // extracting month from the date object as 2 digit
+      var mth = ("0" + (time.getMonth() + 1)).slice(-2);
+        
+         
+
+         let comment = document.createElement("DIV");
+         comment.innerHTML = `
+         <div class="comment_box">
+
+          <p class="user_commented"><i class="fa fa-user"></i> commented by Desire <i class="fa fa-trash"></i></p>
+          <p class="comment_paragraph">${value.content? value.content : " no comments yet"}</p>
+          <div class="comment_bottom_section">
+            <span class="comment_time">comment added on ${value.content? date + "/"+ mth +"/"+ yr : " "}</span>
+            
+          </div>
+         
+          </div>
+         
+         `
+         
+         //add comments at the bottom ot the comment box
+         commentContent.append(comment)
+
+
+      }
+      }     
+    
+    })
+
+         }
+
+     getComments();    
+
+  // check if user is logged in
     onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in, see docs for a list of available properties

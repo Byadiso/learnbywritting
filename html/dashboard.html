@@ -225,8 +225,7 @@
     onValue(blogs, (snapshot) => {
       const data = snapshot.val();
 
-      let blogsArray = [];
-     
+      let blogsArray = [];     
 
       for (var [key, value] of Object.entries(data)) {
         
@@ -265,8 +264,7 @@
         content_elt.setAttribute("data-id", value.uid_key);
         blogAdmin.append(content_elt);
       }
-
-      console.log(blogsArray);
+      
 
       const dataSave = JSON.stringify(blogsArray);
 
@@ -394,8 +392,7 @@
     // //remove blog
     blogAdmin.addEventListener("click", (e) => {
       //let me get my uid
-      let key = e.target.dataset.uid;
-   
+      let key = e.target.dataset.uid;   
 
       if (e.target.className.includes("removeBlog")) {
                 firebase
@@ -477,6 +474,7 @@
                         title: title.value,
                         body: blogText,
                         createdAt: serverTimestamp(),
+                        comments:[],
                         Image: downloadURL,
                         uid_key: key,
                       },
