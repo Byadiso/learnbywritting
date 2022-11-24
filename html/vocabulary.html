@@ -7,6 +7,7 @@
     <title>LearnByWriting</title>
     <link rel="stylesheet" href="../css/blog.css" />
     <link rel="stylesheet" href="../css/blog_single.css" />
+    <link rel="stylesheet" href="../css/vocabulary.css" />
     <!-- for roboto font -->
     <link
       href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
@@ -331,7 +332,6 @@
         console.log(value.content +"we have them");
          const commentContent = document.getElementById('comment_content');
         
-
         /// for date
         const timeStamp = value.time;
      
@@ -344,16 +344,12 @@
 
          let comment = document.createElement("DIV");
          comment.innerHTML = `
-         <div class="comment_box">
+         <div class="vocabulary_box">          
+            <p class="vocabulary_paragraph">${value.content? value.content : " no vocabularies yet"}</p> 
+            <div class="deleteButton"><i class="fa fa-trash"></i></div>
+         </div>
 
-          <p class="user_commented"><i class="fa fa-user"></i> commented by Desire <i class="fa fa-trash"></i></p>
-          <p class="comment_paragraph">${value.content? value.content : " no vocabularies yet"}</p>
-          <div class="comment_bottom_section">
-            <span class="comment_time">comment added on ${value.content? date + "/"+ mth +"/"+ yr : " "}</span>
-            
-          </div>
-         
-          </div>
+          
          
          `
          

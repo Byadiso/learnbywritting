@@ -136,6 +136,36 @@
     justify-content: center;
     align-items: center;
   }
+  .vocabulary_button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+  }
+
+
+  .vocabulary_box{
+    background:var(--blueColor);
+    border: 1px solid var(--colorGreyComments);
+    border-radius: 8px;
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:10px;
+    box-shadow: 0.1em 0.1em 0.2em;
+  }
+  .vocabulary_paragraph{
+    color: var(--textColorGrey);
+  }
+  .deleteButton{
+    margin:20px ;
+    float: right;
+    color: red;
+  }
+  .deleteButton:hover{
+    cursor: pointer;
+  }
 
     /* footer */
 
