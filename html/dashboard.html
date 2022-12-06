@@ -57,7 +57,7 @@
               </div>
               <div class="dashboard_categories">
                 <h1>Dashboard</h1>
-                <a href="./dashboard.html" id="add"><i class="fa fa-plus"></i>Add Blog</a>
+                <a href="#" id="add"><i class="fa fa-plus"></i>Add Blog</a>
                 <a href="./user.html" id="info"><i class="fa fa-info"></i>My info</a>
                 <a href="./vocabulary.html" id="members"><i class="fa-solid fa-floppy-disk"></i>Your Vocabulary</a>
                 <a href="./settings.html" id="settings"><i class="fa fa-gear"></i>Settings</a>
@@ -68,10 +68,7 @@
             </div>
           </div>
           <div class="dashboard_item_rigt">
-            <!-- <div id="main_dashboard ">
-              <p> Hello, are you ready to write something today?</p>
-            </div> -->
-            <div id="blog_admin">
+             <div id="blog_admin">
               <img
                 id="loading"
                 src="../images/loading.gif"
@@ -301,11 +298,8 @@
             // getimage downloaded url here and upload to the database
 
             const title = getInputValue("title");
-            // const body = getInputValue("body");
-
+           
             const blogText = tinymce.activeEditor.getContent();
-            // var id;
-
             var id = Math.floor(Math.random() * 100);
             
 
@@ -378,7 +372,6 @@
       }
       if (user == undefined) {
         // User is signed out
-        // ...
         location.href = "./login.html";
       
       }
