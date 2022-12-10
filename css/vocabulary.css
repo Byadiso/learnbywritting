@@ -8,6 +8,7 @@
     --buttonColor:rgb(97, 97, 87);
     --textColorWhite:#ffffff;
     --textColorGrey:#4A4D4E;
+    --inputColorGrey:#d7e9f031;
     --spacing: 10px;
     --spacingMargin: 35px;
     --error:rgb(204, 14, 14);
@@ -165,7 +166,8 @@
     align-items: center;    
   }
   .vocabulary_details{
-    color: var(--colorGreyComments); 
+        color: var(--colorGreyComments); 
+        background:var(--inputColorGrey);
   }
   .vocabulary_paragraph{
     color: var(--textColorGrey);
@@ -175,20 +177,19 @@
     float: right;
     color: red;
   }
+
   .deleteButton:hover{
     cursor: pointer;
   }
 
     /* footer */
-
 footer{
         display:flex;
         justify-content:center;
         align-items: center;
         background:var(--colorfooter);
         color: var(--whiteColor);
-        padding: 10px;
-       
+        padding: 10px;       
     }
 
     footer div{
