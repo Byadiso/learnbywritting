@@ -164,6 +164,9 @@
     justify-content: center;
     align-items: center;    
   }
+  .vocabulary_details{
+    color: var(--inputColor); 
+  }
   .vocabulary_paragraph{
     color: var(--textColorGrey);
   }
