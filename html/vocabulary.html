@@ -236,7 +236,7 @@
             
         </div>
         <div class="comment_form">
-          <input type="text"  name="vocabulary_details"  placeholder="Enter a new word" />
+          <input type="text" id="vocabulary_details" name="vocabulary_details"  placeholder="Enter a new word" />
           <textarea class="comment" id="commentDetails" name="commentDetails" rows="5" cols="33" placeholder="Add vocabulary details">
           </textarea>
           <input type="submit" value="Add a Vocabulary" class="vocabulary_button" data-uid=${data.uuid} />
@@ -276,15 +276,19 @@
       const id = e.target.dataset.uid           
       if(e.target.className==="vocabulary_button"){
         const commentContent = document.getElementById('commentDetails');
+        const vocabularyDetailsHeader = document.getElementById('vocabulary_details');
+
+        
         e.preventDefault();
        
-      if(commentContent.value.trim()!==""){
+      if(commentContent.value.trim()!=="" || vocabularyDetailsHeader.value.trim()!==""){
           //add vocabularies field to the document          
           firebase.database()
                     .ref("vocabularies/")
                     .push()
                     .set(
-                      {                        
+                      {  
+                       header:vocabularyDetailsHeader.value.trim(),                     
                        content:commentContent.value.trim(),
                        time:serverTimestamp(),
                       },
@@ -298,7 +302,7 @@
                     );
         }
         else{
-          return console.log("no value entered")
+          return console.log("no vocabulary entered")
         }            
       }
 
@@ -467,7 +471,7 @@
          comment.innerHTML = `
          <div class="vocabulary_box"> 
           <div id="header_vocabulary">             
-            <h4 class="vocabulary_header">This is the header</h4>   
+            <h4 class="vocabulary_header">"${value.header ? value.header : "no word yet"} ":</h4>   
             <i class="fa fa-trash deleteButton" data-uid=${key}></i>  
           </div>
             <p class="vocabulary_paragraph">${value.content? value.content : " no vocabularies yet"}</p> 
