@@ -317,114 +317,114 @@
           });
       }
     
-    // // //remove vocabulary
-    // const commentContent = document.getElementById('comment_content');
-    // commentContent.addEventListener("click", (e) => {
-    //   //let me get my uid
-    //   let key = e.target.dataset.uid;   
-    //   // if (e.target.className.includes("deleteButton")) {
-    //   //   firebase.database()
-    //   //     .ref("vocabulary/" + key)
-    //   //     .remove(function (error) {
-    //   //       if (error) {
-    //   //         console.log("delete error" + error);
-    //   //       } else {
-    //   //         window.location.href = "./vocabulary.html";
-    //   //       }
-    //   //     });
-    //   // } 
+    // //remove vocabulary
+    const commentContent = document.getElementById('comment_content');
+    commentContent.addEventListener("click", (e) => {
+      //let me get my uid
+      let key = e.target.dataset.uid;   
+      if (e.target.className.includes("deleteButton")) {
+        firebase.database()
+          .ref("vocabulary/" + key)
+          .remove(function (error) {
+            if (error) {
+              console.log("delete error" + error);
+            } else {
+              window.location.href = "./vocabulary.html";
+            }
+          });
+      } 
       
-    //   // else if(e.target.className.includes("editBlog")) {      
-    //   //   let key = e.target.dataset.uid;
-    //   //   const updateBlogButton = document.getElementById("updateBlog");
+      else if(e.target.className.includes("editBlog")) {      
+        let key = e.target.dataset.uid;
+        const updateBlogButton = document.getElementById("updateBlog");
 
-    //   //   const title = document.getElementById("title_update");
-    //   //   const body = document.getElementById("body_update");
-    //   //   const imageEdit = document.getElementById("image_update");
-    //   //   const formEdit = document.getElementById("form_edit");
+        const title = document.getElementById("title_update");
+        const body = document.getElementById("body_update");
+        const imageEdit = document.getElementById("image_update");
+        const formEdit = document.getElementById("form_edit");
 
-    //   //   //get data from locastoragee
-    //   //   let data_single = JSON.parse(localStorage.getItem("data"));
+        //get data from locastoragee
+        let data_single = JSON.parse(localStorage.getItem("data"));
 
-    //   //   console.log(data_single);
-    //   //   console.log(key);
-    //   //   let tobeEddit = data_single.find((elt) => elt.uid_key === key);
-    //   //   console.log(tobeEddit);
-    //   //   // let see what we have here
+        console.log(data_single);
+        console.log(key);
+        let tobeEddit = data_single.find((elt) => elt.uid_key === key);
+        console.log(tobeEddit);
+        // let see what we have here
 
-    //   //   formEdit.style.display = "block";
-    //   //   console.log(title.value);
-    //   //   title.value = tobeEddit.title;
-    //   //   const blogText = tinymce.activeEditor.setContent(tobeEddit.body);
-    //   //   imageEdit.name = tobeEddit.Image;
+        formEdit.style.display = "block";
+        console.log(title.value);
+        title.value = tobeEddit.title;
+        const blogText = tinymce.activeEditor.setContent(tobeEddit.body);
+        imageEdit.name = tobeEddit.Image;
 
-    //   //   updateBlogButton.addEventListener("click", (e) => {
-    //   //     // image variable
-    //   //     const image = document.getElementById("image_update").files[0];
-    //   //     const imageName = image.name;
-    //   //     //refernce a collection
-    //   //     const storageRef = firebase.storage().ref("images/" + imageName);
-    //   //     // const imagesRef = ref("images/" + imageName);
+        updateBlogButton.addEventListener("click", (e) => {
+          // image variable
+          const image = document.getElementById("image_update").files[0];
+          const imageName = image.name;
+          //refernce a collection
+          const storageRef = firebase.storage().ref("images/" + imageName);
+          // const imagesRef = ref("images/" + imageName);
 
-    //   //     // upload image to selected  storage reference
-    //   //     var uploadTask = storageRef.put(image);
+          // upload image to selected  storage reference
+          var uploadTask = storageRef.put(image);
 
-    //   //     uploadTask.on(
-    //   //       "state_changed",
-    //   //       function (snapshot) {
-    //   //         var progress =
-    //   //           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-    //   //         console.log("Upload is " + progress + "done");
-    //   //       },
-    //   //       function (error) {
-    //   //         console.log(error.message);
-    //   //       },
-    //   //       function () {
-    //   //         // handle successfully upload here..
-    //   //         uploadTask.snapshot.ref
-    //   //           .getDownloadURL()
-    //   //           .then(function (downloadURL) {               
+          uploadTask.on(
+            "state_changed",
+            function (snapshot) {
+              var progress =
+                (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+              console.log("Upload is " + progress + "done");
+            },
+            function (error) {
+              console.log(error.message);
+            },
+            function () {
+              // handle successfully upload here..
+              uploadTask.snapshot.ref
+                .getDownloadURL()
+                .then(function (downloadURL) {               
 
-    //   //             const blogText = tinymce.activeEditor.getContent();
-    //   //             // var id;
+                  const blogText = tinymce.activeEditor.getContent();
+                  // var id;
 
-    //   //             var id = Math.floor(Math.random() * 100);
+                  var id = Math.floor(Math.random() * 100);
 
-    //   //             firebase
-    //   //               .database()
-    //   //               .ref("blogs/" + key)
-    //   //               .update(
-    //   //                 {                        
-    //   //                   title: title.value,
-    //   //                   body: blogText,
-    //   //                   createdAt: serverTimestamp(),
-    //   //                   comments:[],
-    //   //                   Image: downloadURL,
-    //   //                   uid_key: key,
-    //   //                 },
-    //   //                 function (error) {
-    //   //                   if (error) {
-    //   //                     console.log("error whie uploading");
-    //   //                   } else {
-    //   //                     console.log("successfully uploaded");
-    //   //                     // window.location.href = "./dashboard.html";
-    //   //                     formEdit.style.display = "none";
-    //   //                     const alert_message_add_blog =
-    //   //                       document.getElementById("alert_message_add_blog");
-    //   //                     alert_message_add_blog.style.display = "flex";
+                  firebase
+                    .database()
+                    .ref("blogs/" + key)
+                    .update(
+                      {                        
+                        title: title.value,
+                        body: blogText,
+                        createdAt: serverTimestamp(),
+                        comments:[],
+                        Image: downloadURL,
+                        uid_key: key,
+                      },
+                      function (error) {
+                        if (error) {
+                          console.log("error whie uploading");
+                        } else {
+                          console.log("successfully uploaded");
+                          // window.location.href = "./dashboard.html";
+                          formEdit.style.display = "none";
+                          const alert_message_add_blog =
+                            document.getElementById("alert_message_add_blog");
+                          alert_message_add_blog.style.display = "flex";
 
-    //   //                     setTimeout(() => {
-    //   //                       location.href = "./dashboard.html";
-    //   //                     }, 4000);
-    //   //                   }
-    //   //                 }
-    //   //               );
-    //   //           });
-    //   //       }
-    //   //     );
-    //   //   });
-    //   // }
-    // });
+                          setTimeout(() => {
+                            location.href = "./dashboard.html";
+                          }, 4000);
+                        }
+                      }
+                    );
+                });
+            }
+          );
+        });
+      }
+    });
 
 
 

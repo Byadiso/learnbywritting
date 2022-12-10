@@ -159,13 +159,13 @@
   }
 
   #header_vocabulary{   
-    color: #29b4e2;    
+    color: var(--colorActive);    
     display: flex;    
     justify-content: center;
     align-items: center;    
   }
   .vocabulary_details{
-    color: var(--inputColor); 
+    color: var(--colorGreyComments); 
   }
   .vocabulary_paragraph{
     color: var(--textColorGrey);
