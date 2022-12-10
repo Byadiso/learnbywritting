@@ -145,15 +145,24 @@
 
 
   .vocabulary_box{
-    background:var(--blueColor);
+    background:var(--colorGreyComments);
+    color: #29b4e2;
     border: 1px solid var(--colorGreyComments);
     border-radius: 8px;
     padding: 8px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     margin:10px;
     box-shadow: 0.1em 0.1em 0.2em;
+  }
+
+  #header_vocabulary{   
+    color: #29b4e2;    
+    display: flex;    
+    justify-content: center;
+    align-items: center;    
   }
   .vocabulary_paragraph{
     color: var(--textColorGrey);
