@@ -1,4 +1,4 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/fd61de40-c3c6-4f99-a1e2-615f821803e3/deploy-status)](https://app.netlify.com/sites/mybrand-atlp-project/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/fd61de40-c3c6-4f99-a1e2-615f821803e3/deploy-status)](https://app.netlify.com/sites/learnbywritting-project/deploys)
 
 # LearnBywriting
 
@@ -18,8 +18,8 @@ LearnBywriting is a project made to improve my english via writing and reading.
 
 ### My live project can be access by visit this link 
 
-- Github Pages: https://byadiso.github.io/myBrand/html/hire.html
-- Netlify : https://mybrand-atlp-project.netlify.app/index.html
+- Github Pages: https://byadiso.github.io/learnbywritting/index.html
+- Netlify : https://learnbywritting.netlify.app/index.html
 
 # Build With
 
