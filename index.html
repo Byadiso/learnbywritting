@@ -68,11 +68,11 @@
           <h4>Story wrote</h4>
         </div>
         <div class="stat_content stat_content_middle">
-          <span>10</span>
-          <h4>Book we read</h4>
+          <span id="number_books">0</span>
+          <h4>Book read</h4>
         </div>
         <div class="stat_content">
-          <span>2</span>
+          <span id="number_users">2</span>
           <h4>Amateur like you</h4>
         </div>
       </div>
@@ -131,8 +131,7 @@
       <!-- for portfolio -->
 
       <div class="portfolio_section">
-        <div class="header_portfolio">
-          
+        <div class="header_portfolio">          
           <h1>Expore the world by learning english</h1>
           <p>Find below your joy to learn something new...</p>
         </div>
@@ -241,8 +240,7 @@
       let blogsArray = [];      
 
       for (var [key, value] of Object.entries(data)) {
-        // console.log(value.title, value.body, data);
-        console.log(key);
+      
         var obj = {
           id: value.id,
           title: value.title,
@@ -251,20 +249,49 @@
           uid_key: key,
         };
 
-        blogsArray.push(obj);
-               
+        blogsArray.push(obj);             
 
-       
       }
 
   
       const dataSave = JSON.stringify(blogsArray);
 
       // set number of blogs or article
-      const blogNumbers = document.getElementById("number_blog");
+    const blogNumbers = document.getElementById("number_blog");
     blogNumbers.innerText= blogsArray.length;
-    console.log(blogsArray.length);
+   
+      // save to localStorage
+      localStorage.setItem("data", dataSave);
 
+    });
+
+    // number fo books
+    const books = ref(database, "books/");
+    onValue(books, (snapshot) => {
+      const data = snapshot.val() ? snapshot.val() : "no data for book yet";
+
+      let booksArray = [];      
+
+      for (var [key, value] of Object.entries(data)) {
+       
+        var obj = {
+          id: value.id,
+          title: value.title,
+          author: value.author,
+          Image: value.Image,
+          reading:value.reading,
+          uid_key: key,
+        };
+        booksArray.push(obj);     
+
+      }
+
+  
+      const dataSave = JSON.stringify(booksArray);
+
+      // set number of blogs or article
+    const bookNumbers = document.getElementById("number_books");
+    bookNumbers.innerText= booksArray ? booksArray.length : 0 ;   
       // save to localStorage
       localStorage.setItem("data", dataSave);
 
@@ -280,9 +307,7 @@
         loginMenu.innerHTML = "Dashboard";
         loginMenu.setAttribute("href", "./html/dashboard.html");
         join_us.innerHTML = "Your Vocabulary";
-        join_us.setAttribute("href", "./html/vocabulary.html");
-
-        
+        join_us.setAttribute("href", "./html/vocabulary.html");    
 
         console.log("yes it is possible")
         // ...
