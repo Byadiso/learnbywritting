@@ -93,11 +93,11 @@
             <!-- for related blog -->
             <div class="related_blog">
               <div class="header_related">
-                <h4>Recently added vocabulary</h4>
+                <h4>Recently added story</h4>
               </div>
 
-              <div class="related_blog_item">
-                <div class="comment_item_content">
+              <div id="related_blog_item">
+                <!-- <div class="comment_item_content">
                   <div class="blog_relate_image">
                     <img
                       src="../images/pexels-adrianna-calvo-4886824.jpg"
@@ -105,9 +105,7 @@
                     />
                   </div>
                   <h3>Money</h3>
-                </div>
-                
-                
+                </div> -->                
               </div>
             </div>
           </div>
@@ -350,14 +348,11 @@
         //get data from locastoragee
         let data_single = JSON.parse(localStorage.getItem("data"));
 
-        console.log(data_single);
-        console.log(key);
         let tobeEddit = data_single.find((elt) => elt.uid_key === key);
-        console.log(tobeEddit);
-        // let see what we have here
+               // let see what we have here
 
         formEdit.style.display = "block";
-        console.log(title.value);
+        
         title.value = tobeEddit.title;
         const blogText = tinymce.activeEditor.setContent(tobeEddit.body);
         imageEdit.name = tobeEddit.Image;
@@ -435,8 +430,8 @@
      });
 
 
-     let vocabularies
-     const getvocabularies= ()=>{
+    //  let vocabularies
+    //  const getvocabularies= ()=>{
        const vocabularies = ref(database, `vocabularies`);
     
     onValue(vocabularies, (snapshot) => {
@@ -480,17 +475,67 @@
          `   
          //add vocabularies at the bottom ot the comment box
          commentContent.append(comment)
+                }
+              }
+            }     
+        })
+    //   }
+
+    //  getvocabularies(); 
+
+     
+    //showing story on our platform
+
+    const stories = ref(database, `blogs`);
+    onValue(stories, (snapshot) => {
+      const data = snapshot.val();     
+
+      if(data !==null){
+        let storiesArray = [];
+      let numberOfBlog= [] 
+
+      for (var [key, value] of Object.entries(data)){        
+        var obj = {
+          id: value.id,
+          content: value.content,
+          image: value.image,
+          timeStamp: value.time,
+          uid_key: key,
+        };
+
+        if(value){
+         const storyContent = document.getElementById('related_blog_item');
+        /// for date
+        const timeStamp = value.time;
+     
+      const time = new Date(timeStamp);
+      var date = ("0" + time.getDate()).slice(-2);
+      var yr = time.getFullYear();
+      // extracting month from the date object as 2 digit
+      var mth = ("0" + (time.getMonth() + 1)).slice(-2);       
+         
+         let story = document.createElement("DIV");
+         story.innerHTML = `
+         <div class="sroty_item_content">
+                  <div class="blog_relate_image">
+                    <img
+                      src="${value.Image}"
+                      alt="${value.title}"
+                    />
+                  </div>
+                  <h3>${value.title}</h3>
+                </div>       
+         `   
+         //add vocabularies at the bottom ot the comment box
+         storyContent.append(story)
           }
         }
           }     
           
         })
 
-         }
 
-     getvocabularies(); 
-     
-    
+              
 
   // check if user is logged in
     onAuthStateChanged(auth, (user) => {

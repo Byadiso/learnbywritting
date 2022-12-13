@@ -385,8 +385,7 @@
     // //remove blog
     blogAdmin.addEventListener("click", (e) => {
       //let me get my uid
-      let key = e.target.dataset.uid;   
-
+      let key = e.target.dataset.uid; 
       if (e.target.className.includes("removeBlog")) {
                 firebase
           .database()
@@ -398,8 +397,7 @@
               window.location.href = "./dashboard.html";
             }
           });
-      } else if (e.target.className.includes("editBlog")) {
-               
+      } else if (e.target.className.includes("editBlog")) {              
 
         let key = e.target.dataset.uid;
 
@@ -413,15 +411,10 @@
 
         //get data from locastoragee
         let data_single = JSON.parse(localStorage.getItem("data"));
-
-        console.log(data_single);
-        console.log(key);
-        let tobeEddit = data_single.find((elt) => elt.uid_key === key);
-        console.log(tobeEddit);
+       
+        let tobeEddit = data_single.find((elt) => elt.uid_key === key);       
         // let see what we have here
-
-        formEdit.style.display = "block";
-        console.log(title.value);
+        formEdit.style.display = "block";        
         title.value = tobeEddit.title;
         const blogText = tinymce.activeEditor.setContent(tobeEddit.body);
         imageEdit.name = tobeEddit.Image;
@@ -432,8 +425,7 @@
           const imageName = image.name;
           //refernce a collection
           const storageRef = firebase.storage().ref("images/" + imageName);
-          // const imagesRef = ref("images/" + imageName);
-
+          
           // upload image to selected  storage reference
           var uploadTask = storageRef.put(image);
 
@@ -492,6 +484,8 @@
             }
           );
         });
+      } else if (e.target.className.includes("blog_item blog_image blog")){
+          return console.log("yes yesoooo")
       }
     });
   </script>
