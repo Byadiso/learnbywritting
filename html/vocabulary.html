@@ -97,15 +97,9 @@
               </div>
 
               <div id="related_blog_item">
-                <!-- <div class="comment_item_content">
-                  <div class="blog_relate_image">
-                    <img
-                      src="../images/pexels-adrianna-calvo-4886824.jpg"
-                      alt="photo_blog"
-                    />
-                  </div>
-                  <h3>Money</h3>
-                </div> -->                
+
+                 <!-- Recent story will be added here -->
+                 
               </div>
             </div>
           </div>
@@ -270,12 +264,11 @@
 
      //add vocabularies content to the documents 
      comment_item_content.addEventListener('click',(e)=>{  
-      console.log(e.target)  
+      
       const id = e.target.dataset.uid           
       if(e.target.className==="vocabulary_button"){
         const commentContent = document.getElementById('commentDetails');
         const vocabularyDetailsHeader = document.getElementById('vocabulary_details');
-
         
         e.preventDefault();
        
@@ -305,8 +298,6 @@
       }
 
 //for delete and edit item from firebase 
-//  const removeBlogButton = document.getElementById("deleteButton");
-    // const editBlogButton = document.getElementById("editBlog");
     if (e.target.className.includes("deleteButton")) {
         firebase.database()
           .ref("vocabularies/" + id)
@@ -339,7 +330,6 @@
       else if(e.target.className.includes("editBlog")) {      
         let key = e.target.dataset.uid;
         const updateBlogButton = document.getElementById("updateBlog");
-
         const title = document.getElementById("title_update");
         const body = document.getElementById("body_update");
         const imageEdit = document.getElementById("image_update");
@@ -350,7 +340,6 @@
 
         let tobeEddit = data_single.find((elt) => elt.uid_key === key);
                // let see what we have here
-
         formEdit.style.display = "block";
         
         title.value = tobeEddit.title;
