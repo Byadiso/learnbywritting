@@ -99,7 +99,7 @@
               <div id="related_blog_item">
 
                  <!-- Recent story will be added here -->
-                 
+
               </div>
             </div>
           </div>
@@ -474,29 +474,38 @@
 
      
     //showing story on our platform
-
     const stories = ref(database, `blogs`);
     onValue(stories, (snapshot) => {
-      const data = snapshot.val();     
+      const data = snapshot.val();    
 
       if(data !==null){
         let storiesArray = [];
       let numberOfBlog= [] 
 
+      //bring story with fixed number
+      // const giveSstory=(start,end,storyData)=>{
+      //     return Object.entries(storyData).slice(start,end)
+      //   }        
+       
+      //   let storyToDisplay= giveSstory(0,5,data)
+      //   console.log(storyToDisplay)
+
       for (var [key, value] of Object.entries(data)){        
-        var obj = {
-          id: value.id,
-          content: value.content,
-          image: value.image,
-          timeStamp: value.time,
-          uid_key: key,
-        };
+        // var obj = {
+        //   id: value.id,
+        //   content: value.content,
+        //   image: value.image,
+        //   timeStamp: value.time,
+        //   uid_key: key,
+        // };
 
         if(value){
          const storyContent = document.getElementById('related_blog_item');
         /// for date
         const timeStamp = value.time;
-     
+
+        
+            
       const time = new Date(timeStamp);
       var date = ("0" + time.getDate()).slice(-2);
       var yr = time.getFullYear();
@@ -532,7 +541,7 @@
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
         const uid = user.uid;
-        console.log(user);       
+        console.log(user);      
         
       }
       if (user == undefined) {
