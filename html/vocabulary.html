@@ -14,8 +14,7 @@
       rel="stylesheet"
     />
 
-    <!-- 
-    bringing Icon for footer -->
+    <!-- bringing Icon for footer -->
 
     <link
       rel="stylesheet"
@@ -33,8 +32,7 @@
           <a href="./blog.html" class="menu_nav">Blog</a>          
           <a href="./contact.html" class="menu_nav">Contact us</a>
           <a href="./dashboard.html" class="menu_nav" id="dashboard">Dashboard</a>
-          <a href="./vocabulary.html" class="menu_nav hire_now" id="join_us">Your Vocabulary</a>
-          
+          <a href="./vocabulary.html" class="menu_nav hire_now" id="join_us">Your Vocabulary</a>          
         </div>
       </nav>
     </header>
@@ -52,7 +50,7 @@
         <div class="blog_content single_blog">
           <div class="blog_item_left blog_item_left_single">
             <div class="comment_item_content" id="comment_item_content">
-             
+                  <!-- comment will go here -->             
             </div>
 
             <!--my edit modal -->
@@ -97,9 +95,7 @@
               </div>
 
               <div id="related_blog_item">
-
                  <!-- Recent story will be added here -->
-
               </div>
             </div>
           </div>
@@ -117,9 +113,7 @@
                 <a href="./user.html" id="info"><i class="fa fa-info"></i>My info</a>
                 <a href="./vocabulary.html" id="vocabulary"><i class="fa-solid fa-floppy-disk"></i>Your Vocabulary</a>
                 <a href="./settings.html" id="settings"><i class="fa fa-gear"></i>Settings</a>
-                <a href="#" id="logout" class="logout"
-                  ><i class="fa fa-sign-out"></i>logout</a
-                >
+                <a href="#" id="logout" class="logout"><i class="fa fa-sign-out"></i>logout</a>
               </div>
             </div>
           </div>
@@ -128,7 +122,6 @@
     </section>
 
     <!-- footer info and details -->
-
     <footer>
       <div class="footer support">
         <h3>Phone support</h3>
@@ -179,9 +172,7 @@
       onAuthStateChanged,
     } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
 
-    // import { initializeApp } from "firebase/app";
-
-    // TODO: Add SDKs for Firebase products that you want to use
+     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
 
     // Your web app's Firebase configuration
@@ -199,11 +190,9 @@
     const app = firebase.initializeApp(firebaseConfig);
     const database = getDatabase(initializeApp(firebaseConfig));
     const auth = getAuth();
-    // const database = getDatabase();
     const blogAdmin = document.getElementById("blog_admin");
 
     //my id in the localStorage
-
     const blog_id = JSON.parse(localStorage.getItem("id"));
     const comment_item_content = document.querySelector("#comment_item_content");
 
@@ -268,8 +257,7 @@
       const id = e.target.dataset.uid           
       if(e.target.className==="vocabulary_button"){
         const commentContent = document.getElementById('commentDetails');
-        const vocabularyDetailsHeader = document.getElementById('vocabulary_details');
-        
+        const vocabularyDetailsHeader = document.getElementById('vocabulary_details');        
         e.preventDefault();
        
       if(commentContent.value.trim()!=="" || vocabularyDetailsHeader.value.trim()!==""){
@@ -287,12 +275,12 @@
                         if (error) {
                           console.log("error whie uploading");
                         } else {
-                          console.log("successfully uploaded");                      
+                             console.log("successfully uploaded");                      
                            }
-                      }
+                        }
                     );
-        }
-        else{
+              }
+         else{
           return console.log("no vocabulary entered")
         }            
       }
@@ -304,9 +292,9 @@
           .remove(function (error) {
             if (error) {
               console.log("delete error" + error);
-            } else {
-              window.location.href = "./vocabulary.html";              
-            }
+              } else {
+               window.location.href = "./vocabulary.html";              
+             }
           });
       }
     
@@ -352,8 +340,7 @@
           const imageName = image.name;
           //refernce a collection
           const storageRef = firebase.storage().ref("images/" + imageName);
-          // const imagesRef = ref("images/" + imageName);
-
+         
           // upload image to selected  storage reference
           var uploadTask = storageRef.put(image);
 
@@ -365,14 +352,13 @@
               console.log("Upload is " + progress + "done");
             },
             function (error) {
-              console.log(error.message);
-            },
+               console.log(error.message);
+              },
             function () {
               // handle successfully upload here..
               uploadTask.snapshot.ref
                 .getDownloadURL()
-                .then(function (downloadURL) {               
-
+                .then(function (downloadURL) {              
                   const blogText = tinymce.activeEditor.getContent();
                   // var id;
 
@@ -395,7 +381,7 @@
                           console.log("error whie uploading");
                         } else {
                           console.log("successfully uploaded");
-                          // window.location.href = "./dashboard.html";
+                          
                           formEdit.style.display = "none";
                           const alert_message_add_blog =
                             document.getElementById("alert_message_add_blog");
@@ -406,18 +392,15 @@
                           }, 4000);
                         }
                       }
-                    );
-                });
-            }
-          );
-        });
-      }
+                      );
+                  });
+               }
+            );
+         });
+       }
     });
 
-
-
      });
-
 
     //  let vocabularies
     //  const getvocabularies= ()=>{
@@ -437,7 +420,6 @@
           timeStamp: value.time,
           uid_key: key,
         };
-
         
         if(value){
         console.log(value.content +"we have them");
@@ -458,8 +440,7 @@
             <h4 class="vocabulary_header">"${value.header ? value.header : "no word yet"} ":</h4>   
             <i class="fa fa-trash deleteButton" data-uid=${key}></i>  
           </div>
-            <p class="vocabulary_paragraph">${value.content? value.content : " no vocabularies yet"}</p> 
-            
+            <p class="vocabulary_paragraph">${value.content? value.content : " no vocabularies yet"}</p>  
          </div>        
          `   
          //add vocabularies at the bottom ot the comment box
@@ -471,7 +452,6 @@
     //   }
 
     //  getvocabularies(); 
-
      
     //showing story on our platform
     const stories = ref(database, `blogs`);
@@ -481,7 +461,6 @@
       if(data !==null){
         let storiesArray = [];
       let numberOfBlog= [] 
-
       //bring story with fixed number
       // const giveSstory=(start,end,storyData)=>{
       //     return Object.entries(storyData).slice(start,end)
