@@ -261,6 +261,11 @@ footer input[type=submit]{
     border-radius: 20px
 }
 
+.vocabulary_item_content{
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
 .hide {
     display: none;
 }

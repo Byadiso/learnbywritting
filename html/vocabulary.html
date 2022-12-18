@@ -39,8 +39,8 @@
     <section>
       <div class="hero_section">
         <div class="hero_content">
-          <h2>Our blog</h2>
-          <h1>My Latest blog</h1>
+          <h2>Our vocabularies</h2>
+          <h1>Learn new word today</h1>
         </div>
       </div>
 
@@ -52,8 +52,11 @@
           
           <div class="blog_item_left blog_item_left_single">
              <!-- Search box for vocabulary-->
-          <div class="blog_search vocabulary_search">
-            <input type="text" placeholder="Search.." name="search" />
+             
+             <h3>Vocabulary Lists</h3>
+             <p> Explore our library of over 13,000 curated lists.</p>
+          <div class="blog_search vocabulary_search">           
+            <input type="text" placeholder="search a vocabulary" name="search" />
             <i class="fa fa-search"></i>
           </div>
 
@@ -200,8 +203,9 @@
     //my id in the localStorage
     const blog_id = JSON.parse(localStorage.getItem("id"));
     const vocabulary_item_content = document.querySelector("#vocabulary_item_content");
+    const vocabulary_button_text = document.querySelector("#vocabulary_button_text");
 
-    console.log(blog_id);
+
     //function to get input value
 
     function getInputValue(id) {
@@ -222,7 +226,7 @@
             
         </div>
         <div>
-          <button class="vocabulary_button vocabulary_button_text"> Add a new vocabulary</button>
+          <i> </i> <button class="vocabulary_button_text"> Add a new vocabulary</button>
         </div>
         <div class="vocabulary_form hide">
           <input type="text" id="vocabulary_details" name="vocabulary_details"  placeholder="Enter a new word" />
@@ -260,7 +264,20 @@
     });
 
      //add vocabularies content to the documents 
+
      vocabulary_item_content.addEventListener('click',(e)=>{  
+      
+      if(e.target.className==="vocabulary_button_text"){
+        console.log("yes le show add vocabulary box")
+       let vocabulary_form = document.getElementsByClassName("vocabulary_form");
+       console.log(e.target.nextElement)
+      //  if(e.target.className.includes("vocabulary_form")){
+      //   vocabulary_form.classList.remove("hide")
+
+      //  }
+
+
+      }
       
       const id = e.target.dataset.uid           
       if(e.target.className==="vocabulary_button"){
@@ -409,7 +426,6 @@
      });
 
     //  let vocabularies
-    //  const getvocabularies= ()=>{
        const vocabularies = ref(database, `vocabularies`);
     
     onValue(vocabularies, (snapshot) => {
@@ -498,7 +514,8 @@
           }     
           
         })
-              
+
+                     
 
   // check if user is logged in
     onAuthStateChanged(auth, (user) => {
