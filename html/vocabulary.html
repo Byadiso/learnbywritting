@@ -44,13 +44,21 @@
         </div>
       </div>
 
-      <!-- blogs section -->
+        
 
+      <!-- Vocabulary section -->
       <div class="blog_section">
-        <div class="blog_content single_blog">
+        <div class="blog_content single_blog">         
+          
           <div class="blog_item_left blog_item_left_single">
-            <div class="comment_item_content" id="comment_item_content">
-                  <!-- comment will go here -->             
+             <!-- Search box for vocabulary-->
+          <div class="blog_search vocabulary_search">
+            <input type="text" placeholder="Search.." name="search" />
+            <i class="fa fa-search"></i>
+          </div>
+
+            <div class="vocabulary_item_content" id="vocabulary_item_content">
+                  <!-- vocabulary will go here -->             
             </div>
 
             <!--my edit modal -->
@@ -103,10 +111,7 @@
           <!-- for categories -->
           <div class="blog_item_rigt">
             <div class="blog_item">
-              <div class="blog_search">
-                <input type="text" placeholder="Search.." name="search" />
-                <i class="fa fa-search"></i>
-              </div>
+            
               <div class="dashboard_categories">
                 <h1>Dashboard</h1>
                 <a href="./dashboard.html" id="add"><i class="fa fa-plus"></i>Add Blog</a>
@@ -194,7 +199,7 @@
 
     //my id in the localStorage
     const blog_id = JSON.parse(localStorage.getItem("id"));
-    const comment_item_content = document.querySelector("#comment_item_content");
+    const vocabulary_item_content = document.querySelector("#vocabulary_item_content");
 
     console.log(blog_id);
     //function to get input value
@@ -208,17 +213,20 @@
     onValue(vacabularies, (snapshot) => {
       const data = snapshot.val();      
       if(data!== null){
-        let comment_single = document.createElement("DIV");
-      comment_single.innerHTML = `
-      <div class="comment_item_content" data-uid=${data.uuid}>
+        let vocabulary_single = document.createElement("DIV");
+      vocabulary_single.innerHTML = `
+      <div class="vocabulary_item_content" data-uid=${data.uuid}>
    
-      <div class="comment_section">
-        <div class="comment_content" id="comment_content">
+      <div class="vocabulary_section">
+        <div class="vocabulary_content" id="vocabulary_content">
             
         </div>
-        <div class="comment_form">
+        <div>
+          <button class="vocabulary_button vocabulary_button_text"> Add a new vocabulary</button>
+        </div>
+        <div class="vocabulary_form hide">
           <input type="text" id="vocabulary_details" name="vocabulary_details"  placeholder="Enter a new word" />
-          <textarea class="comment" id="commentDetails" name="commentDetails" rows="5" cols="33" placeholder="Add vocabulary details">
+          <textarea class="vocabulary" id="vocabularyDetails" name="vocabularyDetails" rows="5" cols="33" placeholder="Add vocabulary details">
           </textarea>
           <input type="submit" value="Add a Vocabulary" class="vocabulary_button" data-uid=${data.uuid} />
         </div> 
@@ -226,41 +234,41 @@
     </div>
       `;
       // to be added later
-     comment_item_content.append(comment_single);  
+     vocabulary_item_content.append(vocabulary_single);  
       }   
       
       else{
-        let comment_single = document.createElement("DIV");
-      comment_single.innerHTML = `
-      <div class="comment_item_content">   
-      <div class="comment_section">
-        <div class="comment_content" id="comment_content">
+        let vocabulary_single = document.createElement("DIV");
+      vocabulary_single.innerHTML = `
+      <div class="vocabulary_item_content">   
+      <div class="vocabulary_section">
+        <div class="vocabulary_content" id="vocabulary_content">
             <p>No New vocabulary  yet</p>
         </div>
-        <div class="comment_form">         
-          <textarea class="comment" id="commentDetails" name="commentDetails" rows="3" cols="20" placeholder="add your comment">
+        <div class="vocabulary_form hide">         
+          <textarea class="vocabulary" id="vocabularyDetails" name="vocabularyDetails" rows="3" cols="20" placeholder="add your vocabulary">
           </textarea>
-          <input type="submit" value="Add ax modified Vocabulary" class="vocabulary_button"/>
+          <input type="submit" value="Add a modified Vocabulary" class="vocabulary_button"/>
         </div> 
       </div>
     </div>
       `;
       // to be added later
-     comment_item_content.append(comment_single);  
+     vocabulary_item_content.append(vocabulary_single);  
       }
         
     });
 
      //add vocabularies content to the documents 
-     comment_item_content.addEventListener('click',(e)=>{  
+     vocabulary_item_content.addEventListener('click',(e)=>{  
       
       const id = e.target.dataset.uid           
       if(e.target.className==="vocabulary_button"){
-        const commentContent = document.getElementById('commentDetails');
+        const vocabularyContent = document.getElementById('vocabularyDetails');
         const vocabularyDetailsHeader = document.getElementById('vocabulary_details');        
         e.preventDefault();
        
-      if(commentContent.value.trim()!=="" || vocabularyDetailsHeader.value.trim()!==""){
+      if(vocabularyContent.value.trim()!=="" || vocabularyDetailsHeader.value.trim()!==""){
           //add vocabularies field to the document          
           firebase.database()
                     .ref("vocabularies/")
@@ -268,7 +276,7 @@
                     .set(
                       {  
                        header:vocabularyDetailsHeader.value.trim(),                     
-                       content:commentContent.value.trim(),
+                       content:vocabularyContent.value.trim(),
                        time:serverTimestamp(),
                       },
                       function (error) {
@@ -299,8 +307,8 @@
       }
     
     // //remove vocabulary
-    const commentContent = document.getElementById('comment_content');
-    commentContent.addEventListener("click", (e) => {
+    const vocabularyContent = document.getElementById('vocabulary_content');
+    vocabularyContent.addEventListener("click", (e) => {
       //let me get my uid
       let key = e.target.dataset.uid;   
       if (e.target.className.includes("deleteButton")) {
@@ -360,8 +368,6 @@
                 .getDownloadURL()
                 .then(function (downloadURL) {              
                   const blogText = tinymce.activeEditor.getContent();
-                  // var id;
-
                   var id = Math.floor(Math.random() * 100);
 
                   firebase
@@ -372,7 +378,7 @@
                         title: title.value,
                         body: blogText,
                         createdAt: serverTimestamp(),
-                        comments:[],
+                        vocabularys:[],
                         Image: downloadURL,
                         uid_key: key,
                       },
@@ -411,7 +417,7 @@
 
       if(data !==null){
         let vocabulariesArray = [];
-      let numberOfComment = [] 
+      let numberOfvocabulary = [] 
 
       for (var [key, value] of Object.entries(data)){        
         var obj = {
@@ -423,7 +429,7 @@
         
         if(value){
         console.log(value.content +"we have them");
-         const commentContent = document.getElementById('comment_content');
+         const vocabularyContent = document.getElementById('vocabulary_content');
         /// for date
         const timeStamp = value.time;
      
@@ -433,8 +439,8 @@
       // extracting month from the date object as 2 digit
       var mth = ("0" + (time.getMonth() + 1)).slice(-2);       
          
-         let comment = document.createElement("DIV");
-         comment.innerHTML = `
+         let vocabulary = document.createElement("DIV");
+         vocabulary.innerHTML = `
          <div class="vocabulary_box"> 
           <div id="header_vocabulary">             
             <h4 class="vocabulary_header">"${value.header ? value.header : "no word yet"} ":</h4>   
@@ -443,15 +449,12 @@
             <p class="vocabulary_paragraph">${value.content? value.content : " no vocabularies yet"}</p>  
          </div>        
          `   
-         //add vocabularies at the bottom ot the comment box
-         commentContent.append(comment)
+         //add vocabularies at the bottom ot the vocabulary box
+         vocabularyContent.append(vocabulary)
                 }
               }
             }     
-        })
-    //   }
-
-    //  getvocabularies(); 
+        })    
      
     //showing story on our platform
     const stories = ref(database, `blogs`);
@@ -461,29 +464,14 @@
       if(data !==null){
         let storiesArray = [];
       let numberOfBlog= [] 
-      //bring story with fixed number
-      // const giveSstory=(start,end,storyData)=>{
-      //     return Object.entries(storyData).slice(start,end)
-      //   }        
-       
-      //   let storyToDisplay= giveSstory(0,5,data)
-      //   console.log(storyToDisplay)
+     
 
       for (var [key, value] of Object.entries(data)){        
-        // var obj = {
-        //   id: value.id,
-        //   content: value.content,
-        //   image: value.image,
-        //   timeStamp: value.time,
-        //   uid_key: key,
-        // };
-
+      
         if(value){
          const storyContent = document.getElementById('related_blog_item');
         /// for date
-        const timeStamp = value.time;
-
-        
+        const timeStamp = value.time;        
             
       const time = new Date(timeStamp);
       var date = ("0" + time.getDate()).slice(-2);
@@ -503,15 +491,13 @@
                   <h3>${value.title}</h3>
                 </div>       
          `   
-         //add vocabularies at the bottom ot the comment box
+         //add vocabularies at the bottom ot the vocabulary box
          storyContent.append(story)
           }
         }
           }     
           
         })
-
-
               
 
   // check if user is logged in
