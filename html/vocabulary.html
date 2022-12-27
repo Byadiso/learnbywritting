@@ -434,6 +434,7 @@
       if(data !==null){
         let vocabulariesArray = [];
       let numberOfvocabularyArray = [] 
+      const vocabularyContent = document.getElementById('vocabulary_content');
 
       for (var [key, value] of Object.entries(data)){  
               
@@ -445,10 +446,9 @@
         };
         
         if(value){
-        console.log(value.content +"we have them");  
-       
+             
         const numberOfVocabulary = document.getElementById('number_of_vocabulary');
-         const vocabularyContent = document.getElementById('vocabulary_content');
+        
         /// for date
         const timeStamp = value.time;
 
@@ -478,6 +478,21 @@
          vocabularyContent.append(vocabulary)
                 }
               }
+              
+         let pagesNumbers = document.createElement("DIV");
+         pagesNumbers.innerHTML = `
+             <div class="page_numbers"> 
+                 <p> Prev </p>
+                    <h3>1</h3>
+                    <h3>2</h3>
+                    <h3>3</h3>
+                    <h3>4</h3>
+                    <h3>5</h3>
+                  <p> Next </p>
+              </div>       
+         `
+         //adding pages
+         vocabularyContent.append(pagesNumbers)
             }     
         })    
      
@@ -491,7 +506,7 @@
       let numberOfBlogArray= [] 
      
 
-      for (var [key, value] of Object.entries(data)){   
+      for (var [key, value] of Object.entries(data)){  
         
         var obj = {
           id: value.id,
@@ -501,42 +516,14 @@
         };
       
         if(value){
-      //    const storyContent = document.getElementById('related_blog_item');
-      //   /// for date
-      //   const timeStamp = value.time;       
-      //   //adding blog into an array
-
-        numberOfBlogArray.push(obj);
-            
-      // const time = new Date(timeStamp);
-      // var date = ("0" + time.getDate()).slice(-2);
-      // var yr = time.getFullYear();
-      // // extracting month from the date object as 2 digit
-      // var mth = ("0" + (time.getMonth() + 1)).slice(-2);       
-         
-      //    let story = document.createElement("DIV");
-      //    story.innerHTML = `
-      //    <div class="sroty_item_content">
-      //             <div class="blog_relate_image">
-      //               <img
-      //                 src="${value.Image}"
-      //                 alt="${value.title}"
-      //               />
-      //             </div>
-      //             <h3>${value.title}</h3>
-      //           </div>       
-      //    `   
-      //    //add vocabularies at the bottom ot the vocabulary box
-      //    storyContent.append(story)
+             numberOfBlogArray.push(obj);            
           }
         }
 
-         //show only five blog
-       
+         //show only five blog       
         const storyContent = document.getElementById('related_blog_item');
         
-        numberOfBlogArray.slice(0,5).forEach(value => {             
-              
+        numberOfBlogArray.slice(0,3).forEach(value => { 
          
          let story = document.createElement("DIV");
          story.innerHTML = `
@@ -550,14 +537,14 @@
                   <h3>${value.title}</h3>
                 </div>       
          `   
+   
          //add vocabularies at the bottom ot the vocabulary box
          storyContent.append(story)
+
          
-          })
-          
-        }
-       
-          
+
+              })
+           }
         });
             
           
@@ -569,14 +556,11 @@
       if (user) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
-        const uid = user.uid;
-        console.log(user);      
-        
+        const uid = user.uid;        
       }
       if (user == undefined) {
         // User is signed out
-        location.href = "./login.html";
-        
+        location.href = "./login.html";        
       }
     });
   </script>

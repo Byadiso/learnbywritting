@@ -266,6 +266,34 @@ footer input[type=submit]{
     grid-template-columns: auto auto auto;
 }
 
+/* show 5 related blog  */
+
+#related_blog_item{
+display: grid;
+justify-content: center;
+grid-template-columns: auto auto auto;
+max-width: 80%;
+
+}
+
+/* page numbers */
+.page_numbers{
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+}
+
+.page_numbers h3{
+    padding: 10px;
+    margin: 5px;
+}
+.page_numbers h3:hover{
+    cursor: pointer;
+}
+.page_numbers p:hover{
+    cursor: pointer;
+}
+
 .hide {
     display: none;
 }
