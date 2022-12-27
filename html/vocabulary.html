@@ -446,8 +446,7 @@
         
         if(value){
         console.log(value.content +"we have them");  
-        console.log(value.length + "this is key")
-
+       
         const numberOfVocabulary = document.getElementById('number_of_vocabulary');
          const vocabularyContent = document.getElementById('vocabulary_content');
         /// for date
@@ -457,7 +456,6 @@
         numberOfvocabularyArray.push(obj)
 
         numberOfVocabulary.innerHTML= numberOfvocabularyArray.length
-
         
      
       const time = new Date(timeStamp);
@@ -490,28 +488,62 @@
 
       if(data !==null){
         let storiesArray = [];
-      let numberOfBlog= [] 
+      let numberOfBlogArray= [] 
      
 
-      for (var [key, value] of Object.entries(data)){        
+      for (var [key, value] of Object.entries(data)){   
+        
+        var obj = {
+          id: value.id,
+          title: value.title,
+          image:value.Image,
+          uid_key: key,
+        };
       
         if(value){
-         const storyContent = document.getElementById('related_blog_item');
-        /// for date
-        const timeStamp = value.time;        
+      //    const storyContent = document.getElementById('related_blog_item');
+      //   /// for date
+      //   const timeStamp = value.time;       
+      //   //adding blog into an array
+
+        numberOfBlogArray.push(obj);
             
-      const time = new Date(timeStamp);
-      var date = ("0" + time.getDate()).slice(-2);
-      var yr = time.getFullYear();
-      // extracting month from the date object as 2 digit
-      var mth = ("0" + (time.getMonth() + 1)).slice(-2);       
+      // const time = new Date(timeStamp);
+      // var date = ("0" + time.getDate()).slice(-2);
+      // var yr = time.getFullYear();
+      // // extracting month from the date object as 2 digit
+      // var mth = ("0" + (time.getMonth() + 1)).slice(-2);       
+         
+      //    let story = document.createElement("DIV");
+      //    story.innerHTML = `
+      //    <div class="sroty_item_content">
+      //             <div class="blog_relate_image">
+      //               <img
+      //                 src="${value.Image}"
+      //                 alt="${value.title}"
+      //               />
+      //             </div>
+      //             <h3>${value.title}</h3>
+      //           </div>       
+      //    `   
+      //    //add vocabularies at the bottom ot the vocabulary box
+      //    storyContent.append(story)
+          }
+        }
+
+         //show only five blog
+       
+        const storyContent = document.getElementById('related_blog_item');
+        
+        numberOfBlogArray.slice(0,5).forEach(value => {             
+              
          
          let story = document.createElement("DIV");
          story.innerHTML = `
          <div class="sroty_item_content">
                   <div class="blog_relate_image">
                     <img
-                      src="${value.Image}"
+                      src="${value.image}"
                       alt="${value.title}"
                     />
                   </div>
@@ -520,12 +552,16 @@
          `   
          //add vocabularies at the bottom ot the vocabulary box
          storyContent.append(story)
-          }
-        }
-          }     
+         
+          })
           
-        })
-
+        }
+       
+          
+        });
+            
+          
+       
                      
 
   // check if user is logged in
