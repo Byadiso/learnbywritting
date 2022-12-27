@@ -54,7 +54,7 @@
              <!-- Search box for vocabulary-->
              
              <h3>Vocabulary Lists</h3>
-             <p> Explore our library of over 13,000 curated lists.</p>
+             <p> Explore our library of over <span id="number_of_vocabulary">0</span> curated lists.</p>
           <div class="blog_search vocabulary_search">           
             <input type="text" placeholder="search a vocabulary" name="search" />
             <i class="fa fa-search"></i>
@@ -433,9 +433,10 @@
 
       if(data !==null){
         let vocabulariesArray = [];
-      let numberOfvocabulary = [] 
+      let numberOfvocabularyArray = [] 
 
-      for (var [key, value] of Object.entries(data)){        
+      for (var [key, value] of Object.entries(data)){  
+              
         var obj = {
           id: value.id,
           content: value.content,
@@ -444,10 +445,20 @@
         };
         
         if(value){
-        console.log(value.content +"we have them");
+        console.log(value.content +"we have them");  
+        console.log(value.length + "this is key")
+
+        const numberOfVocabulary = document.getElementById('number_of_vocabulary');
          const vocabularyContent = document.getElementById('vocabulary_content');
         /// for date
         const timeStamp = value.time;
+
+        
+        numberOfvocabularyArray.push(obj)
+
+        numberOfVocabulary.innerHTML= numberOfvocabularyArray.length
+
+        
      
       const time = new Date(timeStamp);
       var date = ("0" + time.getDate()).slice(-2);
