@@ -225,23 +225,20 @@
         <div class="vocabulary_content" id="vocabulary_content">
             
         </div>
-        <div>
-          <i> </i> <button class="vocabulary_button_text"> Add a new vocabulary</button>
-        </div>
-        <div class="vocabulary_form hide">
+        <div class="vocabulary_form">
           <input type="text" id="vocabulary_details" name="vocabulary_details"  placeholder="Enter a new word" />
           <textarea class="vocabulary" id="vocabularyDetails" name="vocabularyDetails" rows="5" cols="33" placeholder="Add vocabulary details">
           </textarea>
-          <input type="submit" value="Add a Vocabulary" class="vocabulary_button" data-uid=${data.uuid} />
+          <input type="submit" value="Add a new Vocabulary" class="vocabulary_button" data-uid=${data.uuid} />
         </div> 
       </div>
     </div>
       `;
       // to be added later
      vocabulary_item_content.append(vocabulary_single);  
-      }   
-      
-      else{
+      }        
+      else
+      {
         let vocabulary_single = document.createElement("DIV");
       vocabulary_single.innerHTML = `
       <div class="vocabulary_item_content">   
@@ -270,13 +267,7 @@
       if(e.target.className==="vocabulary_button_text"){
         console.log("yes le show add vocabulary box")
        let vocabulary_form = document.getElementsByClassName("vocabulary_form");
-       console.log(e.target.nextElement)
-      //  if(e.target.className.includes("vocabulary_form")){
-      //   vocabulary_form.classList.remove("hide")
-
-      //  }
-
-
+     
       }
       
       const id = e.target.dataset.uid           
@@ -305,7 +296,7 @@
                         }
                     );
               }
-         else{
+         else {
           return console.log("no vocabulary entered")
         }            
       }
@@ -451,13 +442,11 @@
         
         /// for date
         const timeStamp = value.time;
-
         
         numberOfvocabularyArray.push(obj)
 
         numberOfVocabulary.innerHTML= numberOfvocabularyArray.length
-        
-     
+             
       const time = new Date(timeStamp);
       var date = ("0" + time.getDate()).slice(-2);
       var yr = time.getFullYear();
@@ -492,7 +481,7 @@
               </div>       
          `
          //adding pages
-         vocabularyContent.append(pagesNumbers)
+                vocabularyContent.append(pagesNumbers)
             }     
         })    
      
@@ -539,9 +528,7 @@
          `   
    
          //add vocabularies at the bottom ot the vocabulary box
-         storyContent.append(story)
-
-         
+         storyContent.append(story)         
 
               })
            }
