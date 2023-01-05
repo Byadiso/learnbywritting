@@ -136,11 +136,11 @@
           <p>Find below your joy to learn something new...</p>
         </div>
 
-        <div class="portfolio_nav">
-          <h1>All</h1>
-          <h1>Books to read</h1>
-          <h1>Blog or story to ready</h1>
-          <h1>New words we read.</h1>
+        <div class="portfolio_nav " id="category_to_show">
+          <h1 id="all_button" class="all_button">All</h1>
+          <h1  id="books_button" class="books_button">Books to read</h1>
+          <h1  id="blogs_button" class="blogs_button">Blog or story to ready</h1>
+          <h1  id="words_button" class="words_button">New words we read.</h1>
         </div>
         <div class="portfolio_content">
           <div class="portfolio_item">
@@ -239,8 +239,7 @@
 
       let blogsArray = [];      
 
-      for (var [key, value] of Object.entries(data)) {
-      
+      for (var [key, value] of Object.entries(data)) {      
         var obj = {
           id: value.id,
           title: value.title,
@@ -248,7 +247,6 @@
           Image: value.Image,
           uid_key: key,
         };
-
         blogsArray.push(obj);             
 
       }
@@ -282,20 +280,40 @@
           reading:value.reading,
           uid_key: key,
         };
-        booksArray.push(obj);     
-
+        booksArray.push(obj); 
       }
 
-  
       const dataSave = JSON.stringify(booksArray);
-
       // set number of blogs or article
-    const bookNumbers = document.getElementById("number_books");
-    bookNumbers.innerText= booksArray ? booksArray.length : 0 ;   
+      const bookNumbers = document.getElementById("number_books");
+      bookNumbers.innerText= booksArray ? booksArray.length : 0 ;   
       // save to localStorage
       localStorage.setItem("data", dataSave);
 
     });
+
+    const retrieve= (section)=>{
+      console.log(section.innerHTML)
+    }
+
+    //for category to show on home page logic need to be tweeked
+    const categoryToShow = document.getElementById("category_to_show");
+
+    categoryToShow.addEventListener('click', (e)=>{
+      if(e.target.className.includes("books_button")){
+          retrieve(e.target)
+      }
+      if(e.target.className.includes("blogs_button")){
+          retrieve(e.target)
+      }
+      if(e.target.className.includes("words_button")){
+          retrieve(e.target)
+      }
+      if(e.target.className.includes("all_button")){
+          retrieve(e.target)
+      }
+    })
+
 
     // check if user is logged in
     onAuthStateChanged(auth, (user) => {

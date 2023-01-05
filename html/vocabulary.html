@@ -331,9 +331,9 @@
           });
       } 
       
-      else if(e.target.className.includes("editBlog")) {      
+      else if(e.target.className.includes("editVocabulary")) {      
         let key = e.target.dataset.uid;
-        const updateBlogButton = document.getElementById("updateBlog");
+        const updateVocabularyButton = document.getElementById("updateVocabulary");
         const title = document.getElementById("title_update");
         const body = document.getElementById("body_update");
         const imageEdit = document.getElementById("image_update");
@@ -350,13 +350,12 @@
         const blogText = tinymce.activeEditor.setContent(tobeEddit.body);
         imageEdit.name = tobeEddit.Image;
 
-        updateBlogButton.addEventListener("click", (e) => {
+        updateVocabularyButton.addEventListener("click", (e) => {
           // image variable
           const image = document.getElementById("image_update").files[0];
           const imageName = image.name;
           //reference a collection
-          const storageRef = firebase.storage().ref("images/" + imageName);
-         
+          const storageRef = firebase.storage().ref("images/" + imageName);         
           // upload image to selected  storage reference
           var uploadTask = storageRef.put(image);
 
@@ -377,7 +376,6 @@
                 .then(function (downloadURL) {              
                   const blogText = tinymce.activeEditor.getContent();
                   var id = Math.floor(Math.random() * 100);
-
                   firebase
                     .database()
                     .ref("blogs/" + key)
@@ -394,8 +392,7 @@
                         if (error) {
                           console.log("error whie uploading");
                         } else {
-                          console.log("successfully uploaded");
-                          
+                          console.log("successfully uploaded");                          
                           formEdit.style.display = "none";
                           const alert_message_add_blog =
                             document.getElementById("alert_message_add_blog");
@@ -422,8 +419,7 @@
     onValue(vocabularies, (snapshot) => {
       const data = snapshot.val();     
 
-      if(data !==null){
-        let vocabulariesArray = [];
+      if(data !==null){        
       let numberOfvocabularyArray = [] 
       const vocabularyContent = document.getElementById('vocabulary_content');
 
@@ -436,8 +432,7 @@
           uid_key: key,
         };
         
-        if(value){
-             
+        if(value){             
         const numberOfVocabulary = document.getElementById('number_of_vocabulary');
         
         /// for date
@@ -491,9 +486,7 @@
       const data = snapshot.val();    
 
       if(data !==null){
-        let storiesArray = [];
-      let numberOfBlogArray= [] 
-     
+      let numberOfBlogArray= []      
 
       for (var [key, value] of Object.entries(data)){  
         
@@ -533,10 +526,7 @@
               })
            }
         });
-            
-          
-       
-                     
+                                 
 
   // check if user is logged in
     onAuthStateChanged(auth, (user) => {
