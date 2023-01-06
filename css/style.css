@@ -753,6 +753,12 @@ footer input[type=submit]{
         flex-direction: column;
     }
 
+    /* remove link style on a tag */
+     a, button {
+        
+        all: unset;
+    }
+
     /* for portfolio */
 
     .portfolio_nav {
