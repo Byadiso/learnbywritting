@@ -257,6 +257,7 @@
         <p><i class="fa fa-heart"></i>Like</p>
         <p><i class="fa fa-comment"></i> <span id="comments_number"></span> comment</p>
         <p class="dateStamp"><i class="fas fa-clock dateStamp"></i>${date + "/"+ mth +"/"+ yr}</p>
+        <p class="dateStamp"><i class="fas fa-clock dateStamp"></i>${data.body.match(/\b\w+\b/g).length+" words"}</p>
       </div>
 
       <h3 class="blog_title">
