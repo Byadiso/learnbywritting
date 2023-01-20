@@ -194,7 +194,7 @@
           <img src=${value.Image} alt="blog image blog" data-id=${value.id}>
         </div>
         <h3 class="blog" data-id=${value.id}>${value.title}</h3>
-        <p class="blog_title blog" data-id=${value.id}>${value.body.substr(0,80)+"..."}</p>
+        <p class="blog_title blog" data-id=${value.id}>${firstSentence(value.body)}</p>
         <p  data-id=${obj.uid_key} class="readme_button blog">Read more...</p>
         `;
 
@@ -220,17 +220,23 @@
     // check if user is logged in
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        const uid = user.uid;    
-
-        // Console.log("yes we are logged in")
-        
-        // ...
+        const uid = user.uid; 
       }
+     
+
       if (user == undefined) {
         // User is signed out        
         location.href = "./login.html";
         console.log("no user");
       }
     });
+
+     // count sentence and give the first one
+     function firstSentence(text) {
+          // var sentenceRegex = /[\.!\?]+/g;
+          var sentenceRegex = /^[^.!?]*[.!?]/;
+          var sentences = text.match(sentenceRegex);
+          return sentences[0];
+}
   </script>
 </html>
