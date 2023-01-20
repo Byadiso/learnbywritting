@@ -462,6 +462,27 @@
          vocabularyContent.append(vocabulary)
                 }
               }
+
+              //logic for pagination
+
+              // const itemsPerPage = 10;
+              // const totalItems = data.length;
+              // const totalPages = Math.ceil(totalItems / itemsPerPage);
+              // let currentPage = 1;
+
+              // function showPage(page) {
+              //     const startIndex = (page - 1) * itemsPerPage;
+              //     data.forEach((item, i) => {
+              //         item.style.display = (i >= startIndex && i < startIndex + itemsPerPage) ? 'block' : 'none';
+              //     });
+              //     currentPage = page;
+              // }     
+
+              // showPage(1);
+              // console.log(showPage(1))
+              // document.getElementById('prev-page').addEventListener('click', () => currentPage > 1 && showPage(currentPage - 1));
+              // document.getElementById('next-page').addEventListener('click', () => currentPage < totalPages && showPage(currentPage + 1));
+
               
          let pagesNumbers = document.createElement("DIV");
          pagesNumbers.innerHTML = `
@@ -478,7 +499,9 @@
          //adding pages
                 vocabularyContent.append(pagesNumbers)
             }     
-        })    
+        })  
+        
+        
      
     //showing story on our platform
     const stories = ref(database, `blogs`);

@@ -13,7 +13,6 @@ function handleGuess(guess) {
       }
     }
   }
-
   updateScreen();
   checkForWin();
 }
