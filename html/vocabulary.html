@@ -64,6 +64,10 @@
                   <!-- vocabulary will go here -->             
             </div>
 
+            <div id="pages-numbers">
+
+            </div>
+
             <!--my edit modal -->
             <div class="dashboard_item_rigt hide" id="from_edit">
               <div class="add_blog edit_modal" id="form_blog">
@@ -426,7 +430,7 @@
       for (var [key, value] of Object.entries(data)){  
               
         var obj = {
-          id: value.id,
+          // id: value.id,
           content: value.content,
           timeStamp: value.time,
           uid_key: key,
@@ -464,39 +468,75 @@
               }
 
               //logic for pagination
+              const itemsPerPage = 2;
+              const totalItems = numberOfvocabularyArray.length;
+              const totalPages = Math.ceil(totalItems / itemsPerPage);
+              let currentPage = 1;
 
-              // const itemsPerPage = 10;
-              // const totalItems = data.length;
-              // const totalPages = Math.ceil(totalItems / itemsPerPage);
-              // let currentPage = 1;
+              function showPage(page) {
+                  const startIndex = (page - 1) * itemsPerPage;
+                  console.log(numberOfvocabularyArray)
+                  numberOfvocabularyArray.forEach((item, i) => {
+                    if(i >= startIndex && i < startIndex + itemsPerPage){
+                      console.log('block')
+                    } else{
+                      console.log('none')
+                    }
+                      // item.style.display = (i >= startIndex && i < startIndex + itemsPerPage) ? 'block' : 'none';
+                  });
+                  currentPage = page;
+              }     
 
-              // function showPage(page) {
-              //     const startIndex = (page - 1) * itemsPerPage;
-              //     data.forEach((item, i) => {
-              //         item.style.display = (i >= startIndex && i < startIndex + itemsPerPage) ? 'block' : 'none';
-              //     });
-              //     currentPage = page;
-              // }     
+              showPage(1);
+              console.log(showPage(1))
+              vocabularyContent.addEventListener("click",(e)=>{
+                console.log(e.target.className)
+                if(e.target.className==="next-page"){
+                  currentPage < totalPages && showPage(currentPage + 1)
+                }
+                if(e.target.className==="prev-page"){
+                  currentPage > 1 && showPage(currentPage - 1)
+              }
 
-              // showPage(1);
-              // console.log(showPage(1))
-              // document.getElementById('prev-page').addEventListener('click', () => currentPage > 1 && showPage(currentPage - 1));
+              })
+              // document.getElementById('prev-page').addEventListener('click', () => {
+              //   console(currentPage)
+              //   currentPage > 1 && showPage(currentPage - 1)});
               // document.getElementById('next-page').addEventListener('click', () => currentPage < totalPages && showPage(currentPage + 1));
+                
+              console.log(totalPages, totalItems)
+              let numbersOfpage = []
+              for(let i=1; i<=totalPages; i++) {
+                numbersOfpage.push(i);
+              }
 
+              console.log(numbersOfpage)
+
+              numberOfvocabularyArray.forEach((item) => numbersOfpage.push(item))
               
-         let pagesNumbers = document.createElement("DIV");
-         pagesNumbers.innerHTML = `
-             <div class="page_numbers"> 
-                 <p> Prev </p>
-                    <h3>1</h3>
-                    <h3>2</h3>
-                    <h3>3</h3>
-                    <h3>4</h3>
-                    <h3>5</h3>
-                  <p> Next </p>
-              </div>       
-         `
-         //adding pages
+        //  let pagesNumbers = document.createElement("DIV");
+         let pagesNumbers = document.querySelector("#pages-numbers");
+         numbersOfpage.forEach(item => {
+            let h3 = document.createElement("h3");
+            h3.innerText = item;
+            pagesNumbers.appendChild(h3);
+        });
+        //  pagesNumbers.innerHTML = `
+        //      <div class="page_numbers"> 
+        //          <p id="prev-page" class="prev-page"> Prev </p>
+        //          ${numbersOfpage.map(item=>{
+        //           let h3 = document.createElement("h3");
+        //           h3.innerText = item;
+        //          return h3.outerHTML;
+        //           // pagesNumbers.appendChild(h3);
+        //           })
+                  
+        //          }
+                   
+        //           <p id="next-page" class="next-page"> Next </p>
+        //       </div>       
+        //  `
+        //  //adding pages
                 vocabularyContent.append(pagesNumbers)
             }     
         })  
