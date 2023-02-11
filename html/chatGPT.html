@@ -58,10 +58,11 @@
                 <div id="app">
                   <div id="chat_container"></div>
             
-                  <form>
+                  <form  id="form">
                     <textarea name="prompt" rows="1" cols="1" placeholder="Ask codex..."></textarea>
-                    <button id="submit_button"> <img src="../assets/send.svg" alt="send" /></button>
+                    <button id="submit_button"> <img src="../assets/send.svg" alt="send" />Click</button>
                   </form>
+                  <button id="submit_button"> <img src="../assets/send.svg" alt="send" />Click</button>
                 </div>            
               
             
@@ -118,8 +119,7 @@
     </footer>
   </body>
 
-  <script type="module" src="../Js/chatGPT.js"></script>
-
+  <script type="module" src="../Js/chatGPT.js" defer></script>
   <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-database.js"></script>
@@ -176,7 +176,18 @@
         location.href = "./login.html";
         console.log("no user");
       }
-    });
-   
+    });   
   </script>
+
+<script>
+    function handleSubmit(event) {
+      event.preventDefault();
+      // handle form submission manually using JavaScript
+      console.log("hello from form")
+    }
+</script>
+
+
+
+
 </html>

@@ -1,3 +1,4 @@
+console.log('yesssss')
 import bot from '../assets/bot.svg';
 import user from '../assets/user.svg';
 
@@ -5,6 +6,7 @@ const form = document.querySelector('form')
 const chatContainer = document.querySelector('#chat_container')
 
 const submitBtn = document.querySelector('#submit_button');
+console.log(form +'yesssss')
 
 let loadInterval
 
@@ -42,7 +44,6 @@ function generateUniqueId() {
     const timestamp = Date.now();
     const randomNumber = Math.random();
     const hexadecimalString = randomNumber.toString(16);
-
     return `id-${timestamp}-${hexadecimalString}`;
 }
 
@@ -64,9 +65,9 @@ function chatStripe(isAi, value, uniqueId) {
     )
 }
 
-const handleSubmit = async (e) => {
-    e.preventDefault()
 
+
+const handleSubmit = async (e) => {
     const data = new FormData(form)
 
     // user's chatstripe
@@ -114,11 +115,11 @@ const handleSubmit = async (e) => {
     }
 }
 
-submitBtn.addEventListener('click',(e)=>{
-    e.preventDefault()
-    // handleSubmit;
 
-    console.log('yes')
+form.addEventListener('click',(e)=>{
+    e.preventDefault()
+    handleSubmit();
+    // console.log('yespppppp')
 } )
 
 form.addEventListener('keyup', (e) => {
