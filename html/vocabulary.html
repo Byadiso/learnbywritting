@@ -482,8 +482,7 @@
                     } else{
                       console.log('none')
                     }
-                      // item.style.display = (i >= startIndex && i < startIndex + itemsPerPage) ? 'block' : 'none';
-                  });
+              });
                   currentPage = page;
               }     
 
@@ -499,44 +498,22 @@
               }
 
               })
-              // document.getElementById('prev-page').addEventListener('click', () => {
-              //   console(currentPage)
-              //   currentPage > 1 && showPage(currentPage - 1)});
-              // document.getElementById('next-page').addEventListener('click', () => currentPage < totalPages && showPage(currentPage + 1));
-                
-              console.log(totalPages, totalItems)
+              //  console.log(totalPages, totalItems)
               let numbersOfpage = []
               for(let i=1; i<=totalPages; i++) {
                 numbersOfpage.push(i);
               }
 
-              console.log(numbersOfpage)
-
+              // console.log(numbersOfpage)
               numberOfvocabularyArray.forEach((item) => numbersOfpage.push(item))
-              
-        //  let pagesNumbers = document.createElement("DIV");
-         let pagesNumbers = document.querySelector("#pages-numbers");
-         numbersOfpage.forEach(item => {
+                
+              // logic for adding pages numbers------------
+            let pagesNumbers = document.querySelector("#pages-numbers");
+            numbersOfpage.forEach(item => {
             let h3 = document.createElement("h3");
             h3.innerText = item;
-            pagesNumbers.appendChild(h3);
-        });
-        //  pagesNumbers.innerHTML = `
-        //      <div class="page_numbers"> 
-        //          <p id="prev-page" class="prev-page"> Prev </p>
-        //          ${numbersOfpage.map(item=>{
-        //           let h3 = document.createElement("h3");
-        //           h3.innerText = item;
-        //          return h3.outerHTML;
-        //           // pagesNumbers.appendChild(h3);
-        //           })
-                  
-        //          }
-                   
-        //           <p id="next-page" class="next-page"> Next </p>
-        //       </div>       
-        //  `
-        //  //adding pages
+            // pagesNumbers.appendChild(h3);
+        });      
                 vocabularyContent.append(pagesNumbers)
             }     
         })  
@@ -584,7 +561,7 @@
          `   
    
          //add vocabularies at the bottom ot the vocabulary box
-         storyContent.append(story)         
+         storyContent.append(story)    
 
               })
            }
