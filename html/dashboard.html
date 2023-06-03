@@ -19,10 +19,13 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-     <!-- for fontawesome -->
-     <script src="https://kit.fontawesome.com/40109df241.js" crossorigin="anonymous"></script>
+    <!-- for fontawesome -->
+    <script
+      src="https://kit.fontawesome.com/40109df241.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
-  <body>
+  <body class="overlay">
     <header>
       <nav>
         <div class="menu">
@@ -31,8 +34,9 @@
           <a href="./blog.html" class="menu_nav">Blog</a>
           <a href="./contact.html" class="menu_nav">Contact us</a>
           <a href="./dashboard.html" class="menu_nav">Dashboard</a>
-          <a href="./Vocabulary.html" class="menu_nav hire_now">Your Vocabulary</a>
-          
+          <a href="./Vocabulary.html" class="menu_nav hire_now"
+            >Your Vocabulary</a
+          >
         </div>
       </nav>
     </header>
@@ -49,9 +53,9 @@
       <div class="dashboard_section">
         <div class="dashboard_content">
           <!-- for menue -->
-         
+
           <div class="dashboard_item_rigt">
-             <div id="blog_admin">
+            <div id="blog_admin">
               <img
                 id="loading"
                 src="../images/loading.gif"
@@ -92,7 +96,8 @@
             </div>
 
             <!-- edit form -->
-            <div class="add_blog hide" id="form_edit">
+            <div class="edit_blog_form hide" id="form_edit">
+              <div class="close_overlay_button"><h1>X</h1></div>
               <input
                 type="text"
                 name="title"
@@ -104,7 +109,7 @@
                 type="text"
                 name="body"
                 id="body_update"
-                placeholder="Add your content here"
+                placeholder="Add your content here edit"
               >
               </textarea>
 
@@ -121,6 +126,12 @@
                 value="Update Blog"
                 id="updateBlog"
               />
+              <input
+                class="add_blog_button"
+                type="submit"
+                value="Cancel"
+                id="cancel_button"
+              />
             </div>
             <h5 id="alert_message_add_blog" class="hide">Added successfully</h5>
           </div>
@@ -133,9 +144,15 @@
               <div class="dashboard_categories">
                 <h1>Dashboard</h1>
                 <a href="#" id="add"><i class="fa fa-plus"></i>Add Blog</a>
-                <a href="./user.html" id="info"><i class="fa fa-info"></i>My info</a>
-                <a href="./vocabulary.html" id="members"><i class="fa-solid fa-floppy-disk"></i>Your Vocabulary</a>
-                <a href="./settings.html" id="settings"><i class="fa fa-gear"></i>Settings</a>
+                <a href="./user.html" id="info"
+                  ><i class="fa fa-info"></i>My info</a
+                >
+                <a href="./vocabulary.html" id="members"
+                  ><i class="fa-solid fa-floppy-disk"></i>Your Vocabulary</a
+                >
+                <a href="./settings.html" id="settings"
+                  ><i class="fa fa-gear"></i>Settings</a
+                >
                 <a href="#" id="logout" class="logout"
                   ><i class="fa fa-sign-out"></i>logout</a
                 >
@@ -197,8 +214,6 @@
       onAuthStateChanged,
     } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
 
-   
-
     // Your web app's Firebase configuration
     const firebaseConfig = {
       apiKey: "AIzaSyA5sPlupW_n1XEt6xsw_Y7aAZKltGEFyXw",
@@ -213,7 +228,7 @@
     const app = firebase.initializeApp(firebaseConfig);
     const database = getDatabase(initializeApp(firebaseConfig));
     const auth = getAuth();
-    
+
     const addButton = document.getElementById("addBlog");
     const blogAdmin = document.getElementById("blog_admin");
     const form = document.getElementById("form_blog");
@@ -223,10 +238,9 @@
     onValue(blogs, (snapshot) => {
       const data = snapshot.val();
 
-      let blogsArray = [];     
+      let blogsArray = [];
 
       for (var [key, value] of Object.entries(data)) {
-        
         console.log(key);
         var obj = {
           id: value.id,
@@ -262,7 +276,6 @@
         content_elt.setAttribute("data-id", value.uid_key);
         blogAdmin.append(content_elt);
       }
-      
 
       const dataSave = JSON.stringify(blogsArray);
 
@@ -299,10 +312,9 @@
             // getimage downloaded url here and upload to the database
 
             const title = getInputValue("title");
-           
+
             const blogText = tinymce.activeEditor.getContent();
             var id = Math.floor(Math.random() * 100);
-            
 
             firebase
               .database()
@@ -350,8 +362,8 @@
     const logoutButton = document.getElementById("logout");
 
     logoutButton.addEventListener("click", (e) => {
-     e.preventDefault();
-     auth.signOut().then(() => {
+      e.preventDefault();
+      auth.signOut().then(() => {
         console.log("User logged out");
 
         setTimeout(() => {
@@ -365,16 +377,14 @@
       if (user) {
         // User is signed in, see docs for a list of available properties
         const uid = user.uid;
-        console.log(user);
-       
+        console.log("this is the user" + user.email);
+
         const UserName = document.getElementById("user_name");
         UserName.innerHTML = user.email;
-        
       }
       if (user == undefined) {
         // User is signed out
         location.href = "./login.html";
-      
       }
     });
 
@@ -382,13 +392,13 @@
 
     const removeBlogButton = document.getElementById("removeBlog");
     const editBlogButton = document.getElementById("editBlog");
-    
+
     // //remove blog
     blogAdmin.addEventListener("click", (e) => {
       //let me get my uid
-      let key = e.target.dataset.uid; 
+      let key = e.target.dataset.uid;
       if (e.target.className.includes("removeBlog")) {
-                firebase
+        firebase
           .database()
           .ref("blogs/" + key)
           .remove(function (error) {
@@ -398,12 +408,12 @@
               window.location.href = "./dashboard.html";
             }
           });
-      } else if (e.target.className.includes("editBlog")) {              
-
+      } else if (e.target.className.includes("editBlog")) {
         let key = e.target.dataset.uid;
 
         console.log("let edit this blog");
         const updateBlogButton = document.getElementById("updateBlog");
+        const close_overlay_button = document.getElementById("cancel_button");
 
         const title = document.getElementById("title_update");
         const body = document.getElementById("body_update");
@@ -412,13 +422,19 @@
 
         //get data from locastoragee
         let data_single = JSON.parse(localStorage.getItem("data"));
-       
-        let tobeEddit = data_single.find((elt) => elt.uid_key === key);       
+
+        let tobeEddit = data_single.find((elt) => elt.uid_key === key);
         // let see what we have here
-        formEdit.style.display = "block";        
+        formEdit.style.display = "block";
         title.value = tobeEddit.title;
         const blogText = tinymce.activeEditor.setContent(tobeEddit.body);
         imageEdit.name = tobeEddit.Image;
+
+        close_overlay_button.addEventListener("click", (e) => {
+          e.preventDefault();
+          console.log("yes let close this");
+          formEdit.style.display = "none";
+        });
 
         updateBlogButton.addEventListener("click", (e) => {
           // image variable
@@ -426,7 +442,7 @@
           const imageName = image.name;
           //refernce a collection
           const storageRef = firebase.storage().ref("images/" + imageName);
-          
+
           // upload image to selected  storage reference
           var uploadTask = storageRef.put(image);
 
@@ -445,8 +461,6 @@
               uploadTask.snapshot.ref
                 .getDownloadURL()
                 .then(function (downloadURL) {
-                
-
                   const blogText = tinymce.activeEditor.getContent();
                   // var id;
 
@@ -456,11 +470,11 @@
                     .database()
                     .ref("blogs/" + key)
                     .update(
-                      {                        
+                      {
                         title: title.value,
                         body: blogText,
                         createdAt: serverTimestamp(),
-                        comments:[],
+                        comments: [],
                         Image: downloadURL,
                         uid_key: key,
                       },
@@ -485,8 +499,8 @@
             }
           );
         });
-      } else if (e.target.className.includes("blog_item blog_image blog")){
-          return console.log("yes yesoooo")
+      } else if (e.target.className.includes("blog_item blog_image blog")) {
+        return console.log("yes yesoooo");
       }
     });
   </script>

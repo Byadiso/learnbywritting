@@ -383,9 +383,34 @@
     padding:20px;
     
 }
-.dashboard_content{
-    display:flex;
-    
+.dashboard_content{    
+    display: flex;
+   
+}
+
+.overlay{
+    position: relative;
+}
+.close_overlay_button{
+    color: white;
+    }
+.close_overlay_button:hover{
+    cursor: pointer;
+}
+
+.edit_blog_form{   
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.938); /* Example overlay background color with transparency */
+    z-index: 2;    
+    padding: 300px;
+    padding-top: 500px;
+    display: flex;
+    justify-content: center;
+  
 }
 
 .dashboard_item{
@@ -530,6 +555,20 @@
 .add_blog_button {
     color: var(--whiteColor);
     background-color: var(--blueColor);
+    border: none;
+    border-radius: 20px;
+    padding: 8px;
+    padding-left: 20px;
+    padding-right: 20px;
+    cursor: pointer;
+    margin-right: 5px;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+#cancel_button {
+    color: var(--whiteColor);
+    background-color: rgba(239, 106, 106, 0.562);
     border: none;
     border-radius: 20px;
     padding: 8px;
