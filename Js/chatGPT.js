@@ -1,12 +1,12 @@
-console.log('yesssss')
-import bot from '../assets/bot.svg';
-import user from '../assets/user.svg';
+alert('tessss')
+import bot from '../assets/bot.png';
+import user from '../assets/user.png';
 
 const form = document.querySelector('form')
 const chatContainer = document.querySelector('#chat_container')
 
-const submitBtn = document.querySelector('#submit_button');
-console.log(form +'yesssss')
+// const submitBtn = document.getElementById('submit_input');
+
 
 let loadInterval
 
@@ -26,7 +26,6 @@ function loader(element) {
 
 function typeText(element, text) {
     let index = 0
-
     let interval = setInterval(() => {
         if (index < text.length) {
             element.innerHTML += text.charAt(index)
@@ -52,12 +51,7 @@ function chatStripe(isAi, value, uniqueId) {
         `
         <div class="wrapper ${isAi && 'ai'}">
             <div class="chat">
-                <div class="profile">
-                    <img 
-                      src=${isAi ? bot : user} 
-                      alt="${isAi ? 'bot' : 'user'}" 
-                    />
-                </div>
+                
                 <div class="message" id=${uniqueId}>${value}</div>
             </div>
         </div>
@@ -89,7 +83,7 @@ const handleSubmit = async (e) => {
     // messageDiv.innerHTML = "..."
     loader(messageDiv)
 
-    const response = await fetch('https://codex-im0y.onrender.com/', {
+    const response = await fetch('http://localhost:3000', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -110,7 +104,7 @@ const handleSubmit = async (e) => {
     } else {
         const err = await response.text()
 
-        messageDiv.innerHTML = "Something went wrong"
+        messageDiv.innerHTML = "Something went wrong write your text again"
         alert(err)
     }
 }
@@ -119,7 +113,7 @@ const handleSubmit = async (e) => {
 form.addEventListener('click',(e)=>{
     e.preventDefault()
     handleSubmit();
-    // console.log('yespppppp')
+    console.log('yespppppp')
 } )
 
 form.addEventListener('keyup', (e) => {

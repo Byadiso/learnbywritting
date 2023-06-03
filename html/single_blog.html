@@ -237,10 +237,32 @@
       var mth = ("0" + (time.getMonth() + 1)).slice(-2);
 
           
-      let blogsArray = [];
-      
+      let blogsArray = [];     
 
       console.log(data)
+
+      // For view count logics
+
+    let count = 0;
+
+    if (localStorage.getItem("count") !== null) {
+      count = localStorage.getItem("count");
+    }
+
+    localStorage.setItem("count", count);
+
+    window.addEventListener("load", function() {
+      count+1;
+      localStorage.setItem("count", count);
+      // document.getElementById("view-count").innerHTML = count;
+      console.log("Blog visited " + count) 
+    });
+
+    
+
+    // --------------------End here--------------------
+
+
         
       let blog_single = document.createElement("DIV");
       blog_single.innerHTML = `
