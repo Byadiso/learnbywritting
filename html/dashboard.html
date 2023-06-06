@@ -233,7 +233,8 @@
     const blogAdmin = document.getElementById("blog_admin");
     const form = document.getElementById("form_blog");
 
-    //get all blogs
+
+       //get all blogs
     const blogs = ref(database, "blogs/");
     onValue(blogs, (snapshot) => {
       const data = snapshot.val();
@@ -376,8 +377,8 @@
     onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in, see docs for a list of available properties
-        const uid = user.uid;
-        console.log("this is the user" + user.email);
+        const uid = user.uid;      
+        
 
         const UserName = document.getElementById("user_name");
         UserName.innerHTML = user.email;
@@ -387,16 +388,33 @@
         location.href = "./login.html";
       }
     });
+ 
+
 
     // for edit and delete item from firebase
 
     const removeBlogButton = document.getElementById("removeBlog");
     const editBlogButton = document.getElementById("editBlog");
+    
 
     // //remove blog
     blogAdmin.addEventListener("click", (e) => {
       //let me get my uid
       let key = e.target.dataset.uid;
+
+      //remove blog if I am the admin user       
+
+    const users = ref(database, "users/");
+    onValue(users, (snapshot) => {
+      const data = snapshot.val();
+      for (var [key, value] of Object.entries(data)) {
+        // if(key === e.target.dataset.uid && value.isAdmin==true ){
+        //   console.log(value.isAdmin== true)
+        // }       
+      }
+    })
+
+
       if (e.target.className.includes("removeBlog")) {
         firebase
           .database()
