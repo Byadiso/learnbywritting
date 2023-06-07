@@ -63,6 +63,9 @@ jobs:
           
        - name: List Workspace Directory
          run: ls ${{ github.workspace }}
+       
+       - name: Verify SARIF File
+         run: cat ethicalcheck-results.sarif
 
        - name: Upload SARIF file to repository
          uses: github/codeql-action/upload-sarif@v2
