@@ -52,6 +52,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+       - name: Run CodeQL Analysis
+         uses: github/codeql-action/analyze@v1
+         env:
+          COMMIT_SHA: ${{ github.sha }}
+
        - name: EthicalCheck - Free & Automated API Security Testing Service
          uses: apisec-inc/ethicalcheck-action@005fac321dd843682b1af6b72f30caaf9952c641
          with:
