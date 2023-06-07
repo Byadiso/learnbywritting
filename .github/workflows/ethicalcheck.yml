@@ -27,18 +27,13 @@
 
 name: EthicalCheck-Workflow
 
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
-  # Customize trigger events based on your DevSecOps processes.
   push:
-    branches: [ "main" ]
+    branches: [main]
   pull_request:
-    branches: [ "main" ]
+    branches: [main]
   schedule:
     - cron: '15 18 * * 2'
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 permissions:
@@ -47,35 +42,30 @@ permissions:
 jobs:
   Trigger_EthicalCheck:
     permissions:
-      security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
-      actions: read # only required for a private repository by github/codeql-action/upload-sarif to get the Action run status
+      security-events: write
+      actions: read
     runs-on: ubuntu-latest
 
     steps:
-    
-       - name: Checkout repository
-         uses: actions/checkout@v2
-         with:
-             fetch-depth: 0
-             
-       - name: EthicalCheck - Free & Automated API Security Testing Service
-         uses: apisec-inc/ethicalcheck-action@005fac321dd843682b1af6b72f30caaf9952c641
-         with:
-          # The OpenAPI Specification URL or Swagger Path or Public Postman collection URL.
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: EthicalCheck - Free & Automated API Security Testing Service
+        uses: apisec-inc/ethicalcheck-action@005fac321dd843682b1af6b72f30caaf9952c641
+        with:
           oas-url: "http://netbanking.apisec.ai:8080/v2/api-docs"
-          # The email address to which the penetration test report will be sent.
           email: "byadiso@gmail.com"
           sarif-result-file: "ethicalcheck-results.sarif"
-          
-       - name: List Workspace Directory
-         run: ls ${{ github.workspace }}
-       
-       - name: Verify SARIF File
-         run: cat ethicalcheck-results.sarif
 
-       - name: Upload SARIF file to repository
-         uses: github/codeql-action/upload-sarif@v2
-         env:
-           COMMIT_SHA: ${{ github.sha }}
-         with:
+      - name: Verify SARIF File
+        run: cat ethicalcheck-results.sarif
+
+      - name: Upload SARIF file to repository
+        uses: github/codeql-action/upload-sarif@v2
+        env:
+          COMMIT_SHA: ${{ github.sha }}
+        with:
           sarif_file: ethicalcheck-results.sarif
+
