@@ -172,7 +172,7 @@
     //read data from database () firebase   
     const blogs = ref(database, "blogs/");
     onValue(blogs, (snapshot) => {
-      const data = snapshot.val();
+      const data = snapshot.val().reverse();
 
       let blogsArray = [];     
 

@@ -180,12 +180,30 @@ registerSubmit.addEventListener("click", (e) => {
   .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;
-    set((ref(database,'users/'+ user.uid), {
-      firstname:firstname.trim(),
-      lastname:lastname.trim(), 
-      displayName:firstname.trim(), 
-      email:email.trim(),
-    }))
+    const userData = {
+      firstname:firstname,
+      lastname:lastname, 
+      displayName:firstname, 
+      email:email,
+    }
+        // Store the user data in Firestore using the same UID as document ID
+    firebase.firestore().collection('users').doc(user.uid).set(userData)
+      .then((user) => {
+        // User data stored in Firestore successfully
+        console.log('User data stored in Firestore.');
+        console.log(user);
+      })
+      .catch((error) => {
+        // Handle error
+        console.error('Error storing user data in Firestore:', error);
+      });
+   
+    // set((ref(database,'users/'+ user.uid), {
+    //   firstname:firstname.trim(),
+    //   lastname:lastname.trim(), 
+    //   displayName:firstname.trim(), 
+    //   email:email.trim(),
+    // }))
     alert('User created');
 
   //   const alert_message_register = document.querySelector(

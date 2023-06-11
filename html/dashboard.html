@@ -232,6 +232,14 @@
     const addButton = document.getElementById("addBlog");
     const blogAdmin = document.getElementById("blog_admin");
     const form = document.getElementById("form_blog");
+    
+    //get users
+    const users = ref(database, "users/");    
+    onValue(users, (snapshot) => {
+      const data = snapshot.val();
+      console.log(data);
+      let blogsArray = [];     
+    });
 
     //get all blogs
     const blogs = ref(database, "blogs/");
@@ -377,7 +385,7 @@
       if (user) {
         // User is signed in, see docs for a list of available properties
         const uid = user.uid;
-        console.log("this is the user" + user.email);
+        console.log(user);
 
         const UserName = document.getElementById("user_name");
         UserName.innerHTML = user.email;
