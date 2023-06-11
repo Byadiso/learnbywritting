@@ -190,16 +190,16 @@
 
         const content_elt = document.createElement("DIV");
         content_elt.innerHTML = `
-        <div class="blog_image blog" data-id=${value.id}>
-          <img src=${value.Image} alt="blog image blog" data-id=${value.id}>
+        <div class="blog_image blog" data-id=${obj.uid_key}>
+          <img src=${value.Image} alt="blog image blog" data-id=${obj.uid_key}>
         </div>
         <h3 class="blog" data-id=${value.id}>${value.title}</h3>
-        <p class="blog_title blog" data-id=${value.id}>${firstSentence(value.body)}</p>
+        <p class="blog_title blog" data-id=${obj.uid_key}>${firstSentence(value.body)}</p>
         <p  data-id=${obj.uid_key} class="readme_button blog">Read more...</p>
         `;
 
         content_elt.setAttribute("class", "blog_item");
-        content_elt.setAttribute("data-id", value.id);
+        content_elt.setAttribute("data-id", obj.uid_key);
         blogAdmin.append(content_elt);
 
         if (content_elt) {
