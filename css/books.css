@@ -78,6 +78,32 @@ body {
     align-items: center; 
 }
 
+/* for related itmes */
+.header_related h3{
+    border-bottom: 1px solid var(--colorforWeakGrey);
+    width:145px;
+    padding: 20px;
+}
+
+.related_book_item{
+    display: flex;
+    justify-content:center;
+    align-items: flex-end;
+    flex-wrap: wrap;
+}
+
+.blog_related_image img{
+   width:220px;
+   height:145px;   
+   margin: 10px; 
+}
+
+.book_related_item_content{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+}
 
 /* when error occurs */
 .book_item_error{
@@ -87,6 +113,8 @@ body {
     /* border: 1px solid var(--blueColor); */
     color: red;
 }
+
+
 
 /* for responsiveness */
 

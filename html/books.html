@@ -23,7 +23,10 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
     <!-- fontawesome -->
-    <script src="https://kit.fontawesome.com/40109df241.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/40109df241.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <header>
@@ -31,11 +34,14 @@
         <div class="menu">
           <h1 class="ngana_logo">LearnByWriting</h1>
           <a href="../index.html" class="menu_nav">Home</a>
-          <a href="./blog.html" class="menu_nav">Blog</a>          
-          <a href="./contact.html" class="menu_nav">Contact us</a>
-          <a href="./dashboard.html" class="menu_nav" id="dashboard">Dashboard</a>
-          <a href="./vocabulary.html" class="menu_nav hire_now" id="join_us">Your Vocabulary</a>
-          
+          <a href="./blog.html" class="menu_nav">Blog</a>
+          <a href="./books.html" class="menu_nav">Books</a>
+          <a href="./dashboard.html" class="menu_nav" id="dashboard"
+            >Dashboard</a
+          >
+          <a href="./vocabulary.html" class="menu_nav hire_now" id="join_us"
+            >Your Vocabulary</a
+          >
         </div>
       </nav>
     </header>
@@ -47,89 +53,50 @@
         </div>
       </div>
 
-      <!-- blogs section -->
+      <!-- book section -->
 
       <div class="blog_section">
         <div class="blog_content single_blog">
           <div class="blog_item_left blog_item_left_single">
             <!-- for recent books -->
-            <div class="books_item_content" id="books_item_content">
-             
-            </div>
-
-            <!--my edit modal -->
-            <div class="dashboard_item_rigt hide" id="from_edit">
-              <div class="add_blog edit_modal" id="form_blog">
-                <input
-                  type="text"
-                  name="title"
-                  id="title"
-                  placeholder="add title"
-                />
-              
-                <textarea
-                  type="text"
-                  name="body"
-                  id="body"
-                  placeholder="Add your content here"
-                >
-                </textarea>
-
-                <input
-                  type="file"
-                  name="image"
-                  id="image"
-                  placeholder="add image"
-                />
-
-                <input
-                  class="addBlog add_blog_button"
-                  type="submit"
-                  value="Update Blog"
-                  id="updateBlog"
-                />
-              </div>
-            </div>
+            <div class="books_item_content" id="books_item_content"></div>
 
             <hr />
             <!-- for related blog -->
-            <div class="related_blog">
+            <div class="related_blog blog_item_left">
               <div class="header_related">
-                <h4>Recently added vocabulary</h4>
+                <h4>Recently added books</h4>
               </div>
 
-              <div class="related_blog_item">
-                <div class="comment_item_content">
-                  <div class="blog_relate_image">
-                    <img
-                      src="../images/pexels-adrianna-calvo-4886824.jpg"
-                      alt="photo_blog"
-                    />
-                  </div>
-                  <h3>Money</h3>
-                </div>                
-                
-              </div>
+              <div id="related_book_item"></div>
             </div>
           </div>
+        </div>
 
-          <!-- for categories -->
-          <div class="blog_item_rigt">
-            <div class="blog_item">
-              <div class="blog_search">
-                <input type="text" placeholder="Search.." name="search" />
-                <i class="fa fa-search"></i>
-              </div>
-              <div class="dashboard_categories">
-                <h1>Dashboard</h1>
-                <a href="./dashboard.html" id="add"><i class="fa fa-plus"></i>Add Blog</a>
-                <a href="./user.html" id="info"><i class="fa fa-info"></i>My info</a>
-                <a href="./vocabulary.html" id="vocabulary"><i class="fa-solid fa-floppy-disk"></i>Your Vocabulary</a>
-                <a href="./settings.html" id="settings"><i class="fa fa-gear"></i>Settings</a>
-                <a href="#" id="logout" class="logout"
-                  ><i class="fa fa-sign-out"></i>logout</a
-                >
-              </div>
+        <!-- for categories -->
+        <div class="blog_item_rigt">
+          <div class="blog_item">
+            <div class="blog_search">
+              <input type="text" placeholder="Search.." name="search" />
+              <i class="fa fa-search"></i>
+            </div>
+            <div class="dashboard_categories">
+              <h1>Dashboard</h1>
+              <a href="./dashboard.html" id="add"
+                ><i class="fa fa-plus"></i>Add Blog</a
+              >
+              <a href="./user.html" id="info"
+                ><i class="fa fa-info"></i>My info</a
+              >
+              <a href="./vocabulary.html" id="vocabulary"
+                ><i class="fa-solid fa-floppy-disk"></i>Your Vocabulary</a
+              >
+              <a href="./settings.html" id="settings"
+                ><i class="fa fa-gear"></i>Settings</a
+              >
+              <a href="#" id="logout" class="logout"
+                ><i class="fa fa-sign-out"></i>logout</a
+              >
             </div>
           </div>
         </div>
@@ -168,8 +135,6 @@
   <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-storage.js"></script>
   <script src="../Js/books.js" defer></script>
 
- 
-
   <script type="module" defer>
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
@@ -204,26 +169,24 @@
     };
 
     // Initialize Firebase
-   
+
     const app = firebase.initializeApp(firebaseConfig);
     const database = getDatabase(initializeApp(firebaseConfig));
     const auth = getAuth();
-    // const database = getDatabase();       
+    // const database = getDatabase();
 
-  // check if user is logged in
+    // check if user is logged in
     onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
         const uid = user.uid;
-        console.log(user);       
-        
+        console.log(user);
       }
       if (user == undefined) {
         // User is signed out
-        location.href = "./login.html";        
+        location.href = "./login.html";
       }
     });
   </script>
-  
 </html>

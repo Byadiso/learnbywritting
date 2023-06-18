@@ -3,12 +3,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const small_nav = document.querySelectorAll(".menu_nav");
 
   const bookContainer = document.querySelector("#books_item_content");
+  const relatedContainer = document.querySelector("#related_book_item");
 
   // const myRequest = 'https://openlibrary.org/works/OL45804W.json'
 
-  const myRequest = "https://www.dbooks.org/api/subject/history";
+  // const myRequest = "https://www.dbooks.org/api/subject/history";
 
-  // const myRequest = 'https://www.dbooks.org/api/recent'
+  const myRequest = "https://www.dbooks.org/api/recent";
 
   burger_menu.forEach((button) => {
     button.addEventListener("click", (e) => {
@@ -22,21 +23,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const getBooks = () => {
     fetch(myRequest)
       .then((response) => {
-        if (!response.success) {
-          const content_elt = document.createElement("DIV");
-          content_elt.innerHTML = `                   
-            <p  class="book_error">Something went wrong...</p>
-            `;
+        return response.json();
 
-          content_elt.setAttribute("class", "book_item_error");          
-          bookContainer.append(content_elt);
-          console.log(response);
-        }
-        response.json();
+        // if (!response.success) {
+        //   const content_elt = document.createElement("DIV");
+        //   content_elt.innerHTML = `
+        //     <p  class="book_error">Something went wrong...</p>
+        //     `;
+
+        //   content_elt.setAttribute("class", "book_item_error");
+        //   bookContainer.append(content_elt);
+        //   console.log(response);
+        // }
       })
       .then((data) => {
-        console.log(data);
-
         if (data.books) {
           data.books.forEach((book) => {
             const content_elt = document.createElement("DIV");
@@ -51,8 +51,36 @@ document.addEventListener("DOMContentLoaded", () => {
             content_elt.setAttribute("class", "book_item");
             content_elt.setAttribute("data-id", book.id);
             bookContainer.append(content_elt);
-            console.log("yes");
           });
+
+          // adding related book
+
+          const lastThreeBooks = [
+            data.books[data.books.length - 2],
+            data.books[data.books.length - 1],
+            data.books[data.books.length-3],
+          ];
+          console.log(lastThreeBooks);
+
+          lastThreeBooks.forEach((book) => {
+            const relatedItem_elt = document.createElement("DIV");
+            relatedItem_elt.innerHTML = `<div class="book_related_item_content">
+              <div class="blog_related_image">
+                <img
+                src=${book.image} alt="blog image blog" data-id=${book.id}
+                />
+              </div>
+              <p class="blog" data-id=${book.id}>${book.title}</p> 
+            </div> `;
+  
+            relatedItem_elt.setAttribute("class", "book_item");
+            relatedItem_elt.setAttribute("data-id", book.id);
+            relatedContainer.append(relatedItem_elt);
+
+          })
+
+
+          
         }
 
         console.log(data);
