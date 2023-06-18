@@ -26,7 +26,10 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
     <!-- for fontawesome -->
-    <script src="https://kit.fontawesome.com/40109df241.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/40109df241.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <header>
@@ -37,14 +40,18 @@
             ><i class="fa fa-bars"></i
           ></a>
           <a href="./index.html" class="menu_nav small_device">Home</a>
-          <a href="./html/blog.html" class="menu_nav small_device">Blog</a>
-          
-          <a href="./html/books.html" class="menu_nav small_device"
-            >Books</a
+          <a href="./html/blog.html" class="menu_nav small_device">Blogs</a>
+
+          <a href="./html/books.html" class="menu_nav small_device">Books</a>
+          <a
+            href="./html/login.html"
+            class="menu_nav small_device"
+            id="loginMenu"
+            >login</a
           >
-          <a href="./html/login.html" class="menu_nav small_device" id="loginMenu">login</a>
-          <a href="./html/login.html" class="menu_nav hire_now" id="join_us">Join us</a>
-         
+          <a href="./html/login.html" class="menu_nav hire_now" id="join_us"
+            >Join us</a
+          >
         </div>
       </nav>
     </header>
@@ -79,15 +86,15 @@
 
       <!-- who I am section section-->
 
-      <div class="who_section">        
+      <div class="who_section">
         <div class="main_who">
           <!-- main who -->
 
           <div class="main_who_items">
             <img class="who_image" src="./images/tellstory.png" alt="book" />
             <div>
-              <h2>Tell a story of your own...</h2>              
-                <p>Just a paragraph today, don't worry with the rest.</p>
+              <h2>Tell a story of your own...</h2>
+              <p>Just a paragraph today, don't worry with the rest.</p>
             </div>
           </div>
         </div>
@@ -103,26 +110,33 @@
           <div class="service_item">
             <div class="service_text banner_and_icon">
               <i class="fa-solid fa-pen-to-square"></i>
-              <a href="./html/dashboard.html"><h5 class="service_title">Write English</h5></a>
-             
+              <a href="./html/dashboard.html"
+                ><h5 class="service_title">Write English</h5></a
+              >
             </div>
           </div>
           <div class="service_item">
             <div class="service_text banner_and_icon">
               <i class="fa-solid fa-floppy-disk"></i>
-              <a href="./html/vocabulary.html"><h5 class="service_title">New vocabulary</h5></a>
+              <a href="./html/vocabulary.html"
+                ><h5 class="service_title">New vocabulary</h5></a
+              >
             </div>
           </div>
           <div class="service_item">
             <div class="service_text banner_and_icon">
               <i class="fa-solid fa-book-open-reader"></i>
-              <a href="./html/books.html"><h5 class="service_title">Books</h5></a>
+              <a href="./html/books.html"
+                ><h5 class="service_title">Books</h5></a
+              >
             </div>
           </div>
           <div class="service_item">
-            <div class="service_text banner_and_icon">              
+            <div class="service_text banner_and_icon">
               <i class="fa-solid fa-gamepad"></i>
-              <a href="./html/games.html"><h5 class="service_title">Play games</h5></a>
+              <a href="./html/games.html"
+                ><h5 class="service_title">Play games</h5></a
+              >
             </div>
           </div>
         </div>
@@ -131,21 +145,20 @@
       <!-- for portfolio -->
 
       <div class="portfolio_section">
-        <div class="header_portfolio">          
+        <div class="header_portfolio">
           <h1>Expore the world by learning english</h1>
           <p>Find below your joy to learn something new...</p>
         </div>
 
-        <div class="portfolio_nav " id="category_to_show">
+        <div class="portfolio_nav" id="category_to_show">
           <h1 id="all_button" class="all_button">All</h1>
-          <h1  id="books_button" class="books_button">Books to read</h1>
-          <h1  id="blogs_button" class="blogs_button">Blog or story to ready</h1>
-          <h1  id="words_button" class="words_button">New words we read.</h1>
+          <h1 id="books_button" class="books_button">Books to read</h1>
+          <h1 id="blogs_button" class="blogs_button">Blog or story to ready</h1>
+          <h1 id="words_button" class="words_button">New words we read.</h1>
         </div>
         <!-- image showing categories  -->
 
         <div class="portfolio_content">
-
           <div class="portfolio_item books">
             <div class="portfolio_image">
               <img src="./images/book_read.jpg" alt="read book" />
@@ -162,7 +175,7 @@
             <div class="portfolio_image">
               <img src="./images/aboutme.jpg" alt="" />
             </div>
-          </div>          
+          </div>
         </div>
       </div>
     </section>
@@ -192,7 +205,7 @@
       </div>
     </footer>
   </body>
-  
+
   <script src="./Js/script.js"></script>
   <script type="module">
     // Import the functions you need from the SDKs you need
@@ -211,7 +224,6 @@
       onAuthStateChanged,
     } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
 
-    
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -234,14 +246,14 @@
     function getInputValue(id) {
       return document.getElementById(id).value;
     }
-    
+
     const blogs = ref(database, "blogs/");
     onValue(blogs, (snapshot) => {
       const data = snapshot.val();
 
-      let blogsArray = [];      
+      let blogsArray = [];
 
-      for (var [key, value] of Object.entries(data)) {      
+      for (var [key, value] of Object.entries(data)) {
         var obj = {
           id: value.id,
           title: value.title,
@@ -249,15 +261,14 @@
           Image: value.Image,
           uid_key: key,
         };
-        blogsArray.push(obj);            
-
+        blogsArray.push(obj);
       }
-  
+
       const dataSave = JSON.stringify(blogsArray);
       // set number of blogs or article
-    const blogNumbers = document.getElementById("number_blog");
-    blogNumbers.innerText= blogsArray.length;
-         // save to localStorage
+      const blogNumbers = document.getElementById("number_blog");
+      blogNumbers.innerText = blogsArray.length;
+      // save to localStorage
       localStorage.setItem("data", dataSave);
     });
 
@@ -266,93 +277,83 @@
     onValue(books, (snapshot) => {
       const data = snapshot.val() ? snapshot.val() : "no data for book yet";
 
-      let booksArray = [];      
+      let booksArray = [];
 
       for (var [key, value] of Object.entries(data)) {
-       
         var obj = {
           id: value.id,
           title: value.title,
           author: value.author,
           Image: value.Image,
-          reading:value.reading,
+          reading: value.reading,
           uid_key: key,
         };
-        booksArray.push(obj); 
+        booksArray.push(obj);
       }
 
       const dataSave = JSON.stringify(booksArray);
       // set number of blogs or article
       const bookNumbers = document.getElementById("number_books");
-      bookNumbers.innerText= booksArray ? booksArray.length : 0 ;   
+      bookNumbers.innerText = booksArray ? booksArray.length : 0;
       // save to localStorage
       localStorage.setItem("data", dataSave);
-
     });
 
-    const retrieve= (section)=>{
-      console.log(section.innerHTML)
-    }
+    const retrieve = (section) => {
+      console.log(section.innerHTML);
+    };
 
     //for category to show on home page logic need to be tweeked
     const categoryToShow = document.getElementById("category_to_show");
     const items = document.querySelectorAll(".portfolio_item");
 
-
-    categoryToShow.addEventListener('click', (e)=>{
-      if(e.target.className.includes("books_button")){
-          retrieve(e.target)        
-          items.forEach(element => {
-            if(!element.className.includes("books")){
-              console.log(element)
-              element.classList.add("hide")
-            }else{
-              element.classList.remove("hide")
-            }       
-          });    
-         
-
+    categoryToShow.addEventListener("click", (e) => {
+      if (e.target.className.includes("books_button")) {
+        retrieve(e.target);
+        items.forEach((element) => {
+          if (!element.className.includes("books")) {
+            console.log(element);
+            element.classList.add("hide");
+          } else {
+            element.classList.remove("hide");
+          }
+        });
       }
-      if(e.target.className.includes("blogs_button")){
-          retrieve(e.target)
-          items.forEach(element => {
-            if(!element.className.includes("blogs")){
-              console.log(element)
-              element.classList.add("hide")
-            } else{
-              element.classList.remove("hide")
-            }       
-          });    
-
+      if (e.target.className.includes("blogs_button")) {
+        retrieve(e.target);
+        items.forEach((element) => {
+          if (!element.className.includes("blogs")) {
+            console.log(element);
+            element.classList.add("hide");
+          } else {
+            element.classList.remove("hide");
+          }
+        });
       }
-      if(e.target.className.includes("words_button")){
-          retrieve(e.target)
-          items.forEach(element => {
-            if(!element.className.includes("words")){
-              console.log(element)
-              element.classList.add("hide")
-            }else {
-              element.classList.remove("hide")
-            }         
-          });    
-
+      if (e.target.className.includes("words_button")) {
+        retrieve(e.target);
+        items.forEach((element) => {
+          if (!element.className.includes("words")) {
+            console.log(element);
+            element.classList.add("hide");
+          } else {
+            element.classList.remove("hide");
+          }
+        });
       }
-      if(e.target.className.includes("all_button")){
-          retrieve(e.target)
-          items.forEach(element => {
-            if(element.className.includes("hide")){              
-              element.classList.remove("hide")
-            }
-            
-          });
-
+      if (e.target.className.includes("all_button")) {
+        retrieve(e.target);
+        items.forEach((element) => {
+          if (element.className.includes("hide")) {
+            element.classList.remove("hide");
+          }
+        });
       }
-    })
-
+    });
 
     // check if user is logged in
     onAuthStateChanged(auth, (user) => {
-      if (user) {        
+      if (user) {
         const uid = user.uid;
         console.log(user);
         const loginMenu = document.getElementById("loginMenu");
@@ -360,14 +361,11 @@
         loginMenu.innerHTML = "Dashboard";
         loginMenu.setAttribute("href", "./html/dashboard.html");
         join_us.innerHTML = "Your Vocabulary";
-        join_us.setAttribute("href", "./html/vocabulary.html");    
+        join_us.setAttribute("href", "./html/vocabulary.html");
 
-        console.log("yes it is possible")
+        console.log("yes it is possible");
         // ...
       }
-     
     });
-
-    
   </script>
 </html>
