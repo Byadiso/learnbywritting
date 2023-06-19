@@ -113,7 +113,7 @@ const handleSubmit = async (e) => {
 form.addEventListener('click',(e)=>{
     e.preventDefault()
     handleSubmit();
-    console.log('yespppppp')
+    // console.log('yespppppp')
 } )
 
 form.addEventListener('keyup', (e) => {

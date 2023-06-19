@@ -115,6 +115,21 @@ body {
 }
 
 
+.blog_item_rigt {
+    /* border-left: 2px solid var(--colorforWeakGrey);
+    margin-left: 20px;
+    margin-bottom: 20px;
+    min-width: 20%; */
+    min-width: 20%;
+    display: flex;
+    justify-content:flex-start;
+    flex-direction: column;
+    margin: 20px;
+    outline: 1px solid var(--colorforWeakGrey);
+
+}
+
+
 
 /* for responsiveness */
 

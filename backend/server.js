@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(cors()); 
 
 const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: process.env.OPENAI_API_KEY ||"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",
 });
 const openai = new OpenAIApi(configuration);
 
@@ -28,6 +28,7 @@ app.get('/', async(req, res) => {
 app.post('/', async(req, res) => {
   try{
     const prompt = req.body.prompt;
+    // const prompt = "capital of rwanda";
     const response = await openai.createCompletion({
       model: "text-davinci-003",
       prompt: `${prompt}`,
@@ -37,6 +38,7 @@ app.post('/', async(req, res) => {
       frequency_penalty: 0.5,
       presence_penalty: 0,
     });
+    console.log(response.data.choices.text[0].text)
     res.status(200).send({
       bot: response.data.choices.text[0].text      
     })
