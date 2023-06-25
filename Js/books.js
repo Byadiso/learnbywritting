@@ -9,7 +9,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // const myRequest = "https://www.dbooks.org/api/subject/history";
 
-  const myRequest = "https://www.dbooks.org/api/recent";
+  // const myRequest = "https://www.dbooks.org/api/recent";
+
+  const myRequest = "https://shortstories-api.onrender.com/stories";
 
   burger_menu.forEach((button) => {
     button.addEventListener("click", (e) => {
@@ -37,30 +39,29 @@ document.addEventListener("DOMContentLoaded", () => {
         // }
       })
       .then((data) => {
-        if (data.books) {
-          data.books.forEach((book) => {
+        if (data) {
+          data.forEach((story) => {
             const content_elt = document.createElement("DIV");
-            content_elt.innerHTML = `
-          <div class="book_image book" data-id=${book.id}>
-            <img src=${book.image} alt="blog image blog" data-id=${book.id}>
-          </div>
+            content_elt.innerHTML = `          
           <div>
-          <h5 class="blog" data-id=${book.id}>${book.title}</h5>          
-          <button  data-id=${book.id} class="readme_button blog">Read more...</button>
+          <h5 class="blog" data-id=${story.id}>${story.title}</h5>  
+          <p class="blog" data-id=${story.id}>${story.story}</p>  
+          <p class="blog" data-id=${story.id}><strong> ${story.moral}</strong></p>        
+          <p class="blog" data-id=${story.id}><em>${story.author}</em></p>
           </div>
           `;
 
             content_elt.setAttribute("class", "book_item");
-            content_elt.setAttribute("data-id", book.id);
+            content_elt.setAttribute("data-id", story.id);
             bookContainer.append(content_elt);
           });
 
           // adding related book
 
           const lastThreeBooks = [
-            data.books[data.books.length - 2],
-            data.books[data.books.length - 1],
-            data.books[data.books.length-3],
+            data[data.length - 2],
+            data[data.length - 1],
+            data[data.length - 3],
           ];
           console.log(lastThreeBooks);
 
@@ -74,15 +75,11 @@ document.addEventListener("DOMContentLoaded", () => {
               </div>
               <p class="blog" data-id=${book.id}>${book.title}</p> 
             </div> `;
-  
+
             relatedItem_elt.setAttribute("class", "book_item_related");
             relatedItem_elt.setAttribute("data-id", book.id);
             relatedContainer.append(relatedItem_elt);
-
-          })
-
-
-          
+          });
         }
 
         console.log(data);
