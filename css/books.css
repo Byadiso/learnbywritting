@@ -49,27 +49,28 @@ body {
 /* story */
 .books_item_content {
     /* max-width: 100%; */
-     display: flex; 
+    display: flex;
     justify-content: center;
-     flex-direction: column;
+    flex-direction: column;
     flex-wrap: wrap;
-    padding: 10px; 
+   
 }
 
 .book_item {
-    /* display: flex;
-    justify-content: center; */
-    /* flex-direction: row; */
-    /* align-items: center; */
-    /* width: 100%; */
-    /* margin: 10px;
-    padding: 10px;  */
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    border: 1px solid var(--colorforWeakGrey);
+    border-radius: 20px;
+    margin: 10px;
+    padding: 10px;
 }
 
-
-.book_item p {
+/* .book_item p {
     width: 110px;
-}
+} */
 
 
 

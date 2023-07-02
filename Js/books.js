@@ -43,16 +43,16 @@ document.addEventListener("DOMContentLoaded", () => {
           data.forEach((story) => {
             const content_elt = document.createElement("DIV");
             content_elt.innerHTML = `          
-          <div>
-          <h5 class="blog" data-id=${story.id}>${story.title}</h5>  
-          <p class="blog" data-id=${story.id}>${story.story}</p>  
-          <p class="blog" data-id=${story.id}><strong> ${story.moral}</strong></p>        
-          <p class="blog" data-id=${story.id}><em>${story.author}</em></p>
-          </div>
+          
+          <h5 class="story" data-id=${story._id}>${story.title}</h5>  
+          <p class="story" data-id=${story._id}>${story.story}</p>  
+          <p class="story" data-id=${story._id}><strong> ${story.moral}</strong></p>        
+          <p class="story" data-id=${story._id}><em>${story.author}</em></p>
+      
           `;
 
             content_elt.setAttribute("class", "book_item");
-            content_elt.setAttribute("data-id", story.id);
+            content_elt.setAttribute("data-id", story._id);
             bookContainer.append(content_elt);
           });
 
@@ -70,10 +70,10 @@ document.addEventListener("DOMContentLoaded", () => {
             relatedItem_elt.innerHTML = `<div class="book_related_item_content">
               <div class="book_related_image">
                 <img
-                src=${book.image} alt="blog image blog" data-id=${book.id}
+                src=${book.image} alt="story image story" data-id=${book.id}
                 />
               </div>
-              <p class="blog" data-id=${book.id}>${book.title}</p> 
+              <p class="story" data-id=${book.id}>${book.title}</p> 
             </div> `;
 
             relatedItem_elt.setAttribute("class", "book_item_related");
