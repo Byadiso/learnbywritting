@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  const getBooks = () => {
+  const getBooks = () => {    
     fetch(myRequest)
       .then((response) => {
         return response.json();
@@ -48,7 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
           <p class="story" data-id=${story._id}>${story.story}</p>  
           <p class="story" data-id=${story._id}><strong> ${story.moral}</strong></p>        
           <p class="story" data-id=${story._id}><em>${story.author}</em></p>
-      
           `;
 
             content_elt.setAttribute("class", "book_item");
@@ -58,31 +57,48 @@ document.addEventListener("DOMContentLoaded", () => {
 
           // adding related book
 
-          const lastThreeBooks = [
-            data[data.length - 2],
-            data[data.length - 1],
-            data[data.length - 3],
-          ];
-          console.log(lastThreeBooks);
+          // const lastThreeBooks = [
+          //   data[data.length - 2],
+          //   data[data.length - 1],
+          //   data[data.length - 3],
+          // ];
+          // console.log(lastThreeBooks);
 
-          lastThreeBooks.forEach((book) => {
-            const relatedItem_elt = document.createElement("DIV");
-            relatedItem_elt.innerHTML = `<div class="book_related_item_content">
-              <div class="book_related_image">
-                <img
-                src=${book.image} alt="story image story" data-id=${book.id}
-                />
-              </div>
-              <p class="story" data-id=${book.id}>${book.title}</p> 
-            </div> `;
+          // lastThreeBooks.forEach((book) => {
+          //   const relatedItem_elt = document.createElement("DIV");
+          //   relatedItem_elt.innerHTML = `<div class="book_related_item_content">
+          //     <div class="book_related_image">
+          //       <img
+          //       src=${book.image} alt="story image story" data-id=${book.id}
+          //       />
+          //     </div>
+          //     <p class="story" data-id=${book.id}>${book.title}</p>
+          //   </div> `;
 
-            relatedItem_elt.setAttribute("class", "book_item_related");
-            relatedItem_elt.setAttribute("data-id", book.id);
-            relatedContainer.append(relatedItem_elt);
-          });
-        }
+          //   relatedItem_elt.setAttribute("class", "book_item_related");
+          //   relatedItem_elt.setAttribute("data-id", book.id);
+          //   relatedContainer.append(relatedItem_elt);
+          // });
+        } 
+        
+        // else if(data.length > 0) {
+        //   const content_elt = document.createElement("DIV");
+        //   content_elt.innerHTML = `                     
+        // <p class="story" data-id="no-data"><em>No story found</em></p>
+        // `;
+        //   content_elt.setAttribute("class", "book_item");
+        //   bookContainer.append(content_elt);
+        // }
 
         console.log(data);
+      }).catch(erro=>{
+        console.log(erro)
+        const content_elt = document.createElement("DIV");
+          content_elt.innerHTML = `                     
+        <p class="story" data-id="no-data"><em>Ops, No story found! Try again later or switch your network! </em></p>
+        `;
+          content_elt.setAttribute("class", "book_item error_display");
+          bookContainer.append(content_elt);
       });
   };
 

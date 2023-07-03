@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>LearnByWriting</title>
     <link rel="stylesheet" href="../css/blog.css" />
-   
+
     <!-- for roboto font -->
     <link
       href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
@@ -20,9 +20,11 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-     <!-- for fontawesome -->
-     <script src="https://kit.fontawesome.com/40109df241.js" crossorigin="anonymous"></script>
-
+    <!-- for fontawesome -->
+    <script
+      src="https://kit.fontawesome.com/40109df241.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <header>
@@ -30,11 +32,14 @@
         <div class="menu">
           <h1 class="ngana_logo">LearnByWriting</h1>
           <a href="../index.html" class="menu_nav">Home</a>
-          <a href="./blog.html" class="menu_nav">Blogs</a>          
+          <a href="./blog.html" class="menu_nav">Blogs</a>
           <a href="./books.html" class="menu_nav">Books</a>
-          <a href="./dashboard.html" class="menu_nav" id="dashboard">Dashboard</a>
-          <a href="./vocabulary.html" class="menu_nav hire_now" id="join_us">Vocabularies</a>
-          
+          <a href="./dashboard.html" class="menu_nav" id="dashboard"
+            >Dashboard</a
+          >
+          <a href="./vocabulary.html" class="menu_nav hire_now" id="join_us"
+            >Vocabularies</a
+          >
         </div>
       </nav>
     </header>
@@ -42,7 +47,7 @@
       <div class="hero_section">
         <div class="hero_content">
           <h2>Our Blogs</h2>
-          <h1>Our  Latest stories</h1>
+          <h1>Our Latest stories</h1>
         </div>
       </div>
 
@@ -51,7 +56,6 @@
       <div class="blog_section">
         <div class="blog_content">
           <div class="blog_item_left">
-            
             <!-- <h2>Enjoy reading our stories</h2> -->
             <div id="blog_admin">
               <img
@@ -70,18 +74,25 @@
                 <input type="text" placeholder="Search.." name="search" />
                 <i class="fa fa-search"></i>
               </div>
-              
+
               <div class="dashboard_categories">
                 <h1>Dashboard</h1>
-                <a href="./dashboard.html" id="add"><i class="fa fa-plus"></i>Add Blog</a>
-                <a href="./user.html" id="info"><i class="fa fa-info"></i>My info</a>
-                <a href="./vocabulary.html" id="vocabulary"><i class="fa-solid fa-floppy-disk"></i>Your Vocabulary</a>
-                <a href="./settings.html" id="settings"><i class="fa fa-gear"></i>Settings</a>
+                <a href="./dashboard.html" id="add"
+                  ><i class="fa fa-plus"></i>Add Blog</a
+                >
+                <a href="./user.html" id="info"
+                  ><i class="fa fa-info"></i>My info</a
+                >
+                <a href="./vocabulary.html" id="vocabulary"
+                  ><i class="fa-solid fa-floppy-disk"></i>Your Vocabulary</a
+                >
+                <a href="./settings.html" id="settings"
+                  ><i class="fa fa-gear"></i>Settings</a
+                >
                 <a href="#" id="logout" class="logout"
                   ><i class="fa fa-sign-out"></i>logout</a
                 >
               </div>
-            
             </div>
           </div>
         </div>
@@ -142,7 +153,7 @@
       onAuthStateChanged,
     } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
 
-     // TODO: Add SDKs for Firebase products that you want to use
+    // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
 
     // Your web app's Firebase configuration
@@ -169,14 +180,28 @@
     const addButton = document.getElementById("addBlog");
     const blogAdmin = document.getElementById("blog_admin");
 
-    //read data from database () firebase   
+    //read data from database () firebase
     const blogs = ref(database, "blogs/");
+
+    if ((Headers.status = 304)) {
+          const loading = document.getElementById("loading");
+          loading.style.display = "none";
+          console.log("say something there is an error loading");
+          const content_elt = document.createElement("DIV");
+          content_elt.innerHTML = `                     
+        <p class="story" data-id="no-data"><em>Ops, No story found! Try again later or switch your network! </em></p>
+        `;
+          content_elt.setAttribute("class", "book_item error_display");
+          blogAdmin.append(content_elt);
+        }
+
     onValue(blogs, (snapshot) => {
+      console.log(snapshot + "data to check ");
       const data = snapshot.val();
 
-      let blogsArray = [];     
+      let blogsArray = [];
 
-      for (var [key, value] of Object.entries(data)) {        
+      for (var [key, value] of Object.entries(data)) {
         var obj = {
           id: value.id,
           title: value.title,
@@ -186,7 +211,6 @@
         };
 
         blogsArray.push(obj);
-               
 
         const content_elt = document.createElement("DIV");
         content_elt.innerHTML = `
@@ -194,7 +218,9 @@
           <img src=${value.Image} alt="blog image blog" data-id=${obj.uid_key}>
         </div>
         <h3 class="blog" data-id=${obj.uid_key}>${value.title}</h3>
-        <p class="blog_title blog" data-id=${obj.uid_key}>${firstSentence(value.body)}</p>
+        <p class="blog_title blog" data-id=${obj.uid_key}>${firstSentence(
+          value.body
+        )}</p>
         <p  data-id=${obj.uid_key} class="readme_button blog">Read more...</p>
         `;
 
@@ -202,17 +228,22 @@
         content_elt.setAttribute("data-id", obj.uid_key);
         blogAdmin.append(content_elt);
 
+        // if(!content_elt){
+        // console.log("error");
+
+        // }     
+
         if (content_elt) {
           console.log("yeseee");
           const loading = document.getElementById("loading");
           loading.style.display = "none";
         }
+       
       }
 
       console.log(blogsArray);
 
       const dataSave = JSON.stringify(blogsArray);
-
       // save to localStorage
       localStorage.setItem("data", dataSave);
     });
@@ -220,23 +251,22 @@
     // check if user is logged in
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        const uid = user.uid; 
+        const uid = user.uid;
       }
-     
 
       if (user == undefined) {
-        // User is signed out        
+        // User is signed out
         location.href = "./login.html";
         console.log("no user");
       }
     });
 
-     // count sentence and give the first one
-     function firstSentence(text) {
-          // var sentenceRegex = /[\.!\?]+/g;
-          var sentenceRegex = /^[^.!?]*[.!?]/;
-          var sentences = text.match(sentenceRegex);
-          return sentences[0];
-}
+    // count sentence and give the first one
+    function firstSentence(text) {
+      // var sentenceRegex = /[\.!\?]+/g;
+      var sentenceRegex = /^[^.!?]*[.!?]/;
+      var sentences = text.match(sentenceRegex);
+      return sentences[0];
+    }
   </script>
 </html>
