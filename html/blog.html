@@ -183,11 +183,12 @@
     //read data from database () firebase
     const blogs = ref(database, "blogs/");
 
-    if ((Headers.status = 304)) {
+    if (Headers.status = 304) {
           const loading = document.getElementById("loading");
           loading.style.display = "none";
           console.log("say something there is an error loading");
           const content_elt = document.createElement("DIV");
+          blog_admin.style.display = "flex";
           content_elt.innerHTML = `                     
         <p class="story" data-id="no-data"><em>Ops, No story found! Try again later or switch your network! </em></p>
         `;
