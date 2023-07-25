@@ -43,8 +43,8 @@
     <section>
       <div class="hero_section">
         <div class="hero_content">
-          <h2>Hello amateur</h2>
-          <h1 id="user_name"></h1>
+          <h2>Dashboard</h2>
+          <h1 id="user_name"><span>Hello...</span></h1>
         </div>
       </div>
 
@@ -252,7 +252,7 @@
           const content_elt = document.createElement("DIV");
           blog_admin.style.display = "flex";
           content_elt.innerHTML = `                     
-        <p class="story" data-id="no-data"><em>Ops, No story found! Try again later or switch your network! </em></p>
+        <p class="story" data-id="no-data"><em>Ops, Nothing found! Try again later or switch your network! </em></p>
         `;
           content_elt.setAttribute("class", "book_item error_display");
           blogAdmin.append(content_elt);
