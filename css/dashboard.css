@@ -503,7 +503,7 @@
     margin-bottom: 5px;
     margin-left: 5px;
     padding-right: 20px;
-    border: 1px solid white;
+    border: 1px solid   var(--blueColor);
 }
 .blog_image{
     margin-right: -40px;
@@ -513,7 +513,7 @@
    width: 50px;
    height: 50px;
    border-radius: 50%;
-   border: 2px solid white;
+   border: 3px solid var(--blueColor);
 }
 
 #loading{
@@ -544,7 +544,7 @@
     padding: 60px;
     padding-top: 20px;
     max-width: 80%;
-    background:#b7babb;
+    background:var(--whiteColor);
     /* margin-right: 20px; */
 }
 
