@@ -112,16 +112,17 @@
             </div>
 
             <hr />
+              <!-- remove as we no longer need them -->
             <!-- for related blog -->
-            <div class="related_blog">
+                       <!-- <div class="related_blog">
               <div class="header_related">
                 <h4>Recently added story</h4>
               </div>
 
               <div id="related_blog_item">
-                <!-- Recent story will be added here -->
+                
               </div>
-            </div>
+            </div> -->
           </div>
 
           <!-- for categories -->
@@ -561,49 +562,49 @@
       }
     });
 
-    //showing story on our platform
-    const stories = ref(database, `blogs`);
-    onValue(stories, (snapshot) => {
-      const data = snapshot.val();
+    //showing story on our platform >>> removed as they are not needed anymore.
+    // const stories = ref(database, `blogs`);
+    // onValue(stories, (snapshot) => {
+    //   const data = snapshot.val();
 
-      if (data !== null) {
-        let numberOfBlogArray = [];
+    //   if (data !== null) {
+    //     let numberOfBlogArray = [];
 
-        for (var [key, value] of Object.entries(data)) {
-          var obj = {
-            id: value.id,
-            title: value.title,
-            image: value.Image,
-            uid_key: key,
-          };
+    //     for (var [key, value] of Object.entries(data)) {
+    //       var obj = {
+    //         id: value.id,
+    //         title: value.title,
+    //         image: value.Image,
+    //         uid_key: key,
+    //       };
 
-          if (value) {
-            numberOfBlogArray.push(obj);
-          }
-        }
+    //       if (value) {
+    //         numberOfBlogArray.push(obj);
+    //       }
+    //     }
 
-        //show only five blog
-        const storyContent = document.getElementById("related_blog_item");
+    //     //show only five blog
+    //     const storyContent = document.getElementById("related_blog_item");
 
-        numberOfBlogArray.slice(0, 3).forEach((value) => {
-          let story = document.createElement("DIV");
-          story.innerHTML = `
-         <div class="sroty_item_content">
-                  <div class="blog_relate_image">
-                    <img
-                      src="${value.image}"
-                      alt="${value.title}"
-                    />
-                  </div>
-                  <h3>${value.title}</h3>
-                </div>       
-         `;
+    //     numberOfBlogArray.slice(0, 3).forEach((value) => {
+    //       let story = document.createElement("DIV");
+    //       story.innerHTML = `
+    //      <div class="sroty_item_content">
+    //               <div class="blog_relate_image">
+    //                 <img
+    //                   src="${value.image}"
+    //                   alt="${value.title}"
+    //                 />
+    //               </div>
+    //               <h3>${value.title}</h3>
+    //             </div>       
+    //      `;
 
-          //add vocabularies at the bottom ot the vocabulary box
-          storyContent.append(story);
-        });
-      }
-    });
+    //       //add vocabularies at the bottom ot the vocabulary box
+    //       storyContent.append(story);
+    //     });
+    //   }
+    // });
 
     // check if user is logged in
     onAuthStateChanged(auth, (user) => {
