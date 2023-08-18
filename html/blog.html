@@ -183,19 +183,27 @@
     //read data from database () firebase
     const blogs = ref(database, "blogs/");
 
-      // check error first
-    if (Headers.status = 304) {
-          const loading = document.getElementById("loading");
-          loading.style.display = "none";
-          console.log("say something there is an error loading");
-          const content_elt = document.createElement("DIV");
-          blog_admin.style.display = "flex";
-          content_elt.innerHTML = `                     
+    // check error first
+    if ((Headers.status = 304)) {
+      const loading = document.getElementById("loading");
+      loading.style.display = "none";
+      console.log("say something there is an error loading");
+      const content_elt = document.createElement("DIV");
+
+      content_elt.innerHTML = `                     
         <p class="story" data-id="no-data"><em>Ops, No story found! Try again later or switch your network! </em></p>
         `;
-          content_elt.setAttribute("class", "book_item error_display");
-          blogAdmin.append(content_elt);
+      content_elt.setAttribute("class", "book_item error_display");
+      content_elt.style.display = "block";
+      blogAdmin.append(content_elt);
+
+      onValue(blogs, (snapshot) => {        
+        const data = snapshot.val();
+        if (data) {
+          content_elt.style.display = "none";
         }
+      });
+    }
 
     onValue(blogs, (snapshot) => {
       console.log(snapshot + "data to check ");
@@ -233,14 +241,13 @@
         // if(!content_elt){
         // console.log("error");
 
-        // }     
+        // }
 
         if (content_elt) {
           console.log("yeseee");
           const loading = document.getElementById("loading");
           loading.style.display = "none";
         }
-       
       }
 
       console.log(blogsArray);

@@ -259,58 +259,8 @@
         padding-right: 30px;
     }
     
-    .Service_form_header h4{
-        margin-left: 5px;
-    }
-   
-    .service_form_item{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 20px;
-        background:var(--textColorGrey);
-        padding:20px;
-    }
-
-    .service_form_item .hire_now{
-        margin: 20px;
-        cursor: pointer;
-    }
-    .service_item{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-left: 20px;
-        margin-bottom: 20px;
-
-    }
-
-    .service_text{ 
-        display: flex;
-        justify-content: center;     
-        align-items: center; 
-        width:150px;
-        height:145px;
-        border: 1px solid var(--textColorGreyParagraph);
-        color:var(--blueColor);
-        padding: 25px;
-    }
-
-    .service_text:hover{
-     
-     
-       background:var(--blueColor);
-        color:var(--whiteColor);
-        padding: 25px;
-        border:none;
-    }
-    
-    .service_image img{
-        width:200px;
-        height:145px;
-        
-    }
+  
+  
 /* 
     input  */
 
@@ -332,12 +282,12 @@
     }
 
     /* for blog page */
-    /* .blog_admin{
+    .blog_admin{
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-    } */
+    }
 
     #blog_admin{
         display: grid;
@@ -381,8 +331,7 @@
 }
 
 /* left side  */
-
-.blog_item_left .blog_item{
+/* .blog_item_left{
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -395,7 +344,22 @@
     min-width: 20%;    
     border: 1px solid var(--colorforWeakGrey);
     border-radius: 15px;
-}
+} */
+
+/* .blog_item_left .blog_item{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex: wrap;
+    align-items: center;
+    margin-left: 20px;
+    margin-bottom: 20px;    
+    padding:10px;
+    max-width: 100%;
+    min-width: 20%;    
+    border: 1px solid var(--colorforWeakGrey);
+    border-radius: 15px;
+} */
 
 
 .blog_item_rigt .blog_item{
@@ -480,6 +444,7 @@
         max-width: 100%;
         display: flex;
         justify-content:center;
+        flex-direction: column;
         flex-wrap: wrap;
         padding: 10px;
         
