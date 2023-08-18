@@ -241,21 +241,28 @@
     const vacabularies = ref(database, `vocabularies/`);
 
     // check errors
-    // if ((Headers.status = 304)) {
-    //   // const loading = document.getElementById("loading");
-    //   // loading.style.display = "none";
-    //   console.log("say something there is an error loading");
-    //   const content_elt = document.createElement("DIV");
-    //   // blog_admin.style.display = "flex";
-    //   content_elt.innerHTML = `                     
-    //     <p class="story" data-id="no-data"><em> Ops! Something went wrong, No Vocabulary found! Try again later or switch your network! </em></p>
-    //     `;
-    //   content_elt.setAttribute("class", "book_item error_display");
-    //   vocabulary_item_content.append(content_elt);
-    // } 
-    // else {
-    //   content_elt.style.display="none";
-    // }
+    if ((Headers.status = 304)) {
+      // const loading = document.getElementById("loading");
+      // loading.style.display = "none";
+      console.log("say something there is an error loading");
+      const content_elt = document.createElement("DIV");
+      // blog_admin.style.display = "flex";
+      content_elt.innerHTML = `                     
+        <p class="story" data-id="no-data"><em> Ops! Something went wrong, No Vocabulary found! Try again later or switch your network! </em></p>
+        `;
+      content_elt.setAttribute("class", "book_item error_display");
+      vocabulary_item_content.append(content_elt);
+
+      //check if everything is okey then remove the error_display
+      onValue(vacabularies, (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+          content_elt.style.display = "none";
+        }
+    })
+
+    } 
+  
 
     onValue(vacabularies, (snapshot) => {
       const data = snapshot.val();

@@ -197,6 +197,7 @@
       content_elt.style.display = "block";
       blogAdmin.append(content_elt);
 
+      //check if everything is okey then remove the error_display
       onValue(blogs, (snapshot) => {        
         const data = snapshot.val();
         if (data) {

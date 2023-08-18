@@ -34,9 +34,7 @@
           <a href="./blog.html" class="menu_nav">Blogs</a>
           <a href="./stories.html" class="menu_nav">Stories</a>
           <a href="./dashboard.html" class="menu_nav">Dashboard</a>
-          <a href="./Vocabulary.html" class="menu_nav hire_now"
-            >Vocabularies</a
-          >
+          <a href="./Vocabulary.html" class="menu_nav hire_now">Vocabularies</a>
         </div>
       </nav>
     </header>
@@ -232,34 +230,41 @@
     const addButton = document.getElementById("addBlog");
     const blogAdmin = document.getElementById("blog_admin");
     const form = document.getElementById("form_blog");
-    
+
     //get users
-    const users = ref(database, "users/");    
+    const users = ref(database, "users/");
     onValue(users, (snapshot) => {
       const data = snapshot.val();
       console.log(data);
-      let blogsArray = [];     
+      let blogsArray = [];
     });
 
     //get all blogs
     const blogs = ref(database, "blogs/");
 
     // check errors first
-    if (Headers.status = 304) {
-          const loading = document.getElementById("loading");
-          loading.style.display = "none";
-          console.log("say something there is an error loading");
-          const content_elt = document.createElement("DIV");
-          blog_admin.style.display = "flex";
-          content_elt.innerHTML = `                     
+    if ((Headers.status = 304)) {
+      const loading = document.getElementById("loading");
+      loading.style.display = "none";
+      console.log("say something there is an error loading");
+      const content_elt = document.createElement("DIV");
+      blog_admin.style.display = "flex";
+      content_elt.innerHTML = `                     
         <p class="story" data-id="no-data"><em>Ops, Nothing found! Try again later or switch your network! </em></p>
         `;
-          content_elt.setAttribute("class", "book_item error_display");
-          blogAdmin.append(content_elt);
+      content_elt.setAttribute("class", "book_item error_display");
+      blogAdmin.append(content_elt);
+
+      //check if everything is okey then remove the error_display
+      onValue(blogs, (snapshot) => {
+        const data = snapshot.val();
+        if (data) {
+          content_elt.style.display = "none";
         }
+      });
+    }
 
-    // the fetch data 
-
+    // the fetch data
 
     onValue(blogs, (snapshot) => {
       const data = snapshot.val();
@@ -405,7 +410,7 @@
         const uid = user.uid;
         const UserName = document.getElementById("user_name");
         UserName.innerHTML = user.email;
-        console.log(user)
+        console.log(user);
       }
       if (user == undefined) {
         // User is signed out
