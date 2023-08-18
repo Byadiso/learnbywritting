@@ -21,7 +21,10 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
     <!-- fontawesome -->
-    <script src="https://kit.fontawesome.com/40109df241.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/40109df241.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <header>
@@ -29,10 +32,14 @@
         <div class="menu">
           <h1 class="ngana_logo">LearnByWriting</h1>
           <a href="../index.html" class="menu_nav">Home</a>
-          <a href="./blog.html" class="menu_nav">Blogs</a>          
+          <a href="./blog.html" class="menu_nav">Blogs</a>
           <a href="./stories.html" class="menu_nav">Stories</a>
-          <a href="./dashboard.html" class="menu_nav" id="dashboard">Dashboard</a>
-          <a href="./vocabulary.html" class="menu_nav hire_now" id="join_us">Vocabularies</a>          
+          <a href="./dashboard.html" class="menu_nav" id="dashboard"
+            >Dashboard</a
+          >
+          <a href="./vocabulary.html" class="menu_nav hire_now" id="join_us"
+            >Vocabularies</a
+          >
         </div>
       </nav>
     </header>
@@ -44,29 +51,31 @@
         </div>
       </div>
 
-        
-
       <!-- Vocabulary section -->
       <div class="blog_section">
-        <div class="blog_content single_blog">         
-          
+        <div class="blog_content single_blog">
           <div class="blog_item_left blog_item_left_single">
-             <!-- Search box for vocabulary-->
-             
-             <h3>Vocabulary Lists</h3>
-             <p> Explore our library of over <span id="number_of_vocabulary">0</span> curated lists.</p>
-          <div class="blog_search vocabulary_search">           
-            <input type="text" placeholder="search a vocabulary" name="search" />
-            <i class="fa fa-search"></i>
-          </div>
+            <!-- Search box for vocabulary-->
+
+            <h3>Vocabulary Lists</h3>
+            <p>
+              Explore our library of over
+              <span id="number_of_vocabulary">0</span> curated lists.
+            </p>
+            <div class="blog_search vocabulary_search">
+              <input
+                type="text"
+                placeholder="search a vocabulary"
+                name="search"
+              />
+              <i class="fa fa-search"></i>
+            </div>
 
             <div class="vocabulary_item_content" id="vocabulary_item_content">
-                  <!-- vocabulary will go here -->             
+              <!-- vocabulary will go here -->
             </div>
 
-            <div id="pages-numbers">
-
-            </div>
+            <div id="pages-numbers"></div>
 
             <!--my edit modal -->
             <div class="dashboard_item_rigt hide" id="from_edit">
@@ -77,7 +86,7 @@
                   id="title"
                   placeholder="add title"
                 />
-              
+
                 <textarea
                   type="text"
                   name="body"
@@ -110,7 +119,7 @@
               </div>
 
               <div id="related_blog_item">
-                 <!-- Recent story will be added here -->
+                <!-- Recent story will be added here -->
               </div>
             </div>
           </div>
@@ -118,14 +127,23 @@
           <!-- for categories -->
           <div class="blog_item_rigt">
             <div class="blog_item">
-            
               <div class="dashboard_categories">
                 <h1>Dashboard</h1>
-                <a href="./dashboard.html" id="add"><i class="fa fa-plus"></i>Add Blog</a>
-                <a href="./user.html" id="info"><i class="fa fa-info"></i>My info</a>
-                <a href="./vocabulary.html" id="vocabulary"><i class="fa-solid fa-floppy-disk"></i>Your Vocabulary</a>
-                <a href="./settings.html" id="settings"><i class="fa fa-gear"></i>Settings</a>
-                <a href="#" id="logout" class="logout"><i class="fa fa-sign-out"></i>logout</a>
+                <a href="./dashboard.html" id="add"
+                  ><i class="fa fa-plus"></i>Add Blog</a
+                >
+                <a href="./user.html" id="info"
+                  ><i class="fa fa-info"></i>My info</a
+                >
+                <a href="./vocabulary.html" id="vocabulary"
+                  ><i class="fa-solid fa-floppy-disk"></i>Your Vocabulary</a
+                >
+                <a href="./settings.html" id="settings"
+                  ><i class="fa fa-gear"></i>Settings</a
+                >
+                <a href="#" id="logout" class="logout"
+                  ><i class="fa fa-sign-out"></i>logout</a
+                >
               </div>
             </div>
           </div>
@@ -162,9 +180,9 @@
   <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-database.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-storage.js"></script>
-  <script src="../Js/singleBlog.js" defer></script>
+  <!-- <script src="../Js/singleBlog.js" defer></script> -->
 
-  <script src="../Js/tinymce/tinymce.min.js"></script>
+  <!-- <script src="../Js/tinymce/tinymce.min.js"></script> -->
 
   <script type="module" defer>
     // Import the functions you need from the SDKs you need
@@ -184,7 +202,7 @@
       onAuthStateChanged,
     } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
 
-     // TODO: Add SDKs for Firebase products that you want to use
+    // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
 
     // Your web app's Firebase configuration
@@ -198,7 +216,7 @@
     };
 
     // Initialize Firebase
-   
+
     const app = firebase.initializeApp(firebaseConfig);
     const database = getDatabase(initializeApp(firebaseConfig));
     const auth = getAuth();
@@ -206,37 +224,43 @@
 
     //my id in the localStorage
     // const blog_id = JSON.parse(localStorage.getItem("id"));
-    const vocabulary_item_content = document.querySelector("#vocabulary_item_content");
-    const vocabulary_button_text = document.querySelector("#vocabulary_button_text");
-
+    const vocabulary_item_content = document.querySelector(
+      "#vocabulary_item_content"
+    );
+    const vocabulary_button_text = document.querySelector(
+      "#vocabulary_button_text"
+    );
 
     //function to get input value
 
     function getInputValue(id) {
       return document.getElementById(id).value;
     }
-    
+
     const vacabularies = ref(database, `vocabularies/`);
 
     // check errors
-    if (Headers.status = 304) {
-          // const loading = document.getElementById("loading");
-          // loading.style.display = "none";
-          console.log("say something there is an error loading");
-          const content_elt = document.createElement("DIV");
-          // blog_admin.style.display = "flex";
-          content_elt.innerHTML = `                     
+    if ((Headers.status = 304)) {
+      // const loading = document.getElementById("loading");
+      // loading.style.display = "none";
+      console.log("say something there is an error loading");
+      const content_elt = document.createElement("DIV");
+      // blog_admin.style.display = "flex";
+      content_elt.innerHTML = `                     
         <p class="story" data-id="no-data"><em> Ops! Something went wrong, No Vocabulary found! Try again later or switch your network! </em></p>
         `;
-          content_elt.setAttribute("class", "book_item error_display");
-          vocabulary_item_content.append(content_elt);
-        }
+      content_elt.setAttribute("class", "book_item error_display");
+      vocabulary_item_content.append(content_elt);
+    } 
+    // else {
+    //   content_elt.style.display="none";
+    // }
 
     onValue(vacabularies, (snapshot) => {
-      const data = snapshot.val();      
-      if(data!== null){
+      const data = snapshot.val();
+      if (data !== null) {
         let vocabulary_single = document.createElement("DIV");
-      vocabulary_single.innerHTML = `
+        vocabulary_single.innerHTML = `
       <div class="vocabulary_item_content" data-uid=${data.uuid}>
    
       <div class="vocabulary_section">
@@ -252,13 +276,12 @@
       </div>
     </div>
       `;
-      // to be added later
-     vocabulary_item_content.append(vocabulary_single);  
-      }        
-      else
-      {
+        // to be added later
+        vocabulary_item_content.append(vocabulary_single);
+      } else {
+       
         let vocabulary_single = document.createElement("DIV");
-      vocabulary_single.innerHTML = `
+        vocabulary_single.innerHTML = `
       <div class="vocabulary_item_content">   
       <div class="vocabulary_section">
         <div class="vocabulary_content" id="vocabulary_content">
@@ -272,74 +295,60 @@
       </div>
     </div>
       `;
-      // to be added later
-     vocabulary_item_content.append(vocabulary_single);  
+        // to be added later
+        vocabulary_item_content.append(vocabulary_single);
       }
-        
     });
 
-     //add vocabularies content to the documents 
+    //add vocabularies content to the documents
 
-     vocabulary_item_content.addEventListener('click',(e)=>{  
-      
-      if(e.target.className==="vocabulary_button_text"){
-        console.log("yes le show add vocabulary box")
-       let vocabulary_form = document.getElementsByClassName("vocabulary_form");
-     
+    vocabulary_item_content.addEventListener("click", (e) => {
+      if (e.target.className === "vocabulary_button_text") {
+        console.log("yes le show add vocabulary box");
+        let vocabulary_form =
+          document.getElementsByClassName("vocabulary_form");
       }
-      
-      const id = e.target.dataset.uid           
-      if(e.target.className==="vocabulary_button"){
-        const vocabularyContent = document.getElementById('vocabularyDetails');
-        const vocabularyDetailsHeader = document.getElementById('vocabulary_details');        
+
+      const id = e.target.dataset.uid;
+      if (e.target.className === "vocabulary_button") {
+        const vocabularyContent = document.getElementById("vocabularyDetails");
+        const vocabularyDetailsHeader =
+          document.getElementById("vocabulary_details");
         e.preventDefault();
-       
-      if(vocabularyContent.value.trim()!=="" || vocabularyDetailsHeader.value.trim()!==""){
-          //add vocabularies field to the document          
-          firebase.database()
-                    .ref("vocabularies/")
-                    .push()
-                    .set(
-                      {  
-                       header:vocabularyDetailsHeader.value.trim(),                     
-                       content:vocabularyContent.value.trim(),
-                       time:serverTimestamp(),
-                      },
-                      function (error) {
-                        if (error) {
-                          console.log("error whie uploading");
-                        } else {
-                             console.log("successfully uploaded");                      
-                           }
-                        }
-                    );
+
+        if (
+          vocabularyContent.value.trim() !== "" ||
+          vocabularyDetailsHeader.value.trim() !== ""
+        ) {
+          //add vocabularies field to the document
+          firebase
+            .database()
+            .ref("vocabularies/")
+            .push()
+            .set(
+              {
+                header: vocabularyDetailsHeader.value.trim(),
+                content: vocabularyContent.value.trim(),
+                time: serverTimestamp(),
+              },
+              function (error) {
+                if (error) {
+                  console.log("error whie uploading");
+                } else {
+                  console.log("successfully uploaded");
+                }
               }
-         else {
-          return console.log("no vocabulary entered")
-        }            
+            );
+        } else {
+          return console.log("no vocabulary entered");
+        }
       }
 
-//for delete and edit item from firebase 
-    if (e.target.className.includes("deleteButton")) {
-        firebase.database()
-          .ref("vocabularies/" + id)
-          .remove(function (error) {
-            if (error) {
-              console.log("delete error" + error);
-              } else {
-               window.location.href = "./vocabulary.html";              
-             }
-          });
-      }
-    
-    // //remove vocabulary
-    const vocabularyContent = document.getElementById('vocabulary_content');
-    vocabularyContent.addEventListener("click", (e) => {
-      //let me get my uid
-      let key = e.target.dataset.uid;   
+      //for delete and edit item from firebase
       if (e.target.className.includes("deleteButton")) {
-        firebase.database()
-          .ref("vocabulary/" + key)
+        firebase
+          .database()
+          .ref("vocabularies/" + id)
           .remove(function (error) {
             if (error) {
               console.log("delete error" + error);
@@ -347,222 +356,238 @@
               window.location.href = "./vocabulary.html";
             }
           });
-      } 
-      
-      else if(e.target.className.includes("editVocabulary")) {      
+      }
+
+      // //remove vocabulary
+      const vocabularyContent = document.getElementById("vocabulary_content");
+      vocabularyContent.addEventListener("click", (e) => {
+        //let me get my uid
         let key = e.target.dataset.uid;
-        const updateVocabularyButton = document.getElementById("updateVocabulary");
-        const title = document.getElementById("title_update");
-        const body = document.getElementById("body_update");
-        const imageEdit = document.getElementById("image_update");
-        const formEdit = document.getElementById("form_edit");
+        if (e.target.className.includes("deleteButton")) {
+          firebase
+            .database()
+            .ref("vocabulary/" + key)
+            .remove(function (error) {
+              if (error) {
+                console.log("delete error" + error);
+              } else {
+                window.location.href = "./vocabulary.html";
+              }
+            });
+        } else if (e.target.className.includes("editVocabulary")) {
+          let key = e.target.dataset.uid;
+          const updateVocabularyButton =
+            document.getElementById("updateVocabulary");
+          const title = document.getElementById("title_update");
+          const body = document.getElementById("body_update");
+          const imageEdit = document.getElementById("image_update");
+          const formEdit = document.getElementById("form_edit");
 
-        //get data from locastoragee
-        let data_single = JSON.parse(localStorage.getItem("data"));
+          //get data from locastoragee
+          let data_single = JSON.parse(localStorage.getItem("data"));
 
-        let tobeEddit = data_single.find((elt) => elt.uid_key === key);
-               // let see what we have here
-        formEdit.style.display = "block";
-        
-        title.value = tobeEddit.title;
-        const blogText = tinymce.activeEditor.setContent(tobeEddit.body);
-        imageEdit.name = tobeEddit.Image;
+          let tobeEddit = data_single.find((elt) => elt.uid_key === key);
+          // let see what we have here
+          formEdit.style.display = "block";
 
-        updateVocabularyButton.addEventListener("click", (e) => {
-          // image variable
-          const image = document.getElementById("image_update").files[0];
-          const imageName = image.name;
-          //reference a collection
-          const storageRef = firebase.storage().ref("images/" + imageName);         
-          // upload image to selected  storage reference
-          var uploadTask = storageRef.put(image);
+          title.value = tobeEddit.title;
+          const blogText = tinymce.activeEditor.setContent(tobeEddit.body);
+          imageEdit.name = tobeEddit.Image;
 
-          uploadTask.on(
-            "state_changed",
-            function (snapshot) {
-              var progress =
-                (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-              console.log("Upload is " + progress + "done");
-            },
-            function (error) {
-               console.log(error.message);
+          updateVocabularyButton.addEventListener("click", (e) => {
+            // image variable
+            const image = document.getElementById("image_update").files[0];
+            const imageName = image.name;
+            //reference a collection
+            const storageRef = firebase.storage().ref("images/" + imageName);
+            // upload image to selected  storage reference
+            var uploadTask = storageRef.put(image);
+
+            uploadTask.on(
+              "state_changed",
+              function (snapshot) {
+                var progress =
+                  (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log("Upload is " + progress + "done");
               },
-            function () {
-              // handle successfully upload here..
-              uploadTask.snapshot.ref
-                .getDownloadURL()
-                .then(function (downloadURL) {              
-                  const blogText = tinymce.activeEditor.getContent();
-                  var id = Math.floor(Math.random() * 100);
-                  firebase
-                    .database()
-                    .ref("blogs/" + key)
-                    .update(
-                      {                        
-                        title: title.value,
-                        body: blogText,
-                        createdAt: serverTimestamp(),
-                        vocabularys:[],
-                        Image: downloadURL,
-                        uid_key: key,
-                      },
-                      function (error) {
-                        if (error) {
-                          console.log("error whie uploading");
-                        } else {
-                          console.log("successfully uploaded");                          
-                          formEdit.style.display = "none";
-                          const alert_message_add_blog =
-                            document.getElementById("alert_message_add_blog");
-                          alert_message_add_blog.style.display = "flex";
+              function (error) {
+                console.log(error.message);
+              },
+              function () {
+                // handle successfully upload here..
+                uploadTask.snapshot.ref
+                  .getDownloadURL()
+                  .then(function (downloadURL) {
+                    const blogText = tinymce.activeEditor.getContent();
+                    var id = Math.floor(Math.random() * 100);
+                    firebase
+                      .database()
+                      .ref("blogs/" + key)
+                      .update(
+                        {
+                          title: title.value,
+                          body: blogText,
+                          createdAt: serverTimestamp(),
+                          vocabularys: [],
+                          Image: downloadURL,
+                          uid_key: key,
+                        },
+                        function (error) {
+                          if (error) {
+                            console.log("error whie uploading");
+                          } else {
+                            console.log("successfully uploaded");
+                            formEdit.style.display = "none";
+                            const alert_message_add_blog =
+                              document.getElementById("alert_message_add_blog");
+                            alert_message_add_blog.style.display = "flex";
 
-                          setTimeout(() => {
-                            location.href = "./dashboard.html";
-                          }, 4000);
+                            setTimeout(() => {
+                              location.href = "./dashboard.html";
+                            }, 4000);
+                          }
                         }
-                      }
                       );
                   });
-               }
+              }
             );
-         });
-       }
+          });
+        }
+      });
     });
 
-     });
-
     //  let vocabularies
-       const vocabularies = ref(database, `vocabularies`);
-    
+    const vocabularies = ref(database, `vocabularies`);
+
     onValue(vocabularies, (snapshot) => {
-      const data = snapshot.val();     
+      const data = snapshot.val();
 
-      if(data !==null){        
-      let numberOfvocabularyArray = [] 
-      const vocabularyContent = document.getElementById('vocabulary_content');
+      if (data !== null) {
+        let numberOfvocabularyArray = [];
+        const vocabularyContent = document.getElementById("vocabulary_content");
 
-      for (var [key, value] of Object.entries(data)){  
-              
-        var obj = {
-          // id: value.id,
-          content: value.content,
-          timeStamp: value.time,
-          uid_key: key,
-        };
-        
-        if(value){             
-        const numberOfVocabulary = document.getElementById('number_of_vocabulary');
-        
-        /// for date
-        const timeStamp = value.time;
-        
-        numberOfvocabularyArray.push(obj)
+        for (var [key, value] of Object.entries(data)) {
+          var obj = {
+            // id: value.id,
+            content: value.content,
+            timeStamp: value.time,
+            uid_key: key,
+          };
 
-        numberOfVocabulary.innerHTML= numberOfvocabularyArray.length
-             
-      const time = new Date(timeStamp);
-      var date = ("0" + time.getDate()).slice(-2);
-      var yr = time.getFullYear();
-      // extracting month from the date object as 2 digit
-      var mth = ("0" + (time.getMonth() + 1)).slice(-2);       
-         
-         let vocabulary = document.createElement("DIV");
-         vocabulary.innerHTML = `
+          if (value) {
+            const numberOfVocabulary = document.getElementById(
+              "number_of_vocabulary"
+            );
+
+            /// for date
+            const timeStamp = value.time;
+
+            numberOfvocabularyArray.push(obj);
+
+            numberOfVocabulary.innerHTML = numberOfvocabularyArray.length;
+
+            const time = new Date(timeStamp);
+            var date = ("0" + time.getDate()).slice(-2);
+            var yr = time.getFullYear();
+            // extracting month from the date object as 2 digit
+            var mth = ("0" + (time.getMonth() + 1)).slice(-2);
+
+            let vocabulary = document.createElement("DIV");
+            vocabulary.innerHTML = `
          <div class="vocabulary_box"> 
           <div id="header_vocabulary">             
-            <h4 class="vocabulary_header">"${value.header ? value.header : "no word yet"} ":</h4>   
+            <h4 class="vocabulary_header">"${
+              value.header ? value.header : "no word yet"
+            } ":</h4>   
             <i class="fa fa-trash deleteButton" data-uid=${key}></i>  
           </div>
-            <p class="vocabulary_paragraph">${value.content? value.content : " no vocabularies yet"}</p>  
+            <p class="vocabulary_paragraph">${
+              value.content ? value.content : " no vocabularies yet"
+            }</p>  
          </div>        
-         `   
-         //add vocabularies at the bottom ot the vocabulary box
-         vocabularyContent.append(vocabulary)
-                }
-              }
-
-              //logic for pagination
-              const itemsPerPage = 2;
-              const totalItems = numberOfvocabularyArray.length;
-              const totalPages = Math.ceil(totalItems / itemsPerPage);
-              let currentPage = 1;
-
-              function showPage(page) {
-                  const startIndex = (page - 1) * itemsPerPage;
-                  console.log(numberOfvocabularyArray)
-                  numberOfvocabularyArray.forEach((item, i) => {
-                    if(i >= startIndex && i < startIndex + itemsPerPage){
-                      console.log('block')
-                    } else{
-                      console.log('none')
-                    }
-              });
-                  currentPage = page;
-              }     
-
-              showPage(1);
-              console.log(showPage(1))
-              vocabularyContent.addEventListener("click",(e)=>{
-                console.log(e.target.className)
-                if(e.target.className==="next-page"){
-                  currentPage < totalPages && showPage(currentPage + 1)
-                }
-                if(e.target.className==="prev-page"){
-                  currentPage > 1 && showPage(currentPage - 1)
-              }
-
-              })
-              //  console.log(totalPages, totalItems)
-              let numbersOfpage = []
-              for(let i=1; i<=totalPages; i++) {
-                numbersOfpage.push(i);
-              }
-
-              // console.log(numbersOfpage)
-              numberOfvocabularyArray.forEach((item) => numbersOfpage.push(item))
-                
-              // logic for adding pages numbers------------
-            let pagesNumbers = document.querySelector("#pages-numbers");
-            numbersOfpage.forEach(item => {
-            let h3 = document.createElement("h3");
-            h3.innerText = item;
-            // pagesNumbers.appendChild(h3);
-        });      
-                vocabularyContent.append(pagesNumbers)
-            }     
-        })  
-        
-        
-     
-    //showing story on our platform
-    const stories = ref(database, `blogs`);
-    onValue(stories, (snapshot) => {
-      const data = snapshot.val();    
-
-      if(data !==null){
-      let numberOfBlogArray= []      
-
-      for (var [key, value] of Object.entries(data)){  
-        
-        var obj = {
-          id: value.id,
-          title: value.title,
-          image:value.Image,
-          uid_key: key,
-        };
-      
-        if(value){
-             numberOfBlogArray.push(obj);            
+         `;
+            //add vocabularies at the bottom ot the vocabulary box
+            vocabularyContent.append(vocabulary);
           }
         }
 
-         //show only five blog       
-        const storyContent = document.getElementById('related_blog_item');
-        
-        numberOfBlogArray.slice(0,3).forEach(value => { 
-         
-         let story = document.createElement("DIV");
-         story.innerHTML = `
+        //logic for pagination
+        const itemsPerPage = 2;
+        const totalItems = numberOfvocabularyArray.length;
+        const totalPages = Math.ceil(totalItems / itemsPerPage);
+        let currentPage = 1;
+
+        function showPage(page) {
+          const startIndex = (page - 1) * itemsPerPage;
+          console.log(numberOfvocabularyArray);
+          numberOfvocabularyArray.forEach((item, i) => {
+            if (i >= startIndex && i < startIndex + itemsPerPage) {
+              console.log("block");
+            } else {
+              console.log("none");
+            }
+          });
+          currentPage = page;
+        }
+
+        showPage(1);
+        console.log(showPage(1));
+        vocabularyContent.addEventListener("click", (e) => {
+          console.log(e.target.className);
+          if (e.target.className === "next-page") {
+            currentPage < totalPages && showPage(currentPage + 1);
+          }
+          if (e.target.className === "prev-page") {
+            currentPage > 1 && showPage(currentPage - 1);
+          }
+        });
+        //  console.log(totalPages, totalItems)
+        let numbersOfpage = [];
+        for (let i = 1; i <= totalPages; i++) {
+          numbersOfpage.push(i);
+        }
+
+        // console.log(numbersOfpage)
+        numberOfvocabularyArray.forEach((item) => numbersOfpage.push(item));
+
+        // logic for adding pages numbers------------
+        let pagesNumbers = document.querySelector("#pages-numbers");
+        numbersOfpage.forEach((item) => {
+          let h3 = document.createElement("h3");
+          h3.innerText = item;
+          // pagesNumbers.appendChild(h3);
+        });
+        vocabularyContent.append(pagesNumbers);
+      }
+    });
+
+    //showing story on our platform
+    const stories = ref(database, `blogs`);
+    onValue(stories, (snapshot) => {
+      const data = snapshot.val();
+
+      if (data !== null) {
+        let numberOfBlogArray = [];
+
+        for (var [key, value] of Object.entries(data)) {
+          var obj = {
+            id: value.id,
+            title: value.title,
+            image: value.Image,
+            uid_key: key,
+          };
+
+          if (value) {
+            numberOfBlogArray.push(obj);
+          }
+        }
+
+        //show only five blog
+        const storyContent = document.getElementById("related_blog_item");
+
+        numberOfBlogArray.slice(0, 3).forEach((value) => {
+          let story = document.createElement("DIV");
+          story.innerHTML = `
          <div class="sroty_item_content">
                   <div class="blog_relate_image">
                     <img
@@ -572,26 +597,24 @@
                   </div>
                   <h3>${value.title}</h3>
                 </div>       
-         `   
-   
-         //add vocabularies at the bottom ot the vocabulary box
-         storyContent.append(story)    
+         `;
 
-              })
-           }
+          //add vocabularies at the bottom ot the vocabulary box
+          storyContent.append(story);
         });
-                                 
+      }
+    });
 
-  // check if user is logged in
+    // check if user is logged in
     onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
-        const uid = user.uid;        
+        const uid = user.uid;
       }
       if (user == undefined) {
         // User is signed out
-        location.href = "./login.html";        
+        location.href = "./login.html";
       }
     });
   </script>
