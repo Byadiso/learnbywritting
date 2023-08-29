@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // order matter here
       registerForm.classList.remove("hide");
-      loginForm.classList.add("hide");
+      // loginForm.classList.add("hide");
 
       // toggleLogginRegister(loginForm, registerForm);
 
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // order matter here
       loginForm.classList.remove("hide");
-      registerForm.classList.add("hide");
+      // registerForm.classList.add("hide");
       // toggleLogginRegister(loginForm, registerForm);
 
       checkMyValue(email, password, alert_message_login);
