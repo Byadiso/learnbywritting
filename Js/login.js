@@ -46,45 +46,35 @@ document.addEventListener("DOMContentLoaded", () => {
   // checking function
 
   const checkMyValue = (emailInput, passwordInput, messageBlock) => {
-    if (!emailInput.value || !passwordInput.value) {
-      console.log("first add something");
-      if (!emailInput.value) {
-        emailInput.style.border = "1px solid red";
+    if (!emailInput.value && !passwordInput.value) {     
         messageBlock.style.background = "red";
-        messageBlock.innerHTML = "your email is missing";
-
+        messageBlock.innerHTML = "first add something";
         setTimeout(() => {
           messageBlock.style.display = "none";
         }, 3000);
-      }
-      if (!passwordInput.value) {
-        passwordInput.style.border = "1px solid red";
-        //   console.log((name.style.border = "1px solid red"));
-        messageBlock.style.background = "red";
-        messageBlock.innerHTML = "your password is missing";
+      console.log("first add something");      
+    } else if (!emailInput.value) {
+      emailInput.style.border = "1px solid red";
+      messageBlock.style.background = "red";
+      messageBlock.innerHTML = "Your email is missing";
 
-        setTimeout(() => {
-          messageBlock.style.display = "none";
-        }, 3000);
-      }
-    }
+      setTimeout(() => {
+        messageBlock.style.display = "none";
+      }, 3000);
+    } else if (!passwordInput.value) {
+      passwordInput.style.border = "1px solid red";
+      //   console.log((name.style.border = "1px solid red"));
+      messageBlock.style.background = "red";
+      messageBlock.innerHTML = "your password is missing";
+      setTimeout(() => {
+        messageBlock.style.display = "none";
+      }, 3000);
+    } 
+
     if (emailInput.value && passwordInput.value) {
-      console.log("let do rogin");
+      console.log("let do login");
       // window.location.href = "../html/dashboard.html";
     }
   };
-
-  // my fucntion to toggle login and regoster
-
-  // const toggleLogginRegister = (loginBlock, registerBlock) => {
-  //   if (loginBlock.className.includes("hide")) {
-  //     loginBlock.classList.remove("hide");
-  //     registerBlock.classList.add("hide");
-  //   }
-
-  //   if (registerBlock.className.includes("hide")) {
-  //     registerBlock.classList.remove("hide");
-  //     loginBlock.classList.add("hide");
-  //   }
-  // };
+ 
 });
